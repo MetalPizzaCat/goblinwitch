@@ -7,3 +7,8 @@
 script = ExtResource("1_nbxeo")
 
 [node name="Body" parent="." instance=ExtResource("1_lxhen")]
+
+[node name="InfoLabel" type="Label3D" parent="."]
+transform = Transform3D(-1, -2.94468e-08, 8.23142e-08, 6.18172e-08, 0.42761, 0.903963, -6.18172e-08, 0.903963, -0.42761, 0, 2.49676, 0)
+pixel_size = 0.05
+text = "ABBA"
