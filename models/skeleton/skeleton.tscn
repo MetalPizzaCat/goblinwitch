@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://0fdtoatr53q2"]
+
+[ext_resource type="PackedScene" uid="uid://by5wfurp02dcv" path="res://models/skeleton/skeleton.glb" id="1_w2ifx"]
+
+[node name="Skeleton" type="CharacterBody3D"]
+
+[node name="skeleton2" parent="." instance=ExtResource("1_w2ifx")]

@@ -1,0 +1,35 @@
+[gd_scene load_steps=2 format=3 uid="uid://cnmr128f12cil"]
+
+[ext_resource type="PackedScene" uid="uid://b6fdynqbfcxxx" path="res://models/goblin/goblin1.glb" id="1_es1nm"]
+
+[node name="goblin1" instance=ExtResource("1_es1nm")]
+
+[node name="Skeleton3D" parent="Armature" index="0"]
+bones/2/rotation = Quaternion(-0.109395, -4.35843e-08, -0.767659, 0.631452)
+bones/3/rotation = Quaternion(0.168876, 5.3563e-09, 0.720156, 0.672946)
+bones/6/rotation = Quaternion(-0.0497175, 0.0460458, -0.728078, 0.682137)
+bones/6/scale = Vector3(1, 1, 1)
+bones/7/rotation = Quaternion(-0.0424225, -0.0378579, -0.495456, 0.86677)
+bones/8/rotation = Quaternion(0.0511198, -0.00447526, 0.0933408, 0.994311)
+bones/8/scale = Vector3(1, 1, 1)
+bones/9/rotation = Quaternion(0.0640479, -0.148638, 0.713137, 0.682086)
+bones/9/scale = Vector3(1, 1, 1)
+bones/10/rotation = Quaternion(0.190999, 0.00151217, 0.485808, 0.85294)
+bones/11/rotation = Quaternion(-0.0330055, -5.06966e-05, -0.0699856, 0.997002)
+bones/12/scale = Vector3(1, 1, 1)
+bones/13/rotation = Quaternion(-0.699595, 0.0288655, -0.109389, 0.705527)
+bones/14/rotation = Quaternion(-0.0380712, 0.00408075, -0.0442732, 0.998285)
+bones/14/scale = Vector3(1, 1, 1)
+bones/15/rotation = Quaternion(0.0396034, -0.110083, 0.740281, 0.66204)
+bones/16/rotation = Quaternion(0.466278, 0.531587, 0.531587, -0.466279)
+bones/17/rotation = Quaternion(-0.670936, -0.101615, 0.176489, 0.713001)
+bones/17/scale = Vector3(1, 1, 1)
+bones/18/rotation = Quaternion(0.037709, -0.0188828, 0.0656759, 0.996949)
+bones/19/rotation = Quaternion(-0.198176, 0.0469958, -0.719151, 0.664334)
+bones/19/scale = Vector3(1, 1, 1)
+
+[node name="hair" parent="Armature/Skeleton3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 1.86265e-09, 0, -1.86265e-09, 1, 0, 1.53176, 4.14925e-08)
+
+[node name="head" parent="Armature/Skeleton3D" index="1"]
+transform = Transform3D(0, 0, 0.785796, 0.785797, -2.34186e-08, 0, 2.34186e-08, 0.785796, 0, 0, 0.515388, 1.49885e-08)

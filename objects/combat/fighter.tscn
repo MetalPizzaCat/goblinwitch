@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://cgp10p8xr0lh0"]
+
+[ext_resource type="PackedScene" uid="uid://cnmr128f12cil" path="res://objects/character_body.tscn" id="1_lxhen"]
+[ext_resource type="Script" path="res://objects/combat/fighter.gd" id="1_nbxeo"]
+
+[node name="Fighter" type="Node3D"]
+script = ExtResource("1_nbxeo")
+
+[node name="Body" parent="." instance=ExtResource("1_lxhen")]

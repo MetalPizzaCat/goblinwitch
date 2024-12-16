@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=3 uid="uid://bfxyba8lqk48m"]
+
+[ext_resource type="Script" path="res://levels/combat/combat_cell.gd" id="1_r3jr6"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_k4ygm"]
+size = Vector3(3, 0.3, 3)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3rhc5"]
+albedo_color = Color(0.572549, 0.443137, 0.572549, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_heqe5"]
+material = SubResource("StandardMaterial3D_3rhc5")
+
+[node name="CombatCell" type="Node3D"]
+script = ExtResource("1_r3jr6")
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.05, 0)
+shape = SubResource("BoxShape3D_k4ygm")
+
+[node name="Tile" type="MeshInstance3D" parent="."]
+transform = Transform3D(2.9925, 0, 0, 0, 0.3, 0, 0, 0, 2.9925, 0, 0, 0)
+mesh = SubResource("BoxMesh_heqe5")
+
+[connection signal="input_event" from="Area3D" to="." method="_on_area_3d_input_event"]
+[connection signal="mouse_entered" from="Area3D" to="." method="_on_area_3d_mouse_entered"]
+[connection signal="mouse_exited" from="Area3D" to="." method="_on_area_3d_mouse_exited"]

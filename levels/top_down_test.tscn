@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://chkstfdjytaq3"]
+
+[ext_resource type="PackedScene" uid="uid://cnmr128f12cil" path="res://objects/character_body.tscn" id="1_mg34t"]
+
+[node name="Node3D" type="Node3D"]
+
+[node name="goblin1" parent="." instance=ExtResource("1_mg34t")]

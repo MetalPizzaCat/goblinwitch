@@ -1,0 +1,11 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://l4amfohdmag3"]
+
+[ext_resource type="Texture2D" uid="uid://dyvvux8d2lx1x" path="res://textures/paper.png" id="1_vgvw6"]
+
+[resource]
+transparency = 1
+blend_mode = 3
+shading_mode = 0
+albedo_color = Color(0.878698, 0.382652, 0.361125, 1)
+albedo_texture = ExtResource("1_vgvw6")
+texture_filter = 2

@@ -1,0 +1,36 @@
+[gd_scene load_steps=2 format=3 uid="uid://b2ts44g7hddch"]
+
+[ext_resource type="PackedScene" uid="uid://by5wfurp02dcv" path="res://models/skeleton/skeleton.glb" id="1_x8wxk"]
+
+[node name="skeleton2" instance=ExtResource("1_x8wxk")]
+
+[node name="Skeleton3D" parent="rig" index="0"]
+bones/1/rotation = Quaternion(-0.231057, -0.000774289, 0.0496593, 0.971672)
+bones/2/rotation = Quaternion(0.113998, 0.0151874, -0.112613, 0.986961)
+bones/2/scale = Vector3(1, 1, 1)
+bones/3/rotation = Quaternion(0.139696, 4.70911e-15, 3.33062e-08, 0.990194)
+bones/4/rotation = Quaternion(-0.130254, 3.35929e-15, -3.10549e-08, 0.991481)
+bones/4/scale = Vector3(1, 1, 1)
+bones/5/rotation = Quaternion(0.92388, 6.30231e-14, 2.2027e-07, 0.382683)
+bones/5/scale = Vector3(1, 1, 1)
+bones/7/scale = Vector3(1, 1, 1)
+bones/8/rotation = Quaternion(-0.273745, 0.75246, -0.303724, 0.516352)
+bones/9/rotation = Quaternion(0.139987, 0.0467972, -0.687968, 0.710573)
+bones/9/scale = Vector3(1, 1, 1)
+bones/10/rotation = Quaternion(9.93629e-05, 0.0242102, 0.65113, 0.75858)
+bones/10/scale = Vector3(1, 1, 1)
+bones/12/rotation = Quaternion(-0.565441, 0.413367, 0.421552, 0.575932)
+bones/12/scale = Vector3(1, 1, 1)
+bones/13/rotation = Quaternion(0.542278, 0.0717589, 0.223273, 0.806805)
+bones/14/rotation = Quaternion(0.361776, 0.0206799, 0.048698, 0.930763)
+bones/15/rotation = Quaternion(-0.0192049, -0.0114673, 0.00920764, 0.999707)
+bones/15/scale = Vector3(1, 1, 1)
+bones/17/rotation = Quaternion(0.993439, -4.0392e-09, 1.1616e-07, 0.114364)
+bones/18/rotation = Quaternion(0.0413793, 1.55901e-09, 9.73419e-09, 0.999144)
+bones/20/scale = Vector3(1, 1, 1)
+bones/22/rotation = Quaternion(0.993439, -4.03915e-09, 1.1616e-07, 0.114364)
+bones/23/rotation = Quaternion(0.0413791, 1.559e-09, 9.73419e-09, 0.999144)
+bones/24/rotation = Quaternion(-0.55697, -1.14905e-08, -2.7605e-08, 0.830533)
+bones/24/scale = Vector3(1, 1, 1)
+bones/25/rotation = Quaternion(-8.87672e-09, 0.973581, -0.228343, -8.11682e-08)
+bones/25/scale = Vector3(1, 1, 1)
