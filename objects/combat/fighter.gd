@@ -32,13 +32,25 @@ enum ActionState {
 			position = combat_arena.get_cell_local_pos(value) + combat_arena.cell_root.position
 
 @onready var current_ap: int = total_ap
-@onready var info_label : Label3D = $InfoLabel
+@onready var info_label: Label3D = $InfoLabel
+@onready var anim_body: CharacterBody = $Body
 
 var combat_arena: CombatArena
 
 var _character: Character
 var _arena_position: Vector2i
-var current_state: ActionState = ActionState.IDLE
+var _current_state: ActionState
+@onready var current_state: ActionState = ActionState.IDLE:
+	get:
+		return _current_state
+	set(value):
+		_current_state = value
+		match value:
+			ActionState.MOVING:
+				anim_body.play_animation('run')
+			ActionState.IDLE:
+				anim_body.play_animation('idle')
+
 var movement_destination: Vector3
 
 ## Begin moving this pawn to a given tile
@@ -55,7 +67,8 @@ func _process(delta: float) -> void:
 				position = movement_destination
 				movement_destination = Vector3.ZERO
 				current_state = ActionState.IDLE
-				
 			else:
-				info_label.text =str(position.distance_to(movement_destination))
+				info_label.text = str(position.distance_to(movement_destination))
+				
+				look_at(combat_arena.to_global(movement_destination))
 				position += position.direction_to(movement_destination).normalized() * combat_arena.fighter_movement_speed * delta
