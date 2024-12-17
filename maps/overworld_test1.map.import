@@ -1,0 +1,14 @@
+[remap]
+
+importer="func_godot.map"
+type="Resource"
+uid="uid://bf2ks7wcqgqih"
+path="res://.godot/imported/overworld_test1.map-63077cc3450734cc4c9482ee720aa589.tres"
+
+[deps]
+
+source_file="res://maps/overworld_test1.map"
+dest_files=["res://.godot/imported/overworld_test1.map-63077cc3450734cc4c9482ee720aa589.tres"]
+
+[params]
+
