@@ -34,7 +34,7 @@ bones/19/rotation = Quaternion(-0.198176, 0.0469958, -0.719151, 0.664334)
 bones/19/scale = Vector3(1, 1, 1)
 
 [node name="hair" parent="Armature/Skeleton3D" index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, -1.77636e-15, 0, 0, 1, 0, 1.53176, 3.78407e-08)
+transform = Transform3D(1, -5.55849e-16, 3.55501e-15, 5.55849e-16, 1, 0, -3.55501e-15, -3.55271e-15, 1, -2.06719e-15, 1.53176, 3.78407e-08)
 
 [node name="head" parent="Armature/Skeleton3D" index="1"]
-transform = Transform3D(0, 0, 0.785796, 0.785796, -2.34186e-08, 0, 2.34186e-08, 0.785796, 0, 0, 0.515388, 1.50009e-08)
+transform = Transform3D(-8.72409e-17, 1.80707e-18, 0.785796, 0.785796, -2.34186e-08, 8.72409e-17, 2.34186e-08, 0.785796, -1.80707e-18, -1.51603e-15, 0.515388, 1.50009e-08)

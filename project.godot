@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="GoblinWitch"
-run/main_scene="res://levels/combat/combat_arena.tscn"
+run/main_scene="res://levels/overworld.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
 config/icon="res://icon.svg"
 

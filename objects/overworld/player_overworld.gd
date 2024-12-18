@@ -1,8 +1,10 @@
 extends CharacterBody3D
+class_name PlayerOverworld
 
 
 @export var speed: float = 5
 @onready var body: CharacterBody = $Body
+@onready var camera : Camera3D = $Camera3D2
 
 func _physics_process(_delta: float) -> void:
 
@@ -14,7 +16,7 @@ func _physics_process(_delta: float) -> void:
 	if direction:
 		velocity.x = direction.x * speed
 		velocity.z = direction.z * speed
-		body.look_at(global_position + -1 * direction)
+		body.look_at(global_position + direction)
 	else:
 		velocity.x = move_toward(velocity.x, 0, speed)
 		velocity.z = move_toward(velocity.z, 0, speed)

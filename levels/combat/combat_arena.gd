@@ -1,22 +1,25 @@
 extends Node3D
 class_name CombatArena
 
+signal combat_ended
+
 @export var area_size: int = 5
 @export_group("Combat")
 @export var combat_scenario: CombatScenario
-@export var enemy_prefab : PackedScene
-@export var fighter_movement_speed : float = 3
+@export var enemy_prefab: PackedScene
+@export var fighter_movement_speed: float = 3
 @export_group("Cells")
 @export var cell_prefab: PackedScene
 @export var size_between_cells: float = 3.1
 
 @onready var cell_root: Node3D = $CellRoot
 @onready var selection_arrow: Node3D = $Arrow
-@onready var player: Player= $Player
+@onready var player: Player = $Player
+@onready var camera: Camera3D = $Camera3D
 
 var cells: Array[CombatCell] = []
-var enemies : Array[Enemy] = []
-
+var enemies: Array[Enemy] = []
+var test_count : int = 0
 func _ready() -> void:
 	player.combat_arena = self
 	generate_grid()
@@ -51,7 +54,13 @@ func load_combat_scenario(scenario: CombatScenario) -> void:
 		enemy.target = player
 		enemy.arena_position = actor.start_pos
 
+## Start combat and play player entering sequence
+func start_combat(player_world_pos: Vector3) -> void:
+	player.global_position = player_world_pos
+	player.move_to_tile(find_closest_tile(cell_root.to_local(player_world_pos)))
 
+
+## Generate grid used for combat
 func generate_grid() -> void:
 	if cell_prefab == null:
 		printerr("Missing cell prefab!")
@@ -67,17 +76,29 @@ func generate_grid() -> void:
 			cell.mouse_leave.connect(_on_cell_mouse_left)
 			cell.mouse_over.connect(_on_cell_mouse_over)
 
+
+## Get position of the cell by cell id relative to `cell_root` 
 func get_cell_local_pos(cell_pos: Vector2i) -> Vector3:
 	for cell in cells:
 		if cell.arena_position == cell_pos:
 			return cell.position
 	return Vector3.ZERO
 
-func tile_to_position(tile : Vector2i) -> Vector3:
+
+## Get position of the cell by cell id relative to the combat arena root
+func tile_to_position(tile: Vector2i) -> Vector3:
 	for cell in cells:
 		if cell.arena_position == tile:
 			return cell.position + cell_root.position
 	return Vector3.ZERO
+
+## Find tile closest to the position [br]
+## `src` must be a local position relative to the combat arena root
+func find_closest_tile(src: Vector3) -> Vector2i:
+	return cells.reduce(
+			func(max: CombatCell, curr: CombatCell): return curr if curr.position.distance_squared_to(src) < max.position.distance_squared_to(src) else max
+		).arena_position
+
 
 func _on_cell_mouse_over(cell: CombatCell) -> void:
 	selection_arrow.position = Vector3(cell.position.x + cell_root.position.x, selection_arrow.position.y, cell.position.z + cell_root.position.z)
@@ -87,3 +108,6 @@ func _on_cell_mouse_left(cell: CombatCell) -> void:
 
 func _on_cell_clicked(cell: CombatCell) -> void:
 	player.on_tile_selected(cell)
+	test_count += 1
+	if test_count > 2:
+		combat_ended.emit()

@@ -1,53 +1,10 @@
-[gd_scene load_steps=21 format=3 uid="uid://dan7m2c7flsu8"]
+[gd_scene load_steps=12 format=3 uid="uid://dan7m2c7flsu8"]
 
 [ext_resource type="PackedScene" uid="uid://cgp10p8xr0lh0" path="res://objects/combat/fighter.tscn" id="1_pgnwb"]
 [ext_resource type="Script" path="res://levels/combat/combat_arena.gd" id="1_rjxb1"]
-[ext_resource type="Script" path="res://combat/scenario/combat_scenario_actor.gd" id="2_ciyef"]
 [ext_resource type="PackedScene" uid="uid://bfxyba8lqk48m" path="res://levels/combat/combat_cell.tscn" id="2_jscg4"]
-[ext_resource type="Script" path="res://character/item.gd" id="3_as0lj"]
-[ext_resource type="Script" path="res://combat/scenario/combat_scenario.gd" id="3_j0y2n"]
-[ext_resource type="Script" path="res://character/character.gd" id="4_cysql"]
 [ext_resource type="PackedScene" uid="uid://bkwtfo02rqixb" path="res://objects/combat/enemy.tscn" id="4_kmryn"]
 [ext_resource type="Script" path="res://objects/combat/player.gd" id="9_hapqf"]
-
-[sub_resource type="Resource" id="Resource_twmm7"]
-script = ExtResource("4_cysql")
-name = "YOUR_MOM"
-strength = 0
-dexterity = 0
-intelligence = 0
-perception = 0
-endurance = 0
-charisma = 0
-items = Array[ExtResource("3_as0lj")]([])
-total_ap = 3
-
-[sub_resource type="Resource" id="Resource_b0u65"]
-script = ExtResource("2_ciyef")
-character = SubResource("Resource_twmm7")
-start_pos = Vector2i(0, 0)
-
-[sub_resource type="Resource" id="Resource_swk37"]
-script = ExtResource("4_cysql")
-name = "YOUR_SECOND_MOM"
-strength = 0
-dexterity = 0
-intelligence = 0
-perception = 0
-endurance = 0
-charisma = 0
-items = Array[ExtResource("3_as0lj")]([])
-total_ap = 3
-
-[sub_resource type="Resource" id="Resource_yv1eo"]
-script = ExtResource("2_ciyef")
-character = SubResource("Resource_swk37")
-start_pos = Vector2i(5, 5)
-
-[sub_resource type="Resource" id="Resource_ivxg7"]
-script = ExtResource("3_j0y2n")
-actors = Array[ExtResource("2_ciyef")]([SubResource("Resource_b0u65"), SubResource("Resource_yv1eo")])
-player_position = Vector2i(3, 3)
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_idy3q"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -75,7 +32,6 @@ material = SubResource("StandardMaterial3D_j5svg")
 [node name="CombatArena" type="Node3D"]
 script = ExtResource("1_rjxb1")
 area_size = 6
-combat_scenario = SubResource("Resource_ivxg7")
 enemy_prefab = ExtResource("4_kmryn")
 fighter_movement_speed = 6.0
 cell_prefab = ExtResource("2_jscg4")
@@ -92,10 +48,11 @@ transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 
 script = ExtResource("9_hapqf")
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.196665, 0.980471, 0, -0.980471, 0.196665, 0, 18.4825, 6.47168)
+transform = Transform3D(-1, 8.57281e-08, -1.71302e-08, 0, 0.195946, 0.980615, 8.74228e-08, 0.980615, -0.195946, 0, 18.483, -6.472)
 
 [node name="floor" type="MeshInstance3D" parent="."]
 transform = Transform3D(15.95, 0, 0, 0, 1, 0, 0, 0, 15.95, 0, 0, 0)
+visible = false
 mesh = SubResource("PlaneMesh_p6xq2")
 
 [node name="CellRoot" type="Node3D" parent="."]

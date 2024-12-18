@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://c3t7sxk6d07x6"]
+
+[ext_resource type="Script" path="res://combat/combat_trigger.gd" id="1_wicf6"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_fps72"]
+
+[node name="CombatTrigger" type="Area3D"]
+input_ray_pickable = false
+script = ExtResource("1_wicf6")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_fps72")
+
+[connection signal="body_entered" from="." to="." method="_on_trigger_body_entered"]
