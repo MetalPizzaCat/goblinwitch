@@ -1,14 +1,18 @@
-[gd_scene load_steps=32 format=4 uid="uid://cej7b1eru6x3i"]
+[gd_scene load_steps=37 format=4 uid="uid://cej7b1eru6x3i"]
 
 [ext_resource type="Script" path="res://levels/overworld.gd" id="1_dymff"]
 [ext_resource type="Script" path="res://addons/func_godot/src/map/func_godot_map.gd" id="1_lsw2u"]
 [ext_resource type="Resource" uid="uid://bkhxcqsquw1yg" path="res://addons/func_godot/func_godot_default_map_settings.tres" id="2_pjht8"]
 [ext_resource type="Texture2D" uid="uid://cyg2snr1w5xw5" path="res://addons/func_godot/textures/default_texture.png" id="3_b703v"]
 [ext_resource type="Material" uid="uid://ctxnnlivda46j" path="res://textures/brick1.tres" id="4_kkddk"]
-[ext_resource type="PackedScene" uid="uid://eu51uk4ydnoe" path="res://objects/overworld/player_overworld.tscn" id="4_u10hx"]
+[ext_resource type="PackedScene" uid="uid://eu51uk4ydnoe" path="res://overworld/player_overworld.tscn" id="4_u10hx"]
 [ext_resource type="PackedScene" uid="uid://c3t7sxk6d07x6" path="res://combat/combat_trigger.tscn" id="6_5q5ow"]
-[ext_resource type="Resource" uid="uid://qsvb54u4vnke" path="res://levels/combat/scenarios/combat_arena.tres" id="7_eu5ap"]
-[ext_resource type="PackedScene" uid="uid://dan7m2c7flsu8" path="res://levels/combat/combat_arena.tscn" id="8_dcrt3"]
+[ext_resource type="Script" path="res://character/item.gd" id="7_7g6il"]
+[ext_resource type="Resource" uid="uid://qsvb54u4vnke" path="res://assets/scenarios/combat_arena.tres" id="7_eu5ap"]
+[ext_resource type="Script" path="res://character/character.gd" id="8_1jhyx"]
+[ext_resource type="PackedScene" uid="uid://dan7m2c7flsu8" path="res://combat/arena/combat_arena.tscn" id="8_dcrt3"]
+[ext_resource type="Script" path="res://combat/attack.gd" id="9_4khm8"]
+[ext_resource type="Resource" uid="uid://cu3eouvcjkdhv" path="res://assets/items/stick.tres" id="10_428wq"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_wsk6o"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -107,6 +111,20 @@ _surfaces = [{
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_0pmyx"]
 data = PackedVector3Array(-0.5, 1, -0.5, -0.5, -1, -0.5, 0.5, -1, -0.5, -0.5, 1, -0.5, 0.5, -1, -0.5, 0.5, 1, -0.5, -0.5, 1, -0.5, -0.5, 1, 0.5, -0.5, -1, 0.5, -0.5, 1, -0.5, -0.5, -1, 0.5, -0.5, -1, -0.5, 0.5, -1, -0.5, -0.5, -1, -0.5, -0.5, -1, 0.5, 0.5, -1, -0.5, -0.5, -1, 0.5, 0.5, -1, 0.5, 0.5, 1, -0.5, 0.5, 1, 0.5, -0.5, 1, 0.5, 0.5, 1, -0.5, -0.5, 1, 0.5, -0.5, 1, -0.5, 0.5, 1, -0.5, 0.5, -1, -0.5, 0.5, -1, 0.5, 0.5, 1, -0.5, 0.5, -1, 0.5, 0.5, 1, 0.5, -0.5, 1, 0.5, 0.5, 1, 0.5, 0.5, -1, 0.5, -0.5, 1, 0.5, 0.5, -1, 0.5, -0.5, -1, 0.5)
 
+[sub_resource type="Resource" id="Resource_dvjdl"]
+script = ExtResource("8_1jhyx")
+name = "Player"
+strength = 0
+dexterity = 0
+intelligence = 0
+perception = 0
+endurance = 0
+charisma = 0
+items = Array[ExtResource("7_7g6il")]([])
+weapon = ExtResource("10_428wq")
+total_ap = 3
+spells = Array[ExtResource("9_4khm8")]([])
+
 [node name="Overworld" type="Node3D" node_paths=PackedStringArray("combat_arena", "player")]
 script = ExtResource("1_dymff")
 combat_arena = NodePath("CombatArena")
@@ -187,6 +205,7 @@ shape = SubResource("ConcavePolygonShape3D_0pmyx")
 
 [node name="PlayerOverworld" parent="." instance=ExtResource("4_u10hx")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0.551009, -1)
+character = SubResource("Resource_dvjdl")
 
 [node name="CombatTrigger2" parent="." node_paths=PackedStringArray("combat_spawn_position") groups=["combat_area"] instance=ExtResource("6_5q5ow")]
 transform = Transform3D(12, 0, 0, 0, 12, 0, 0, 0, 12, 5, 0, 20)

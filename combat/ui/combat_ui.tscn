@@ -1,0 +1,77 @@
+[gd_scene load_steps=5 format=3 uid="uid://46fw75u167br"]
+
+[ext_resource type="Theme" uid="uid://cfgbmdhhipqu" path="res://assets/ui/themes/combat_theme.tres" id="1_cua45"]
+[ext_resource type="PackedScene" uid="uid://c6srify188aj5" path="res://combat/ui/character_info.tscn" id="1_ji16m"]
+[ext_resource type="Script" path="res://combat/ui/combat_ui.gd" id="2_6oopr"]
+[ext_resource type="ButtonGroup" uid="uid://dxaign7xivji" path="res://assets/ui/action_button_group.tres" id="4_c7cni"]
+
+[node name="CombatUi" type="Control"]
+texture_filter = 1
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+theme = ExtResource("1_cua45")
+script = ExtResource("2_6oopr")
+action_button_group = ExtResource("4_c7cni")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -162.0
+offset_right = 162.0
+offset_bottom = 104.0
+grow_horizontal = 2
+alignment = 1
+
+[node name="CharacterInfo" parent="HBoxContainer" instance=ExtResource("1_ji16m")]
+layout_mode = 2
+
+[node name="CharacterInfo3" parent="HBoxContainer" instance=ExtResource("1_ji16m")]
+layout_mode = 2
+is_active = true
+
+[node name="CharacterInfo2" parent="HBoxContainer" instance=ExtResource("1_ji16m")]
+layout_mode = 2
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -544.0
+offset_top = -196.0
+offset_right = 544.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="Actions" type="HBoxContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 64.0
+offset_top = -68.0
+offset_right = -64.0
+offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="MoveButton" type="Button" parent="Panel/Actions"]
+layout_mode = 2
+toggle_mode = true
+button_group = ExtResource("4_c7cni")
+text = "Move"
+
+[node name="Attacks" type="HBoxContainer" parent="Panel/Actions"]
+layout_mode = 2
+
+[connection signal="toggled" from="Panel/Actions/MoveButton" to="." method="_on_move_button_toggled"]

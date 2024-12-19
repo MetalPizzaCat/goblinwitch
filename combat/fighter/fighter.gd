@@ -1,6 +1,8 @@
 extends Node3D
 class_name Fighter
 
+signal action_completed
+
 enum ActionState {
 	## No action has been chosen, this pawn is idling
 	IDLE,
@@ -37,6 +39,10 @@ enum ActionState {
 
 var combat_arena: CombatArena
 
+var is_performing_action : bool:
+	get:
+		return current_state != ActionState.IDLE
+
 var _character: Character
 var _arena_position: Vector2i
 var _current_state: ActionState
@@ -52,6 +58,8 @@ var _current_state: ActionState
 				anim_body.play_animation('idle')
 
 var movement_destination: Vector3
+var movement_destination_cell : Vector2i
+
 
 ## Begin moving this pawn to a given tile
 func move_to_tile(pos: Vector2i) -> void:
@@ -59,7 +67,9 @@ func move_to_tile(pos: Vector2i) -> void:
 		return
 	movement_destination = combat_arena.tile_to_position(pos)
 	current_state = ActionState.MOVING
-	 
+	movement_destination_cell = pos
+
+
 func _process(delta: float) -> void:
 	match current_state:
 		ActionState.MOVING:
@@ -67,8 +77,25 @@ func _process(delta: float) -> void:
 				position = movement_destination
 				movement_destination = Vector3.ZERO
 				current_state = ActionState.IDLE
+				arena_position = movement_destination_cell
+				action_completed.emit()
 			else:
 				info_label.text = str(position.distance_to(movement_destination))
 				
 				look_at(combat_arena.to_global(movement_destination))
 				position += position.direction_to(movement_destination).normalized() * combat_arena.fighter_movement_speed * delta
+
+
+func attack(target : Fighter, attack : Attack) -> void:
+	current_state = ActionState.PERFORMING
+	anim_body.play_animation(attack.character_animation_name)
+	look_at(target.global_position)
+	target.receive_damage(self, 0)
+
+func receive_damage(dealer : Fighter, damage : int) -> void:
+	look_at(dealer.global_position)
+	anim_body.play_animation("damage")
+	current_state = ActionState.PERFORMING
+
+func _on_body_action_animation_finished() -> void:
+	current_state = ActionState.IDLE

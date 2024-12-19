@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://cgp10p8xr0lh0"]
 
 [ext_resource type="PackedScene" uid="uid://cnmr128f12cil" path="res://objects/character_body.tscn" id="1_lxhen"]
-[ext_resource type="Script" path="res://objects/combat/fighter.gd" id="1_nbxeo"]
+[ext_resource type="Script" path="res://combat/fighter/fighter.gd" id="1_nbxeo"]
 
 [node name="Fighter" type="Node3D"]
 script = ExtResource("1_nbxeo")
@@ -13,3 +13,5 @@ transform = Transform3D(-1, -2.94468e-08, 8.23142e-08, 6.18172e-08, 0.42761, 0.9
 visible = false
 pixel_size = 0.05
 text = "ABBA"
+
+[connection signal="action_animation_finished" from="Body" to="." method="_on_body_action_animation_finished"]

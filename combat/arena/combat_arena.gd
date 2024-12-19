@@ -16,10 +16,12 @@ signal combat_ended
 @onready var selection_arrow: Node3D = $Arrow
 @onready var player: Player = $Player
 @onready var camera: Camera3D = $Camera3D
+@onready var combat_ui: CombatInterface = $CombatUi
 
 var cells: Array[CombatCell] = []
 var enemies: Array[Enemy] = []
-var test_count : int = 0
+var test_count: int = 0
+
 func _ready() -> void:
 	player.combat_arena = self
 	generate_grid()
@@ -54,11 +56,13 @@ func load_combat_scenario(scenario: CombatScenario) -> void:
 		enemy.target = player
 		enemy.arena_position = actor.start_pos
 
+
 ## Start combat and play player entering sequence
-func start_combat(player_world_pos: Vector3) -> void:
+func start_combat(player_world_pos: Vector3, player_data: Character) -> void:
 	player.global_position = player_world_pos
 	player.move_to_tile(find_closest_tile(cell_root.to_local(player_world_pos)))
-
+	combat_ui.load_player_actions(player_data)
+	
 
 ## Generate grid used for combat
 func generate_grid() -> void:
@@ -100,14 +104,30 @@ func find_closest_tile(src: Vector3) -> Vector2i:
 		).arena_position
 
 
+## Get enemy that is currently occupying this cell or null if cell is empty
+func get_enemy_at(cell : Vector2i) -> Fighter:
+	for enemy in enemies:
+		if enemy.arena_position == cell:
+			return enemy
+	return null
+
+
 func _on_cell_mouse_over(cell: CombatCell) -> void:
 	selection_arrow.position = Vector3(cell.position.x + cell_root.position.x, selection_arrow.position.y, cell.position.z + cell_root.position.z)
+
 
 func _on_cell_mouse_left(cell: CombatCell) -> void:
 	pass
 
+
 func _on_cell_clicked(cell: CombatCell) -> void:
 	player.on_tile_selected(cell)
-	test_count += 1
-	if test_count > 2:
-		combat_ended.emit()
+
+
+func _on_combat_ui_player_action_selected(action: Attack) -> void:
+	player.player_selection = Player.PlayerSelection.ATTACK
+	player.selected_attack = action
+
+
+func _on_combat_ui_player_move_selected() -> void:
+	player.player_selection = Player.PlayerSelection.MOVING

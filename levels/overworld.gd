@@ -4,7 +4,7 @@ class_name Overworld
 @export var combat_arena: CombatArena
 @export var player: PlayerOverworld
 
-@onready var combat_arena_storage : Node3D = $CombatArenaStorage
+@onready var combat_arena_storage: Node3D = $CombatArenaStorage
 
 var is_in_combat: bool = false:
 	get:
@@ -27,7 +27,7 @@ func start_combat(combat_scenario: CombatScenario, combat_pos: Vector3) -> void:
 	combat_arena.position = combat_pos
 	combat_arena.load_combat_scenario(combat_scenario)
 	is_in_combat = true
-	combat_arena.start_combat(player.global_position)
+	combat_arena.start_combat(player.global_position, player.character)
 
 
 func _on_combat_triggered(combat: CombatTrigger) -> void:

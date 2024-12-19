@@ -1,0 +1,39 @@
+[gd_scene load_steps=7 format=3 uid="uid://c6srify188aj5"]
+
+[ext_resource type="StyleBox" uid="uid://bacbv3lohslpf" path="res://assets/ui/styles/character_info_not_active.tres" id="1_2e34k"]
+[ext_resource type="Texture2D" uid="uid://4e0gtlq7ma6d" path="res://assets/icons/gob_icon.png" id="1_bldl2"]
+[ext_resource type="StyleBox" uid="uid://cadb1yyoepk13" path="res://assets/ui/styles/character_info_border.tres" id="1_gmvn1"]
+[ext_resource type="Script" path="res://combat/ui/character_info.gd" id="2_0ucd7"]
+[ext_resource type="FontFile" uid="uid://e70dnlpjiko3" path="res://fonts/MorePerfectDOSVGA.ttf" id="2_b37bq"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pw21x"]
+bg_color = Color(0.114897, 0.114897, 0.114897, 1)
+
+[node name="CharacterInfo" type="PanelContainer"]
+custom_minimum_size = Vector2(96, 96)
+anchors_preset = -1
+anchor_right = 0.065
+anchor_bottom = 0.124
+offset_bottom = 0.399994
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = ExtResource("1_2e34k")
+script = ExtResource("2_0ucd7")
+active_style = ExtResource("1_gmvn1")
+inactive_style = ExtResource("1_2e34k")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 2
+texture = ExtResource("1_bldl2")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="Label" type="Label" parent="."]
+texture_filter = 1
+layout_mode = 2
+size_flags_vertical = 8
+theme_override_fonts/font = ExtResource("2_b37bq")
+theme_override_font_sizes/font_size = 23
+theme_override_styles/normal = SubResource("StyleBoxFlat_pw21x")
+text = "100/100"
+horizontal_alignment = 1

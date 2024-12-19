@@ -29,6 +29,17 @@ project/assembly_name="GoblinWitch"
 
 enabled=PackedStringArray("res://addons/func_godot/plugin.cfg")
 
+[file_customization]
+
+folder_colors={
+"res://assets/": "pink",
+"res://character/": "teal",
+"res://combat/": "purple",
+"res://models/": "gray",
+"res://objects/": "pink",
+"res://overworld/": "blue"
+}
+
 [input]
 
 move_forward={

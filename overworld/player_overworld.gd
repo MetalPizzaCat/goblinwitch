@@ -6,6 +6,8 @@ class_name PlayerOverworld
 @onready var body: CharacterBody = $Body
 @onready var camera : Camera3D = $Camera3D2
 
+@export var character : Character
+
 func _physics_process(_delta: float) -> void:
 
 	# Get the input direction and handle the movement/deceleration.

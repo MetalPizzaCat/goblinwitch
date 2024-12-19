@@ -8,6 +8,7 @@ script = ExtResource("2_lhj8x")
 
 [node name="Skeleton3D" parent="Armature" index="0"]
 bones/0/position = Vector3(0, 0.0158966, 0.0205626)
+bones/1/rotation = Quaternion(0.0207091, 0, 4.12944e-24, 0.999786)
 bones/2/rotation = Quaternion(-0.109395, -4.35843e-08, -0.767659, 0.631452)
 bones/3/rotation = Quaternion(0.168876, 5.3563e-09, 0.720156, 0.672946)
 bones/6/rotation = Quaternion(-0.0478457, 0.0537367, -0.793448, 0.60437)
@@ -34,7 +35,7 @@ bones/19/rotation = Quaternion(-0.198176, 0.0469958, -0.719151, 0.664334)
 bones/19/scale = Vector3(1, 1, 1)
 
 [node name="hair" parent="Armature/Skeleton3D" index="0"]
-transform = Transform3D(1, -5.55849e-16, 3.55501e-15, 5.55849e-16, 1, 0, -3.55501e-15, -3.55271e-15, 1, -2.06719e-15, 1.53176, 3.78407e-08)
+transform = Transform3D(1, -4.44827e-16, 3.55271e-15, 4.44827e-16, 1, 0, -3.55271e-15, -3.55271e-15, 1, -1.95398e-15, 1.53176, 4.34286e-08)
 
 [node name="head" parent="Armature/Skeleton3D" index="1"]
-transform = Transform3D(-8.72409e-17, 1.80707e-18, 0.785796, 0.785796, -2.34186e-08, 8.72409e-17, 2.34186e-08, 0.785796, -1.80707e-18, -1.51603e-15, 0.515388, 1.50009e-08)
+transform = Transform3D(-6.48841e-24, 1.34398e-25, 0.785796, 0.785796, -2.34186e-08, 6.48841e-24, 2.34186e-08, 0.785796, -1.34398e-25, -1.51566e-15, 0.515388, 2.05889e-08)

@@ -1,10 +1,11 @@
-[gd_scene load_steps=12 format=3 uid="uid://dan7m2c7flsu8"]
+[gd_scene load_steps=14 format=3 uid="uid://dan7m2c7flsu8"]
 
-[ext_resource type="PackedScene" uid="uid://cgp10p8xr0lh0" path="res://objects/combat/fighter.tscn" id="1_pgnwb"]
-[ext_resource type="Script" path="res://levels/combat/combat_arena.gd" id="1_rjxb1"]
-[ext_resource type="PackedScene" uid="uid://bfxyba8lqk48m" path="res://levels/combat/combat_cell.tscn" id="2_jscg4"]
-[ext_resource type="PackedScene" uid="uid://bkwtfo02rqixb" path="res://objects/combat/enemy.tscn" id="4_kmryn"]
-[ext_resource type="Script" path="res://objects/combat/player.gd" id="9_hapqf"]
+[ext_resource type="PackedScene" uid="uid://cgp10p8xr0lh0" path="res://combat/fighter/fighter.tscn" id="1_pgnwb"]
+[ext_resource type="Script" path="res://combat/arena/combat_arena.gd" id="1_rjxb1"]
+[ext_resource type="PackedScene" uid="uid://bfxyba8lqk48m" path="res://combat/arena/combat_cell.tscn" id="2_jscg4"]
+[ext_resource type="PackedScene" uid="uid://bkwtfo02rqixb" path="res://combat/fighter/enemy.tscn" id="4_kmryn"]
+[ext_resource type="PackedScene" uid="uid://46fw75u167br" path="res://combat/ui/combat_ui.tscn" id="6_psg6q"]
+[ext_resource type="Script" path="res://combat/fighter/player.gd" id="9_hapqf"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_idy3q"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -28,6 +29,9 @@ albedo_color = Color(0, 0.721794, 0.475848, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_6i38w"]
 material = SubResource("StandardMaterial3D_j5svg")
+
+[sub_resource type="ButtonGroup" id="ButtonGroup_nnna6"]
+allow_unpress = true
 
 [node name="CombatArena" type="Node3D"]
 script = ExtResource("1_rjxb1")
@@ -63,3 +67,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 0, -8)
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Arrow"]
 transform = Transform3D(1, 0, 0, 0, 6.96, 0, 0, 0, 1, 0, 6, 0)
 mesh = SubResource("BoxMesh_6i38w")
+
+[node name="CombatUi" parent="." instance=ExtResource("6_psg6q")]
+mouse_filter = 1
+action_button_group = SubResource("ButtonGroup_nnna6")
+
+[connection signal="player_action_selected" from="CombatUi" to="." method="_on_combat_ui_player_action_selected"]
+[connection signal="player_move_selected" from="CombatUi" to="." method="_on_combat_ui_player_move_selected"]

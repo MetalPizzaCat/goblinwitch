@@ -1,0 +1,70 @@
+[gd_resource type="Theme" load_steps=7 format=3 uid="uid://cfgbmdhhipqu"]
+
+[ext_resource type="FontFile" uid="uid://e70dnlpjiko3" path="res://fonts/MorePerfectDOSVGA.ttf" id="1_suqwg"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_05rds"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_epw0g"]
+content_margin_left = 5.0
+content_margin_top = 5.0
+content_margin_right = 5.0
+content_margin_bottom = 5.0
+bg_color = Color(0.952941, 0.596078, 0.356863, 1)
+skew = Vector2(0.3, 0)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.596078, 0.0470588, 0.372549, 1)
+expand_margin_left = 5.0
+expand_margin_top = 5.0
+expand_margin_right = 5.0
+expand_margin_bottom = 5.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hroa5"]
+content_margin_left = 5.0
+content_margin_top = 5.0
+content_margin_right = 5.0
+content_margin_bottom = 5.0
+bg_color = Color(0.890196, 0.631373, 0.682353, 1)
+skew = Vector2(0.3, 0)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.596078, 0.0470588, 0.372549, 1)
+expand_margin_left = 5.0
+expand_margin_top = 5.0
+expand_margin_right = 5.0
+expand_margin_bottom = 5.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mrvm8"]
+content_margin_left = 5.0
+content_margin_top = 5.0
+content_margin_right = 5.0
+content_margin_bottom = 5.0
+bg_color = Color(0.596078, 0.0470588, 0.372549, 1)
+skew = Vector2(0.3, 0)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.596078, 0.0470588, 0.372549, 1)
+expand_margin_left = 5.0
+expand_margin_top = 5.0
+expand_margin_right = 5.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_iys0p"]
+bg_color = Color(0.341176, 0.721569, 0.870588, 1)
+border_color = Color(0.784558, 0.721538, 0.858808, 1)
+
+[resource]
+default_font = ExtResource("1_suqwg")
+Button/colors/font_color = Color(0.596078, 0.0470588, 0.372549, 1)
+Button/font_sizes/font_size = 32
+Button/styles/focus = SubResource("StyleBoxEmpty_05rds")
+Button/styles/hover = SubResource("StyleBoxFlat_epw0g")
+Button/styles/normal = SubResource("StyleBoxFlat_hroa5")
+Button/styles/pressed = SubResource("StyleBoxFlat_mrvm8")
+HBoxContainer/constants/separation = 15
+Panel/styles/panel = SubResource("StyleBoxFlat_iys0p")

@@ -26,6 +26,8 @@ class_name Character
 
 @export_group("Combat")
 @export var total_ap : int = 3
+## Spells are additional attacks that use mana
+@export var spells : Array[Attack] = []
 
 ## Get max health this character have based on their endurance
 ## [br]
