@@ -15,5 +15,12 @@ enum AttackType {MELEE, RANGED}
 @export var can_target_self: bool = false
 ## How many action points are used by this attack
 @export var ap_cost: int = 1
+## How much mana is required for this [br]
+## Mana doesn't get restored between turns and can only be restored at the start of the combat or using mana potions
+@export var mana_cost : int = 1
 ## Name of the animation to play when using this attack
 @export var character_animation_name: String = "punch"
+
+
+@export_group("AI")
+@export var is_healing : bool = true

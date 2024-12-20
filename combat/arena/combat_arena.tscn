@@ -1,10 +1,11 @@
-[gd_scene load_steps=14 format=3 uid="uid://dan7m2c7flsu8"]
+[gd_scene load_steps=15 format=3 uid="uid://dan7m2c7flsu8"]
 
 [ext_resource type="PackedScene" uid="uid://cgp10p8xr0lh0" path="res://combat/fighter/fighter.tscn" id="1_pgnwb"]
 [ext_resource type="Script" path="res://combat/arena/combat_arena.gd" id="1_rjxb1"]
 [ext_resource type="PackedScene" uid="uid://bfxyba8lqk48m" path="res://combat/arena/combat_cell.tscn" id="2_jscg4"]
 [ext_resource type="PackedScene" uid="uid://bkwtfo02rqixb" path="res://combat/fighter/enemy.tscn" id="4_kmryn"]
 [ext_resource type="PackedScene" uid="uid://46fw75u167br" path="res://combat/ui/combat_ui.tscn" id="6_psg6q"]
+[ext_resource type="Script" path="res://combat/arena/fighter_manager.gd" id="7_7v0sr"]
 [ext_resource type="Script" path="res://combat/fighter/player.gd" id="9_hapqf"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_idy3q"]
@@ -36,7 +37,6 @@ allow_unpress = true
 [node name="CombatArena" type="Node3D"]
 script = ExtResource("1_rjxb1")
 area_size = 6
-enemy_prefab = ExtResource("4_kmryn")
 fighter_movement_speed = 6.0
 cell_prefab = ExtResource("2_jscg4")
 
@@ -69,8 +69,16 @@ transform = Transform3D(1, 0, 0, 0, 6.96, 0, 0, 0, 1, 0, 6, 0)
 mesh = SubResource("BoxMesh_6i38w")
 
 [node name="CombatUi" parent="." instance=ExtResource("6_psg6q")]
-mouse_filter = 1
 action_button_group = SubResource("ButtonGroup_nnna6")
+
+[node name="FighterManager" type="Node" parent="." node_paths=PackedStringArray("combat_ui", "player", "combat_arena")]
+script = ExtResource("7_7v0sr")
+combat_ui = NodePath("../CombatUi")
+enemy_prefab = ExtResource("4_kmryn")
+player = NodePath("../Player")
+combat_arena = NodePath("..")
 
 [connection signal="player_action_selected" from="CombatUi" to="." method="_on_combat_ui_player_action_selected"]
 [connection signal="player_move_selected" from="CombatUi" to="." method="_on_combat_ui_player_move_selected"]
+[connection signal="all_enemies_died" from="FighterManager" to="." method="_on_fighter_manager_all_enemies_died"]
+[connection signal="player_died" from="FighterManager" to="." method="_on_fighter_manager_player_died"]

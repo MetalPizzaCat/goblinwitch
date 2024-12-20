@@ -21,6 +21,7 @@ bones/9/scale = Vector3(1, 1, 1)
 bones/10/rotation = Quaternion(0.0543996, 0.0293684, -0.137058, 0.988632)
 bones/11/rotation = Quaternion(-0.0330055, -5.07027e-05, -0.0699856, 0.997002)
 bones/12/position = Vector3(0, 0.0158966, 0)
+bones/12/rotation = Quaternion(-0.466339, 0.531176, 0.527303, 0.471521)
 bones/12/scale = Vector3(1, 1, 1)
 bones/13/rotation = Quaternion(-0.699595, 0.0288655, -0.109389, 0.705527)
 bones/14/rotation = Quaternion(-0.0380712, 0.00408075, -0.0442732, 0.998285)
@@ -35,7 +36,9 @@ bones/19/rotation = Quaternion(-0.198176, 0.0469958, -0.719151, 0.664334)
 bones/19/scale = Vector3(1, 1, 1)
 
 [node name="hair" parent="Armature/Skeleton3D" index="0"]
-transform = Transform3D(1, -4.44827e-16, 3.55271e-15, 4.44827e-16, 1, 0, -3.55271e-15, -3.55271e-15, 1, -1.95398e-15, 1.53176, 4.34286e-08)
+transform = Transform3D(1, -8.25711e-24, 1.71034e-25, 8.25711e-24, 1, 1.86265e-09, -1.71034e-25, -1.86265e-09, 1, -2.1893e-16, 1.53176, 4.14925e-08)
 
 [node name="head" parent="Armature/Skeleton3D" index="1"]
-transform = Transform3D(-6.48841e-24, 1.34398e-25, 0.785796, 0.785796, -2.34186e-08, 6.48841e-24, 2.34186e-08, 0.785796, -1.34398e-25, -1.51566e-15, 0.515388, 2.05889e-08)
+transform = Transform3D(-6.48841e-24, 1.34398e-25, 0.785796, 0.785797, -2.34186e-08, 6.48841e-24, 2.34186e-08, 0.785796, -1.34398e-25, -2.1893e-16, 0.515388, 1.49885e-08)
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

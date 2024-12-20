@@ -215,8 +215,9 @@ combat_spawn_position = NodePath("Node3D")
 [node name="Node3D" type="Node3D" parent="CombatTrigger2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.166667, 0.0833333, 0.666667)
 
-[node name="CombatArena" parent="." instance=ExtResource("8_dcrt3")]
+[node name="CombatArena" parent="." node_paths=PackedStringArray("overworld_player") instance=ExtResource("8_dcrt3")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, -37)
+overworld_player = NodePath("../PlayerOverworld")
 
 [node name="CombatArenaStorage" type="Node3D" parent="."]
 

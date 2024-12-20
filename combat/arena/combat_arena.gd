@@ -6,21 +6,25 @@ signal combat_ended
 @export var area_size: int = 5
 @export_group("Combat")
 @export var combat_scenario: CombatScenario
-@export var enemy_prefab: PackedScene
+
 @export var fighter_movement_speed: float = 3
 @export_group("Cells")
 @export var cell_prefab: PackedScene
 @export var size_between_cells: float = 3.1
+
+@export_group("Overworld")
+@export var overworld_player: PlayerOverworld
 
 @onready var cell_root: Node3D = $CellRoot
 @onready var selection_arrow: Node3D = $Arrow
 @onready var player: Player = $Player
 @onready var camera: Camera3D = $Camera3D
 @onready var combat_ui: CombatInterface = $CombatUi
+@onready var fighter_manager: FighterManager = $FighterManager
 
 var cells: Array[CombatCell] = []
-var enemies: Array[Enemy] = []
-var test_count: int = 0
+
+var arena_rng: RandomNumberGenerator = RandomNumberGenerator.new()
 
 func _ready() -> void:
 	player.combat_arena = self
@@ -32,10 +36,7 @@ func _ready() -> void:
 ## If scenario is null board just gets reset
 func load_combat_scenario(scenario: CombatScenario) -> void:
 	# remove old enemies just in case
-	for enemy in enemies:
-		remove_child(enemy)
-		enemy.queue_free()
-	enemies.clear()
+	fighter_manager.clear_enemies()
 
 	combat_scenario = scenario
 	if scenario == null:
@@ -49,17 +50,13 @@ func load_combat_scenario(scenario: CombatScenario) -> void:
 	)
 
 	for actor in combat_scenario.actors:
-		var enemy = enemy_prefab.instantiate() as Enemy
-		add_child(enemy)
-		enemies.append(enemy)
-		enemy.combat_arena = self
-		enemy.target = player
-		enemy.arena_position = actor.start_pos
+		fighter_manager.create_enemy(actor)
 
 
 ## Start combat and play player entering sequence
 func start_combat(player_world_pos: Vector3, player_data: Character) -> void:
 	player.global_position = player_world_pos
+	player.character = player_data
 	player.move_to_tile(find_closest_tile(cell_root.to_local(player_world_pos)))
 	combat_ui.load_player_actions(player_data)
 	
@@ -105,11 +102,24 @@ func find_closest_tile(src: Vector3) -> Vector2i:
 
 
 ## Get enemy that is currently occupying this cell or null if cell is empty
-func get_enemy_at(cell : Vector2i) -> Fighter:
-	for enemy in enemies:
+func get_enemy_at(cell: Vector2i) -> Fighter:
+	for enemy in fighter_manager.enemies:
 		if enemy.arena_position == cell:
 			return enemy
 	return null
+
+
+func is_valid_position(pos: Vector2i) -> bool:
+	if pos.x < 0 or pos.y < 0 or pos.x >= area_size or pos.y >= area_size:
+		return false
+	if fighter_manager.enemies.any(func(p: Enemy): return p.arena_position == pos):
+		return false
+	return true
+
+
+func end_combat(player_won: bool) -> void:
+	overworld_player.global_position = player.global_position
+	combat_ended.emit()
 
 
 func _on_cell_mouse_over(cell: CombatCell) -> void:
@@ -121,7 +131,8 @@ func _on_cell_mouse_left(cell: CombatCell) -> void:
 
 
 func _on_cell_clicked(cell: CombatCell) -> void:
-	player.on_tile_selected(cell)
+	if fighter_manager.is_player_turn:
+		player.on_tile_selected(cell)
 
 
 func _on_combat_ui_player_action_selected(action: Attack) -> void:
@@ -131,3 +142,10 @@ func _on_combat_ui_player_action_selected(action: Attack) -> void:
 
 func _on_combat_ui_player_move_selected() -> void:
 	player.player_selection = Player.PlayerSelection.MOVING
+
+
+func _on_fighter_manager_all_enemies_died() -> void:
+	end_combat(true)
+
+func _on_fighter_manager_player_died() -> void:
+	end_combat(false)

@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="Character" load_steps=6 format=3 uid="uid://cffptpf4fums8"]
+
+[ext_resource type="Script" path="res://character/item.gd" id="1_iy5jw"]
+[ext_resource type="Script" path="res://character/character.gd" id="2_oempx"]
+[ext_resource type="Script" path="res://combat/attack.gd" id="3_osprk"]
+[ext_resource type="Texture2D" uid="uid://4e0gtlq7ma6d" path="res://assets/icons/gob_icon.png" id="4_fuasm"]
+[ext_resource type="Resource" uid="uid://cu3eouvcjkdhv" path="res://assets/items/stick.tres" id="5_qtvlm"]
+
+[resource]
+script = ExtResource("2_oempx")
+name = "YOUR_MOM"
+texture = ExtResource("4_fuasm")
+strength = 1
+dexterity = 0
+intelligence = 0
+perception = 0
+endurance = 2
+charisma = 0
+items = Array[ExtResource("1_iy5jw")]([])
+weapon = ExtResource("5_qtvlm")
+total_ap = 2
+spells = Array[ExtResource("3_osprk")]([])

@@ -10,4 +10,6 @@ is_spell = false
 attack_type = 0
 can_target_self = false
 ap_cost = 1
+mana_cost = 1
 character_animation_name = "punch"
+is_healing = true
