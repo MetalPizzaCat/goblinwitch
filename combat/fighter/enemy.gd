@@ -64,5 +64,5 @@ func find_suitable_tile(comp: Callable) -> Vector2i:
 
 func _on_action_finished() -> void:
 	print('action not reaction')
-	if current_ap > 0 and active:
+	if current_ap > 0 and active and not is_dead:
 		run_ai_logic()

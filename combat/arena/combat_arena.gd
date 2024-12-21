@@ -36,6 +36,7 @@ func _ready() -> void:
 ## If scenario is null board just gets reset
 func load_combat_scenario(scenario: CombatScenario) -> void:
 	# remove old enemies just in case
+	combat_ui.clear_character_cards()
 	fighter_manager.clear_enemies()
 
 	combat_scenario = scenario
@@ -48,7 +49,7 @@ func load_combat_scenario(scenario: CombatScenario) -> void:
 		player.position.y,
 		player_local_pos.z + cell_root.position.z,
 	)
-
+	
 	for actor in combat_scenario.actors:
 		fighter_manager.create_enemy(actor)
 
@@ -59,6 +60,8 @@ func start_combat(player_world_pos: Vector3, player_data: Character) -> void:
 	player.character = player_data
 	player.move_to_tile(find_closest_tile(cell_root.to_local(player_world_pos)))
 	combat_ui.load_player_actions(player_data)
+	combat_ui.set_player_current_ap(player.total_ap)
+	combat_ui.create_character_card(player)
 	
 
 ## Generate grid used for combat
@@ -149,3 +152,7 @@ func _on_fighter_manager_all_enemies_died() -> void:
 
 func _on_fighter_manager_player_died() -> void:
 	end_combat(false)
+
+
+func _on_player_used_action_points(_amount:int) -> void:
+	combat_ui.set_player_current_ap(player.current_ap)

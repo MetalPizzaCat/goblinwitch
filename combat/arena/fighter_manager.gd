@@ -49,8 +49,12 @@ func create_enemy(actor: CombatScenarioActor) -> Enemy:
 	enemy.arena_position = actor.start_pos
 	enemy.used_all_action_points.connect(_on_enemy_finished_turn)
 	enemy.action_completed.connect(_on_action_finished)
+	combat_ui.create_character_card(enemy)
 	return enemy
 
+## Get next possible enemy in the enemy list [br]
+## [param start] - what id in the enemy list to start from(inclusive) [br]
+## return an id from the list or -1 if no suitable id was found 
 func get_next_active_enemy_id(start: int = 0) -> int:
 	print(enemies)
 	for i in range(start, len(enemies)):
@@ -60,27 +64,37 @@ func get_next_active_enemy_id(start: int = 0) -> int:
 	return -1
 
 
+## Reset player ap and start player turn
+func start_player_turn() -> void:
+	is_player_turn = true
+	current_enemy_id = -1
+	player.current_ap = player.total_ap
+	combat_ui.set_active_turn_character(player)
+
+## Start enemy turn and 
+func start_enemy_turn() -> void:
+	current_enemy.current_ap = current_enemy.total_ap
+	current_enemy.active = true
+	combat_ui.set_active_turn_character(current_enemy)
+	current_enemy.run_ai_logic()
+
+## Move to the next fighter in the turn order. If player is current fighter it moves to the first enemy in the list.
+## If it is an enemy it moves through the enemy list until there are no more enemies, which is when it switches to the player
 func advance_turn() -> void:
 	if is_player_turn:
 		is_player_turn = false
 		current_enemy_id = get_next_active_enemy_id()
-		
 		if current_enemy_id == -1:
 			all_enemies_died.emit()
 			return
-		current_enemy.current_ap = current_enemy.total_ap
-		current_enemy.active = true
-		current_enemy.run_ai_logic()
+		start_enemy_turn()
 	else:
 		current_enemy.active = false
 		current_enemy_id = get_next_active_enemy_id(current_enemy_id + 1)
 		if current_enemy != null:
-			current_enemy.current_ap = current_enemy.total_ap
-			current_enemy.active = true
-			current_enemy.run_ai_logic()
+			start_enemy_turn()
 		else:
-			is_player_turn = true
-			player.current_ap = player.total_ap
+			start_player_turn()
 
 func _on_enemy_finished_turn() -> void:
 	print("Enemy %s turn is over" % current_enemy_id)

@@ -9,7 +9,7 @@ signal combat_triggered(area : CombatTrigger)
 
 
 func _on_trigger_body_entered(body:Node3D) -> void:
-	if body is PlayerOverworld:
+	if body is PlayerOverworld and active:
 		combat_triggered.emit(self)
 		active = false
 

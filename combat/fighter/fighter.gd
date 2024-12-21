@@ -4,6 +4,7 @@ class_name Fighter
 signal action_completed
 signal used_action_points(amount: int)
 signal used_all_action_points
+signal health_changed
 signal died
 
 enum ActionState {
@@ -124,7 +125,9 @@ func attack(target: Fighter, attack_action: Attack) -> void:
 	anim_body.play_animation(attack_action.character_animation_name)
 	look_at(target.global_position)
 	if combat_arena.arena_rng.randf() < chance:
-		target.receive_damage(self, character.get_melee_damage())
+		var dmg = character.get_melee_damage() * attack_action.damage_modifier
+		print("Attacked for %s" % dmg)
+		target.receive_damage(self, dmg)
 	else:
 		print("MISS!")
 
@@ -138,7 +141,7 @@ func receive_damage(dealer: Fighter, damage: int) -> void:
 	else:
 		anim_body.play_animation("damage")
 		current_state = ActionState.HURT
-
+	health_changed.emit()
 
 func get_weapon_attacks() -> Array[Attack]:
 	return character.weapon.attacks if character.weapon else [fallback_attack]
@@ -146,7 +149,6 @@ func get_weapon_attacks() -> Array[Attack]:
 func _on_body_action_animation_finished() -> void:
 	print("Finished anim, current state is %s" % current_state)
 	var prev_state = current_state
-	current_state = ActionState.IDLE
+	current_state = ActionState.IDLE if prev_state != ActionState.DEAD else prev_state
 	if prev_state == ActionState.PERFORMING:
 		action_completed.emit()
-	

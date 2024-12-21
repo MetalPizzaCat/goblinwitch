@@ -78,6 +78,7 @@ enemy_prefab = ExtResource("4_kmryn")
 player = NodePath("../Player")
 combat_arena = NodePath("..")
 
+[connection signal="used_action_points" from="Player" to="." method="_on_player_used_action_points"]
 [connection signal="player_action_selected" from="CombatUi" to="." method="_on_combat_ui_player_action_selected"]
 [connection signal="player_move_selected" from="CombatUi" to="." method="_on_combat_ui_player_move_selected"]
 [connection signal="all_enemies_died" from="FighterManager" to="." method="_on_fighter_manager_all_enemies_died"]

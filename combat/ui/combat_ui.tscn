@@ -1,9 +1,19 @@
-[gd_scene load_steps=5 format=3 uid="uid://46fw75u167br"]
+[gd_scene load_steps=9 format=3 uid="uid://46fw75u167br"]
 
 [ext_resource type="Theme" uid="uid://cfgbmdhhipqu" path="res://assets/ui/themes/combat_theme.tres" id="1_cua45"]
 [ext_resource type="PackedScene" uid="uid://c6srify188aj5" path="res://combat/ui/character_info.tscn" id="1_ji16m"]
 [ext_resource type="Script" path="res://combat/ui/combat_ui.gd" id="2_6oopr"]
 [ext_resource type="ButtonGroup" uid="uid://dxaign7xivji" path="res://assets/ui/action_button_group.tres" id="4_c7cni"]
+[ext_resource type="Script" path="res://combat/ui/action_point_panel.gd" id="5_pheqf"]
+[ext_resource type="Texture2D" uid="uid://cqmhltvvyrddo" path="res://assets/ui/textures/action_point_active.tres" id="6_5t5po"]
+[ext_resource type="Texture2D" uid="uid://bbsp0yo2q38vy" path="res://assets/ui/textures/action_point_inactive.tres" id="7_ica0h"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_s8lc3"]
+bg_color = Color(0.356863, 0.807843, 0.980392, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+shadow_color = Color(0.0549844, 0.454105, 0.580004, 0.627451)
+shadow_size = 5
 
 [node name="CombatUi" type="Control"]
 texture_filter = 1
@@ -17,8 +27,9 @@ mouse_filter = 1
 theme = ExtResource("1_cua45")
 script = ExtResource("2_6oopr")
 action_button_group = ExtResource("4_c7cni")
+fighter_card_prefab = ExtResource("1_ji16m")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="."]
+[node name="FighterCardBox" type="HBoxContainer" parent="."]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -29,15 +40,36 @@ offset_bottom = 104.0
 grow_horizontal = 2
 alignment = 1
 
-[node name="CharacterInfo" parent="HBoxContainer" instance=ExtResource("1_ji16m")]
-layout_mode = 2
+[node name="ActionPointPanel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -160.0
+offset_top = -132.0
+offset_right = 160.0
+offset_bottom = -108.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_s8lc3")
+script = ExtResource("5_pheqf")
+active_ap_texture = ExtResource("6_5t5po")
+inactive_ap_texture = ExtResource("7_ica0h")
 
-[node name="CharacterInfo3" parent="HBoxContainer" instance=ExtResource("1_ji16m")]
-layout_mode = 2
-is_active = true
-
-[node name="CharacterInfo2" parent="HBoxContainer" instance=ExtResource("1_ji16m")]
-layout_mode = 2
+[node name="Actions" type="HBoxContainer" parent="ActionPointPanel"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 16.0
+offset_top = -24.0
+offset_right = -16.0
+grow_horizontal = 2
+grow_vertical = 0
+alignment = 1
 
 [node name="Panel" type="Panel" parent="."]
 layout_mode = 1
@@ -47,10 +79,12 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 offset_left = -544.0
-offset_top = -196.0
+offset_top = -108.0
 offset_right = 544.0
+offset_bottom = -24.0
 grow_horizontal = 2
 grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_s8lc3")
 
 [node name="Actions" type="HBoxContainer" parent="Panel"]
 layout_mode = 1
@@ -58,10 +92,10 @@ anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 64.0
-offset_top = -68.0
-offset_right = -64.0
-offset_bottom = -20.0
+offset_left = 16.0
+offset_top = -76.0
+offset_right = -16.0
+offset_bottom = -12.0
 grow_horizontal = 2
 grow_vertical = 0
 
