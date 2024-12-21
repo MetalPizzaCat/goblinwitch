@@ -49,6 +49,7 @@ transform = Transform3D(1, 0, 0, 0, 6.96, 0, 0, 0, 1, 0, 6, 0)
 mesh = SubResource("BoxMesh_6i38w")
 
 [node name="CombatUi" parent="." instance=ExtResource("6_psg6q")]
+visible = false
 action_button_group = SubResource("ButtonGroup_nnna6")
 
 [node name="FighterManager" type="Node" parent="." node_paths=PackedStringArray("combat_ui", "player", "combat_arena")]

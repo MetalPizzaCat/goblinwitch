@@ -1,0 +1,11 @@
+[gd_resource type="Theme" load_steps=3 format=3 uid="uid://bshw2xh36niqy"]
+
+[ext_resource type="FontFile" uid="uid://btl6rvubd5828" path="res://fonts/PlayfairDisplay-VariableFont_wght.ttf" id="1_0c261"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_83wgc"]
+bg_color = Color(0, 0, 0, 1)
+
+[resource]
+default_font = ExtResource("1_0c261")
+default_font_size = 48
+Panel/styles/panel = SubResource("StyleBoxFlat_83wgc")

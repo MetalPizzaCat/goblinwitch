@@ -1,0 +1,29 @@
+[gd_resource type="Resource" script_class="Narration" load_steps=7 format=3 uid="uid://bjwxoa41cffr0"]
+
+[ext_resource type="Script" path="res://overworld/narrator/narration_line.gd" id="1_wsodr"]
+[ext_resource type="Script" path="res://overworld/narrator/narration.gd" id="2_l74or"]
+
+[sub_resource type="Resource" id="Resource_m2wd7"]
+script = ExtResource("1_wsodr")
+text = "Ah you've finally woken up"
+speed_modifier = 1.0
+
+[sub_resource type="Resource" id="Resource_apgct"]
+script = ExtResource("1_wsodr")
+text = "Hello?"
+speed_modifier = 3.0
+
+[sub_resource type="Resource" id="Resource_vrhar"]
+script = ExtResource("1_wsodr")
+text = "Do not the cat"
+speed_modifier = 1.0
+
+[sub_resource type="Resource" id="Resource_364kd"]
+script = ExtResource("1_wsodr")
+text = "One 18.25 ounce package chocolate cake mix. "
+speed_modifier = 0.1
+
+[resource]
+script = ExtResource("2_l74or")
+takes_over_control = true
+lines = Array[ExtResource("1_wsodr")]([SubResource("Resource_m2wd7"), SubResource("Resource_apgct"), SubResource("Resource_vrhar"), SubResource("Resource_364kd")])

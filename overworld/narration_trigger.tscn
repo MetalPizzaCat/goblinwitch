@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://cc6n51ba6f31"]
+
+[ext_resource type="Script" path="res://overworld/narration_trigger.gd" id="1_1nreq"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ihawd"]
+size = Vector3(0.5, 5, 7)
+
+[node name="NarrationTrigger" type="Area3D"]
+script = ExtResource("1_1nreq")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.05, 2, 0)
+shape = SubResource("BoxShape3D_ihawd")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

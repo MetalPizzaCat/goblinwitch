@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://eu51uk4ydnoe"]
+[gd_scene load_steps=5 format=3 uid="uid://eu51uk4ydnoe"]
 
 [ext_resource type="Script" path="res://overworld/player_overworld.gd" id="1_6e2w7"]
 [ext_resource type="PackedScene" uid="uid://cnmr128f12cil" path="res://objects/character_body.tscn" id="2_nrwsb"]
+[ext_resource type="PackedScene" uid="uid://brde3kgsngy4b" path="res://overworld/narrator/narrator.tscn" id="3_plktu"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_su7vw"]
 radius = 0.607471
@@ -18,3 +19,8 @@ shape = SubResource("CapsuleShape3D_su7vw")
 
 [node name="Camera3D2" type="Camera3D" parent="."]
 transform = Transform3D(-1, 8.57281e-08, -1.71302e-08, 3.92357e-08, 0.615207, 0.788365, 7.81236e-08, 0.788365, -0.615207, 0, 12.2783, -7.48338)
+
+[node name="Narrator" parent="." instance=ExtResource("3_plktu")]
+visible = false
+
+[connection signal="narration_over" from="Narrator" to="." method="_on_narrator_narration_over"]

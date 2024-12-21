@@ -1,0 +1,59 @@
+[gd_scene load_steps=3 format=3 uid="uid://brde3kgsngy4b"]
+
+[ext_resource type="Theme" uid="uid://bshw2xh36niqy" path="res://assets/ui/styles/narrator.tres" id="1_4r3il"]
+[ext_resource type="Script" path="res://overworld/narrator/narrator.gd" id="2_0x160"]
+
+[node name="Narrator" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_4r3il")
+script = ExtResource("2_0x160")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -544.0
+offset_top = -196.0
+offset_right = 544.0
+offset_bottom = -28.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="Dialog" type="RichTextLabel" parent="Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -520.0
+offset_top = -52.0
+offset_right = 512.0
+offset_bottom = 44.0
+grow_horizontal = 2
+grow_vertical = 2
+bbcode_enabled = true
+text = "How dare you kill my precious [shake]child[/shake]?"
+
+[node name="Prompt" type="RichTextLabel" parent="Panel"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -288.0
+offset_top = -40.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_font_sizes/normal_font_size = 24
+bbcode_enabled = true
+text = "[pulse]Press [wave]space[/wave] to continue[/pulse] "
