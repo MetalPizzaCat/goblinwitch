@@ -134,7 +134,7 @@ func _on_cell_mouse_left(cell: CombatCell) -> void:
 
 
 func _on_cell_clicked(cell: CombatCell) -> void:
-	if fighter_manager.is_player_turn:
+	if fighter_manager.is_player_turn and player.current_state == Fighter.ActionState.IDLE:
 		player.on_tile_selected(cell)
 
 

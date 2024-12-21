@@ -37,4 +37,5 @@ func _on_combat_triggered(combat: CombatTrigger) -> void:
 func _on_combat_arena_combat_ended() -> void:
 	is_in_combat = false
 	player.global_position = combat_arena.player.global_position
+	combat_arena.visible = false
 	combat_arena.position = combat_arena_storage.position
