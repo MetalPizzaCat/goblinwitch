@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://46fw75u167br"]
+[gd_scene load_steps=16 format=3 uid="uid://46fw75u167br"]
 
 [ext_resource type="Theme" uid="uid://cfgbmdhhipqu" path="res://assets/ui/themes/combat_theme.tres" id="1_cua45"]
 [ext_resource type="PackedScene" uid="uid://c6srify188aj5" path="res://combat/ui/character_info.tscn" id="1_ji16m"]
@@ -6,7 +6,10 @@
 [ext_resource type="ButtonGroup" uid="uid://dxaign7xivji" path="res://assets/ui/action_button_group.tres" id="4_c7cni"]
 [ext_resource type="Script" path="res://combat/ui/action_point_panel.gd" id="5_pheqf"]
 [ext_resource type="Texture2D" uid="uid://cqmhltvvyrddo" path="res://assets/ui/textures/action_point_active.tres" id="6_5t5po"]
+[ext_resource type="AudioStream" uid="uid://sgsi1vjt8hoo" path="res://assets/music/die.ogg" id="6_ycspl"]
 [ext_resource type="Texture2D" uid="uid://bbsp0yo2q38vy" path="res://assets/ui/textures/action_point_inactive.tres" id="7_ica0h"]
+[ext_resource type="AudioStream" uid="uid://bfe8koyqvkfc6" path="res://assets/music/win.ogg" id="8_5a0xl"]
+[ext_resource type="FontFile" uid="uid://e70dnlpjiko3" path="res://fonts/MorePerfectDOSVGA.ttf" id="8_im38d"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_s8lc3"]
 bg_color = Color(0.356863, 0.807843, 0.980392, 1)
@@ -14,6 +17,155 @@ corner_radius_top_left = 5
 corner_radius_top_right = 5
 shadow_color = Color(0.0549844, 0.454105, 0.580004, 0.627451)
 shadow_size = 5
+
+[sub_resource type="Animation" id="Animation_pl5si"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Panel:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(256, 792)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ActionPointPanel:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(640, 768)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("FighterCardBox:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(638, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("VictoryLabel:visible_ratio")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_trnqg"]
+resource_name = "start"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Panel:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.8),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(256, 1016), Vector2(256, 792)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ActionPointPanel:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.8, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(640, 992), Vector2(640, 824), Vector2(640, 768)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("FighterCardBox:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(640, -232), Vector2(638, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_w1430"]
+resource_name = "end"
+length = 4.7
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Panel:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.7, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(256, 792), Vector2(256, 1016)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ActionPointPanel:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.7, 0.9),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(640, 768), Vector2(640, 992)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("FighterCardBox:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.700001, 1.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(638, 0), Vector2(640, -232)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("VictoryLabel:visible_ratio")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.533333, 4.06667, 4.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 1.0, 1.0, 0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_lk8uo"]
+_data = {
+"RESET": SubResource("Animation_pl5si"),
+"end": SubResource("Animation_w1430"),
+"start": SubResource("Animation_trnqg")
+}
 
 [node name="CombatUi" type="Control"]
 texture_filter = 1
@@ -28,6 +180,12 @@ theme = ExtResource("1_cua45")
 script = ExtResource("2_6oopr")
 action_button_group = ExtResource("4_c7cni")
 fighter_card_prefab = ExtResource("1_ji16m")
+
+[node name="VictorySoundPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_5a0xl")
+
+[node name="DefeatSoundPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_ycspl")
 
 [node name="FighterCardBox" type="HBoxContainer" parent="."]
 layout_mode = 1
@@ -107,5 +265,31 @@ text = "Move"
 
 [node name="Attacks" type="HBoxContainer" parent="Panel/Actions"]
 layout_mode = 2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_lk8uo")
+}
+
+[node name="VictoryLabel" type="RichTextLabel" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -508.0
+offset_top = -132.0
+offset_right = 508.0
+offset_bottom = 132.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_fonts/normal_font = ExtResource("8_im38d")
+theme_override_font_sizes/normal_font_size = 217
+bbcode_enabled = true
+text = "[wave][color=plum]VICTORY![/color][/wave]"
+visible_characters = 0
+visible_ratio = 0.0
 
 [connection signal="toggled" from="Panel/Actions/MoveButton" to="." method="_on_move_button_toggled"]

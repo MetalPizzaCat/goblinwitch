@@ -28,6 +28,7 @@ func start_combat(combat_scenario: CombatScenario, combat_pos: Vector3) -> void:
 	combat_arena.load_combat_scenario(combat_scenario)
 	is_in_combat = true
 	combat_arena.start_combat(player.global_position, player.character)
+	combat_arena.visible = true
 
 
 func _on_combat_triggered(combat: CombatTrigger) -> void:

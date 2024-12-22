@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://brde3kgsngy4b"]
+[gd_scene load_steps=4 format=3 uid="uid://brde3kgsngy4b"]
 
 [ext_resource type="Theme" uid="uid://bshw2xh36niqy" path="res://assets/ui/styles/narrator.tres" id="1_4r3il"]
 [ext_resource type="Script" path="res://overworld/narrator/narrator.gd" id="2_0x160"]
+[ext_resource type="AudioStream" uid="uid://l4e61al4h6f7" path="res://assets/sounds/blip1.ogg" id="3_n3hgh"]
 
 [node name="Narrator" type="Control"]
 layout_mode = 3
@@ -12,6 +13,9 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_4r3il")
 script = ExtResource("2_0x160")
+
+[node name="DialogSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_n3hgh")
 
 [node name="Panel" type="Panel" parent="."]
 layout_mode = 1

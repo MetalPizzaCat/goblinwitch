@@ -157,7 +157,7 @@ data = PackedVector3Array(-0.5, 1, -0.5, -0.5, -1, -0.5, 0.5, -1, -0.5, -0.5, 1,
 [sub_resource type="Resource" id="Resource_dvjdl"]
 script = ExtResource("8_1jhyx")
 name = "Player"
-strength = 5
+strength = 20
 dexterity = 1
 intelligence = 0
 perception = 1
@@ -260,7 +260,7 @@ mesh = SubResource("ArrayMesh_wgwl8")
 shape = SubResource("ConcavePolygonShape3D_dqsls")
 
 [node name="PlayerOverworld" parent="." instance=ExtResource("4_u10hx")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0.551009, -15)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0.551009, 2.82262)
 character = SubResource("Resource_dvjdl")
 
 [node name="CombatTrigger2" parent="." node_paths=PackedStringArray("combat_spawn_position") groups=["combat_area"] instance=ExtResource("6_5q5ow")]

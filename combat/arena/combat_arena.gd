@@ -21,6 +21,7 @@ signal combat_ended
 @onready var camera: Camera3D = $Camera3D
 @onready var combat_ui: CombatInterface = $CombatUi
 @onready var fighter_manager: FighterManager = $FighterManager
+@onready var animation_player : AnimationPlayer = $AnimationPlayer
 
 var cells: Array[CombatCell] = []
 
@@ -62,6 +63,9 @@ func start_combat(player_world_pos: Vector3, player_data: Character) -> void:
 	combat_ui.load_player_actions(player_data)
 	combat_ui.set_player_current_ap(player.total_ap)
 	combat_ui.create_character_card(player)
+	combat_ui.visible = true
+	combat_ui.start_combat()
+	animation_player.play("start")
 	
 
 ## Generate grid used for combat
@@ -121,6 +125,7 @@ func is_valid_position(pos: Vector2i) -> bool:
 
 
 func end_combat(player_won: bool) -> void:
+	combat_ui.end_combat(player_won)
 	overworld_player.global_position = player.global_position
 	combat_ended.emit()
 

@@ -7,10 +7,14 @@ signal narration_over
 @export var target_display_rate: float = 0.05
 
 var target_display_time: float = 0
-var active : bool = false
+var active: bool = false
+
+var target_char_update_time : float = 0
+var current_time: float = 0
 
 @onready var text_label: RichTextLabel = $Panel/Dialog
 @onready var prompt_label: RichTextLabel = $Panel/Prompt
+@onready var character_advance_sound: AudioStreamPlayer = $DialogSound
 
 
 var narration_id: int:
@@ -22,7 +26,7 @@ var narration_id: int:
 			text_label.text = current_narration.lines[narration_id].text
 			text_label.visible_ratio = 0
 			target_display_time = target_display_rate * len(current_narration.lines[narration_id].text) * current_narration.lines[narration_id].speed_modifier
-
+			target_char_update_time = target_display_rate * current_narration.lines[narration_id].speed_modifier
 
 var _narration_id: int = -1
 
@@ -37,7 +41,8 @@ func _input(_event: InputEvent) -> void:
 		narration_id += 1
 		current_display_time = 0
 		if narration_id >= len(current_narration.lines):
-			active = false 
+			active = false
+			current_narration = null
 			narration_over.emit()
 
 func set_narration(narration: Narration) -> void:
@@ -49,5 +54,9 @@ func set_narration(narration: Narration) -> void:
 func _process(delta: float) -> void:
 	if current_narration != null:
 		current_display_time += delta
+		current_time += delta
+		if current_time > target_char_update_time and text_label.visible_ratio < 1:
+			character_advance_sound.play()
+			current_time = 0
 		text_label.visible_ratio = current_display_time / target_display_time
 		prompt_label.visible = current_display_time > (target_display_time * 0.75)

@@ -7,9 +7,16 @@ signal player_action_selected(action: Attack)
 @onready var attacks_box: HBoxContainer = $Panel/Actions/Attacks
 @onready var player_ap_panel: ActionPointPanel = $ActionPointPanel
 @onready var fighter_card_box: HBoxContainer = $FighterCardBox
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
+@onready var end_text_label: RichTextLabel = $VictoryLabel
+@onready var victory_sound_player: AudioStreamPlayer = $VictorySoundPlayer
+@onready var defeat_sound_player: AudioStreamPlayer = $DefeatSoundPlayer
 
 @export var action_button_group: ButtonGroup
 @export var fighter_card_prefab: PackedScene
+
+@export var victory_text: String = '[wave][color=plum]VICTORY![/color][/wave]'
+@export var defeat_text: String = '[color=red]defeat.[/color]'
 
 var player_action_buttons: Array[ActionButton] = []
 var cards: Array[CharacterInfo] = []
@@ -50,6 +57,16 @@ func add_player_action(action: Attack) -> void:
 	btn.action_toggled.connect(_on_player_action_selected)
 	player_action_buttons.append(btn)
 
+func start_combat() -> void:
+	animation_player.play("start")
+
+func end_combat(victory: bool) -> void:
+	end_text_label.text = victory_text if victory else defeat_text
+	if victory:
+		victory_sound_player.play()
+	else:
+		defeat_sound_player.play()
+	animation_player.play("end")
 
 func _on_player_action_selected(action: Attack, state: bool) -> void:
 	if state:
