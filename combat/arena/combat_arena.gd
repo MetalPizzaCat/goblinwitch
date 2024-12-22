@@ -21,7 +21,7 @@ signal combat_ended
 @onready var camera: Camera3D = $Camera3D
 @onready var combat_ui: CombatInterface = $CombatUi
 @onready var fighter_manager: FighterManager = $FighterManager
-@onready var animation_player : AnimationPlayer = $AnimationPlayer
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
 
 var cells: Array[CombatCell] = []
 
@@ -125,9 +125,10 @@ func is_valid_position(pos: Vector2i) -> bool:
 
 
 func end_combat(player_won: bool) -> void:
-	combat_ui.end_combat(player_won)
 	overworld_player.global_position = player.global_position
-	combat_ended.emit()
+	animation_player.play("end")
+	combat_ui.end_combat(player_won)
+	
 
 
 func _on_cell_mouse_over(cell: CombatCell) -> void:
@@ -159,5 +160,10 @@ func _on_fighter_manager_player_died() -> void:
 	end_combat(false)
 
 
-func _on_player_used_action_points(_amount:int) -> void:
+func _on_player_used_action_points(_amount: int) -> void:
 	combat_ui.set_player_current_ap(player.current_ap)
+
+
+func _on_animation_player_animation_finished(anim_name: StringName) -> void:
+	if anim_name == "end":
+		combat_ended.emit()

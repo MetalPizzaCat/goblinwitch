@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://dan7m2c7flsu8"]
+[gd_scene load_steps=16 format=3 uid="uid://dan7m2c7flsu8"]
 
 [ext_resource type="PackedScene" uid="uid://cgp10p8xr0lh0" path="res://combat/fighter/fighter.tscn" id="1_pgnwb"]
 [ext_resource type="Script" path="res://combat/arena/combat_arena.gd" id="1_rjxb1"]
@@ -34,13 +34,77 @@ tracks/0/keys = {
 "update": 1,
 "values": [false, true]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Player:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CellRoot:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-8, 0, -8)]
+}
 
 [sub_resource type="Animation" id="Animation_22an6"]
 resource_name = "start"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CellRoot:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-8, 0, -8)]
+}
+
+[sub_resource type="Animation" id="Animation_547tk"]
+resource_name = "end"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Player:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0333333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CellRoot:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(-8, 0, -8), Vector3(-8, -3, -8)]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_minni"]
 _data = {
 "RESET": SubResource("Animation_ap2vf"),
+"end": SubResource("Animation_547tk"),
 "start": SubResource("Animation_22an6")
 }
 
@@ -92,3 +156,4 @@ libraries = {
 [connection signal="player_move_selected" from="CombatUi" to="." method="_on_combat_ui_player_move_selected"]
 [connection signal="all_enemies_died" from="FighterManager" to="." method="_on_fighter_manager_all_enemies_died"]
 [connection signal="player_died" from="FighterManager" to="." method="_on_fighter_manager_player_died"]
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
