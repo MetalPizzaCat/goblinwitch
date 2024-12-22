@@ -3,6 +3,7 @@ class_name CombatInterface
 
 signal player_move_selected
 signal player_action_selected(action: Attack)
+signal player_action_unselected
 
 @onready var attacks_box: HBoxContainer = $Panel/Actions/Attacks
 @onready var player_ap_panel: ActionPointPanel = $ActionPointPanel
@@ -20,6 +21,8 @@ signal player_action_selected(action: Attack)
 
 var player_action_buttons: Array[ActionButton] = []
 var cards: Array[CharacterInfo] = []
+
+var move_button_state : bool
 
 func set_player_max_ap(ap: int) -> void:
 	player_ap_panel.max_action_points = ap
@@ -71,7 +74,13 @@ func end_combat(victory: bool) -> void:
 func _on_player_action_selected(action: Attack, state: bool) -> void:
 	if state:
 		player_action_selected.emit(action)
+	else:
+		player_action_unselected.emit()
+	
 
 func _on_move_button_toggled(toggled_on: bool) -> void:
+	move_button_state = toggled_on
 	if toggled_on:
 		player_move_selected.emit()
+	else:
+		player_action_unselected.emit()

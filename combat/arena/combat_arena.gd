@@ -130,6 +130,9 @@ func end_combat(player_won: bool) -> void:
 	combat_ui.end_combat(player_won)
 	
 
+func clear_tile_states() -> void:
+	for cell in cells:
+		cell.state = CombatCell.TileState.DEFAULT
 
 func _on_cell_mouse_over(cell: CombatCell) -> void:
 	selection_arrow.position = Vector3(cell.position.x + cell_root.position.x, selection_arrow.position.y, cell.position.z + cell_root.position.z)
@@ -147,10 +150,24 @@ func _on_cell_clicked(cell: CombatCell) -> void:
 func _on_combat_ui_player_action_selected(action: Attack) -> void:
 	player.player_selection = Player.PlayerSelection.ATTACK
 	player.selected_attack = action
+	if action.attack_type == Attack.AttackType.MELEE:
+		for cell in cells:
+			cell.state = CombatCell.TileState.DEFAULT if cell.arena_position.distance_to(player.arena_position) > 1 else CombatCell.TileState.GOOD
+	else:
+		for cell in cells:
+			if cell.arena_position.distance_to(player.arena_position) > 3:
+				cell.state = CombatCell.TileState.DEFAULT
+			elif cell.arena_position.distance_to(player.arena_position) > 1:
+				cell.state = CombatCell.TileState.GOOD
+			else:
+				cell.state = CombatCell.TileState.BAD
+	
 
 
 func _on_combat_ui_player_move_selected() -> void:
 	player.player_selection = Player.PlayerSelection.MOVING
+	for cell in cells:
+		cell.state = CombatCell.TileState.DEFAULT if cell.arena_position.distance_to(player.arena_position) > 1 else CombatCell.TileState.GOOD
 
 
 func _on_fighter_manager_all_enemies_died() -> void:
@@ -167,3 +184,9 @@ func _on_player_used_action_points(_amount: int) -> void:
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 	if anim_name == "end":
 		combat_ended.emit()
+
+
+func _on_combat_ui_player_action_unselected() -> void:
+	print("UNSELECTED!")
+	for cell in cells:
+		cell.state = CombatCell.TileState.DEFAULT

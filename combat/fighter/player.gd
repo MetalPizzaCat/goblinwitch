@@ -9,8 +9,9 @@ var player_selection: PlayerSelection = PlayerSelection.NONE
 func on_tile_selected(tile: CombatCell) -> void:
     match player_selection:
         PlayerSelection.MOVING:
-            move_to_tile(tile.arena_position)
-            use_ap(1)
+            if tile.arena_position.distance_to(arena_position) <= 1:
+                move_to_tile(tile.arena_position)
+                use_ap(1)
         PlayerSelection.ATTACK:
             if tile.arena_position.distance_to(arena_position) <= 1:
                 var target = combat_arena.get_enemy_at(tile.arena_position)

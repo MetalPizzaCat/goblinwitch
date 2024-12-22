@@ -1,18 +1,23 @@
-[gd_scene load_steps=5 format=3 uid="uid://bfxyba8lqk48m"]
+[gd_scene load_steps=8 format=3 uid="uid://bfxyba8lqk48m"]
 
 [ext_resource type="Script" path="res://combat/arena/combat_cell.gd" id="1_r3jr6"]
+[ext_resource type="Material" uid="uid://cv2s5j3jldt0r" path="res://assets/ui/textures/materials/tile_default.tres" id="2_77ce1"]
+[ext_resource type="Material" uid="uid://cv2d2h6sdkkr7" path="res://assets/ui/textures/materials/tile_warning.tres" id="3_kkocx"]
+[ext_resource type="Material" uid="uid://bwufkhe7nkj3a" path="res://assets/ui/textures/materials/tile_good.tres" id="4_nm41m"]
+[ext_resource type="Material" uid="uid://d4gnaphnakdm8" path="res://assets/ui/textures/materials/tile_bad.tres" id="5_p2527"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_k4ygm"]
 size = Vector3(3, 0.3, 3)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3rhc5"]
-albedo_color = Color(0.572549, 0.443137, 0.572549, 1)
-
 [sub_resource type="BoxMesh" id="BoxMesh_heqe5"]
-material = SubResource("StandardMaterial3D_3rhc5")
+material = ExtResource("2_77ce1")
 
 [node name="CombatCell" type="Node3D"]
 script = ExtResource("1_r3jr6")
+default_material = ExtResource("2_77ce1")
+warning_material = ExtResource("3_kkocx")
+good_material = ExtResource("4_nm41m")
+bad_material = ExtResource("5_p2527")
 
 [node name="Area3D" type="Area3D" parent="."]
 
