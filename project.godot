@@ -35,6 +35,7 @@ folder_colors={
 "res://assets/": "pink",
 "res://character/": "teal",
 "res://combat/": "purple",
+"res://levels/": "red",
 "res://models/": "gray",
 "res://objects/": "pink",
 "res://overworld/": "blue"

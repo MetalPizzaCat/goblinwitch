@@ -49,6 +49,7 @@ func create_enemy(actor: CombatScenarioActor) -> Enemy:
 	enemy.arena_position = actor.start_pos
 	enemy.used_all_action_points.connect(_on_enemy_finished_turn)
 	enemy.action_completed.connect(_on_action_finished)
+	enemy.died.connect(_on_enemy_died)
 	combat_ui.create_character_card(enemy)
 	return enemy
 
@@ -85,7 +86,6 @@ func advance_turn() -> void:
 		is_player_turn = false
 		current_enemy_id = get_next_active_enemy_id()
 		if current_enemy_id == -1:
-			all_enemies_died.emit()
 			return
 		start_enemy_turn()
 	else:
@@ -111,7 +111,9 @@ func _on_player_died() -> void:
 
 
 func _on_enemy_died() -> void:
+	print("Someone died")
 	if enemies.all(func(p): return p.is_dead):
+		print("all enemies died")
 		all_enemies_died.emit()
 
 func _on_action_finished() -> void:

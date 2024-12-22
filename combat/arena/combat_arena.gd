@@ -2,6 +2,7 @@ extends Node3D
 class_name CombatArena
 
 signal combat_ended
+signal end_sequence_finished
 
 @export var area_size: int = 5
 @export_group("Combat")
@@ -126,8 +127,10 @@ func is_valid_position(pos: Vector2i) -> bool:
 
 func end_combat(player_won: bool) -> void:
 	overworld_player.global_position = player.global_position
+	print("Combat should end")
 	animation_player.play("end")
 	combat_ui.end_combat(player_won)
+	combat_ended.emit()
 	
 
 func clear_tile_states() -> void:
@@ -163,7 +166,6 @@ func _on_combat_ui_player_action_selected(action: Attack) -> void:
 				cell.state = CombatCell.TileState.BAD
 	
 
-
 func _on_combat_ui_player_move_selected() -> void:
 	player.player_selection = Player.PlayerSelection.MOVING
 	for cell in cells:
@@ -171,6 +173,7 @@ func _on_combat_ui_player_move_selected() -> void:
 
 
 func _on_fighter_manager_all_enemies_died() -> void:
+	print("ALL DEAD")
 	end_combat(true)
 
 func _on_fighter_manager_player_died() -> void:
@@ -182,8 +185,9 @@ func _on_player_used_action_points(_amount: int) -> void:
 
 
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:
+	print("Finished anim %s" % anim_name)
 	if anim_name == "end":
-		combat_ended.emit()
+		end_sequence_finished.emit()
 
 
 func _on_combat_ui_player_action_unselected() -> void:

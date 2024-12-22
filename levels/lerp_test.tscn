@@ -1,0 +1,49 @@
+[gd_scene load_steps=6 format=3 uid="uid://cvxfchs5xh2k2"]
+
+[ext_resource type="Script" path="res://objects/lerp_test.gd" id="1_myc0u"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_7nfeb"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_o6vov"]
+sky_material = SubResource("ProceduralSkyMaterial_7nfeb")
+
+[sub_resource type="Environment" id="Environment_12g63"]
+background_mode = 2
+sky = SubResource("Sky_o6vov")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_yrd5y"]
+
+[node name="Node3D" type="Node3D" node_paths=PackedStringArray("start_node", "moved_object", "end_node")]
+script = ExtResource("1_myc0u")
+start_node = NodePath("Start")
+moved_object = NodePath("MeshInstance3D")
+end_node = NodePath("Start2")
+target_time = 2.0
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_12g63")
+
+[node name="Start" type="Node3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Start"]
+mesh = SubResource("BoxMesh_yrd5y")
+
+[node name="Start2" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17, 3.26561, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Start2"]
+mesh = SubResource("BoxMesh_yrd5y")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_yrd5y")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 0, 11, 30)

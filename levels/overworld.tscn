@@ -1,4 +1,4 @@
-[gd_scene load_steps=45 format=4 uid="uid://cej7b1eru6x3i"]
+[gd_scene load_steps=46 format=4 uid="uid://cej7b1eru6x3i"]
 
 [ext_resource type="Script" path="res://levels/overworld.gd" id="1_dymff"]
 [ext_resource type="Script" path="res://addons/func_godot/src/map/func_godot_map.gd" id="1_lsw2u"]
@@ -18,6 +18,7 @@
 [ext_resource type="Resource" uid="uid://cu3eouvcjkdhv" path="res://assets/items/stick.tres" id="10_428wq"]
 [ext_resource type="PackedScene" uid="uid://cc6n51ba6f31" path="res://overworld/narration_trigger.tscn" id="17_i3l0f"]
 [ext_resource type="Resource" uid="uid://bjwxoa41cffr0" path="res://assets/story/narrator_test.tres" id="18_7ttg0"]
+[ext_resource type="Script" path="res://objects/transition_camera.gd" id="19_jjhu6"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_i153h"]
 albedo_texture = ExtResource("3_b703v")
@@ -260,7 +261,7 @@ mesh = SubResource("ArrayMesh_wgwl8")
 shape = SubResource("ConcavePolygonShape3D_dqsls")
 
 [node name="PlayerOverworld" parent="." instance=ExtResource("4_u10hx")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0.551009, 2.82262)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0.551009, -16.1774)
 character = SubResource("Resource_dvjdl")
 
 [node name="CombatTrigger2" parent="." node_paths=PackedStringArray("combat_spawn_position") groups=["combat_area"] instance=ExtResource("6_5q5ow")]
@@ -341,4 +342,11 @@ environment = SubResource("Environment_aiprv")
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 4, 1, -2)
 narration = ExtResource("18_7ttg0")
 
+[node name="TransitionCamera" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4)
+script = ExtResource("19_jjhu6")
+transition_time = 1.5
+
 [connection signal="combat_ended" from="CombatArena" to="." method="_on_combat_arena_combat_ended"]
+[connection signal="end_sequence_finished" from="CombatArena" to="." method="_on_combat_arena_end_sequence_finished"]
+[connection signal="finish" from="TransitionCamera" to="." method="_on_transition_camera_finish"]

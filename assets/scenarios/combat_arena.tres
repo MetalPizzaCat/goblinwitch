@@ -1,20 +1,15 @@
-[gd_resource type="Resource" script_class="CombatScenario" load_steps=6 format=3 uid="uid://qsvb54u4vnke"]
+[gd_resource type="Resource" script_class="CombatScenario" load_steps=5 format=3 uid="uid://qsvb54u4vnke"]
 
 [ext_resource type="Script" path="res://combat/scenario/combat_scenario_actor.gd" id="1_bdqgl"]
 [ext_resource type="Resource" uid="uid://cffptpf4fums8" path="res://assets/characters/test_enemy.tres" id="2_1cq5p"]
 [ext_resource type="Script" path="res://combat/scenario/combat_scenario.gd" id="4_37ejo"]
 
-[sub_resource type="Resource" id="Resource_b0u65"]
+[sub_resource type="Resource" id="Resource_yv1eo"]
 script = ExtResource("1_bdqgl")
 character = ExtResource("2_1cq5p")
 start_pos = Vector2i(5, 0)
 
-[sub_resource type="Resource" id="Resource_yv1eo"]
-script = ExtResource("1_bdqgl")
-character = ExtResource("2_1cq5p")
-start_pos = Vector2i(5, 5)
-
 [resource]
 script = ExtResource("4_37ejo")
-actors = Array[ExtResource("1_bdqgl")]([SubResource("Resource_b0u65"), SubResource("Resource_yv1eo")])
+actors = Array[ExtResource("1_bdqgl")]([SubResource("Resource_yv1eo")])
 player_position = Vector2i(3, 3)
