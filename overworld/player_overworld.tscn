@@ -18,7 +18,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("CapsuleShape3D_su7vw")
 
 [node name="Camera3D2" type="Camera3D" parent="."]
-transform = Transform3D(-1, 8.57281e-08, -1.71302e-08, 3.92357e-08, 0.615207, 0.788365, 7.81236e-08, 0.788365, -0.615207, 0, 12.2783, -7.48338)
+transform = Transform3D(-1, 1.84334e-07, -5.89187e-08, 6.69539e-08, 0.615207, 0.788365, 1.81569e-07, 0.788365, -0.615207, 0, 13.2783, -7.48338)
 
 [node name="Narrator" parent="." instance=ExtResource("3_plktu")]
 visible = false
