@@ -10,6 +10,7 @@ signal player_action_unselected
 @onready var fighter_card_box: HBoxContainer = $FighterCardBox
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var end_text_label: RichTextLabel = $VictoryLabel
+@onready var move_button : Button = $Panel/Actions/MoveButton
 @onready var victory_sound_player: AudioStreamPlayer = $VictorySoundPlayer
 @onready var defeat_sound_player: AudioStreamPlayer = $DefeatSoundPlayer
 
@@ -23,6 +24,11 @@ var player_action_buttons: Array[ActionButton] = []
 var cards: Array[CharacterInfo] = []
 
 var move_button_state : bool
+
+func unselect_all_buttons() -> void:
+	move_button.button_pressed = false
+	for btn in player_action_buttons:
+		btn.button_pressed = false
 
 func set_player_max_ap(ap: int) -> void:
 	player_ap_panel.max_action_points = ap
@@ -80,6 +86,7 @@ func _on_player_action_selected(action: Attack, state: bool) -> void:
 
 func _on_move_button_toggled(toggled_on: bool) -> void:
 	move_button_state = toggled_on
+	
 	if toggled_on:
 		player_move_selected.emit()
 	else:

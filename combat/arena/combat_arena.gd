@@ -153,17 +153,16 @@ func _on_cell_clicked(cell: CombatCell) -> void:
 func _on_combat_ui_player_action_selected(action: Attack) -> void:
 	player.player_selection = Player.PlayerSelection.ATTACK
 	player.selected_attack = action
-	if action.attack_type == Attack.AttackType.MELEE:
-		for cell in cells:
-			cell.state = CombatCell.TileState.DEFAULT if cell.arena_position.distance_to(player.arena_position) > 1 else CombatCell.TileState.GOOD
-	else:
-		for cell in cells:
-			if cell.arena_position.distance_to(player.arena_position) > 3:
-				cell.state = CombatCell.TileState.DEFAULT
-			elif cell.arena_position.distance_to(player.arena_position) > 1:
-				cell.state = CombatCell.TileState.GOOD
-			else:
-				cell.state = CombatCell.TileState.BAD
+	for cell in cells:
+		var dist = cell.arena_position.distance_to(player.arena_position)
+		if dist <= action.attack_range:
+			match action.attack_type:
+				Attack.AttackType.MELEE:
+					cell.state = CombatCell.TileState.GOOD if dist <= 1 else CombatCell.TileState.WARNING
+				Attack.AttackType.RANGED:
+					cell.state = CombatCell.TileState.GOOD if dist > 1 else CombatCell.TileState.WARNING
+		else:
+			cell.state = CombatCell.TileState.DEFAULT
 	
 
 func _on_combat_ui_player_move_selected() -> void:
@@ -173,7 +172,6 @@ func _on_combat_ui_player_move_selected() -> void:
 
 
 func _on_fighter_manager_all_enemies_died() -> void:
-	print("ALL DEAD")
 	end_combat(true)
 
 func _on_fighter_manager_player_died() -> void:
@@ -182,15 +180,14 @@ func _on_fighter_manager_player_died() -> void:
 
 func _on_player_used_action_points(_amount: int) -> void:
 	combat_ui.set_player_current_ap(player.current_ap)
+	combat_ui.unselect_all_buttons()
 
 
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:
-	print("Finished anim %s" % anim_name)
 	if anim_name == "end":
 		end_sequence_finished.emit()
 
 
 func _on_combat_ui_player_action_unselected() -> void:
-	print("UNSELECTED!")
 	for cell in cells:
 		cell.state = CombatCell.TileState.DEFAULT

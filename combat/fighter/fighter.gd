@@ -47,6 +47,7 @@ enum ActionState {
 @onready var current_ap: int = total_ap
 @onready var info_label: Label3D = $InfoLabel
 @onready var anim_body: CharacterBody = $Body
+@onready var misc_anim_player : AnimationPlayer = $AnimationPlayer
 
 var combat_arena: CombatArena
 
@@ -119,7 +120,13 @@ func use_ap(amount: int) -> void:
 func attack(target: Fighter, attack_action: Attack) -> void:
 	var target_str = character.weapon.min_strength if character.weapon else 0
 	var acc = character.weapon.accuracy if character.weapon else 1
-	var chance = min(1.0, float(character.strength - target_str + character.perception) / acc + 0.1)
+	var dist = target.arena_position.distance_to(arena_position)
+	var chance = 1.0
+	match attack_action.attack_type:
+		Attack.AttackType.MELEE:
+			chance = min(1.0, float(character.strength - target_str + character.perception) / (acc * (dist / attack_action.attack_range)))
+		Attack.AttackType.RANGED:
+			chance = min(1.0, float(character.strength - target_str + character.perception) / (acc * (attack_action.attack_range / dist)))
 	use_ap(attack_action.ap_cost)
 	current_state = ActionState.PERFORMING
 	anim_body.play_animation(attack_action.character_animation_name)
@@ -129,7 +136,7 @@ func attack(target: Fighter, attack_action: Attack) -> void:
 		print("Attacked for %s" % dmg)
 		target.receive_damage(self, dmg)
 	else:
-		print("MISS!")
+		misc_anim_player.play("miss")
 
 func receive_damage(dealer: Fighter, damage: int) -> void:
 	look_at(dealer.global_position)

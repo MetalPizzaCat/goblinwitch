@@ -1,16 +1,24 @@
 extends Resource
 class_name Attack
 
-enum AttackType {MELEE, RANGED}
+enum AttackType {
+	## Better at closer range
+	MELEE, 
+	## Better at bigger range
+	RANGED
+}
 
-@export var name: String = "GENERIC_ATTACK_NAME"
+@export var name: String = "ATK"
 ## Damage of the weapon will be modified by this value before applied[br]
 ## Can be kept as 1 for most attacks
 @export var damage_modifier: float = 1.0
 
 @export var is_spell: bool = false
 
+## Determines whether this attack is effective at melee ranged or not
 @export var attack_type: AttackType = AttackType.MELEE
+## How far can this weapon hit
+@export var attack_range : int = 1
 ## If true this attack can be used on yourself. Meant for healing and similar actions.
 @export var can_target_self: bool = false
 ## How many action points are used by this attack
@@ -23,4 +31,4 @@ enum AttackType {MELEE, RANGED}
 
 
 @export_group("AI")
-@export var is_healing : bool = true
+@export var is_healing : bool = false
