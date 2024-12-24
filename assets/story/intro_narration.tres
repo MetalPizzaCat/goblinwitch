@@ -1,0 +1,29 @@
+[gd_resource type="Resource" script_class="Narration" load_steps=7 format=3 uid="uid://cslh1vr51mosu"]
+
+[ext_resource type="Script" path="res://overworld/narrator/narration_line.gd" id="1_qqx8l"]
+[ext_resource type="Script" path="res://overworld/narrator/narration.gd" id="2_u4ifv"]
+
+[sub_resource type="Resource" id="Resource_jc0x2"]
+script = ExtResource("1_qqx8l")
+text = "Take this"
+speed_modifier = 1.0
+
+[sub_resource type="Resource" id="Resource_olsaw"]
+script = ExtResource("1_qqx8l")
+text = "It will give you strenght"
+speed_modifier = 1.0
+
+[sub_resource type="Resource" id="Resource_g5tga"]
+script = ExtResource("1_qqx8l")
+text = "You will need it in the [shake]battle[/shake] ahead"
+speed_modifier = 1.0
+
+[sub_resource type="Resource" id="Resource_cnr6h"]
+script = ExtResource("1_qqx8l")
+text = "Be safe my [wave]brave child[/wave]"
+speed_modifier = 1.0
+
+[resource]
+script = ExtResource("2_u4ifv")
+takes_over_control = true
+lines = Array[ExtResource("1_qqx8l")]([SubResource("Resource_jc0x2"), SubResource("Resource_olsaw"), SubResource("Resource_g5tga"), SubResource("Resource_cnr6h")])

@@ -3,6 +3,8 @@ class_name Overworld
 
 @export var combat_arena: CombatArena
 @export var player: PlayerOverworld
+@export var game_intro_sequence : Node
+@export var play_intro_narration : bool = true  
 
 @onready var combat_arena_storage: Node3D = $CombatArenaStorage
 @onready var transition_camera: TransitionCamera = $TransitionCamera
@@ -22,6 +24,8 @@ func _ready() -> void:
 	var combat_areas = get_tree().get_nodes_in_group("combat_area")
 	for area in combat_areas:
 		area.combat_triggered.connect(_on_combat_triggered)
+	if play_intro_narration:
+		game_intro_sequence.activate()
 	
 
 func start_combat(combat_scenario: CombatScenario, combat_pos: Vector3) -> void:

@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3 uid="uid://biymavqfay5c7"]
+
+[ext_resource type="Script" path="res://overworld/interactibles/interaction_box.gd" id="1_4m3kc"]
+[ext_resource type="SpriteFrames" uid="uid://bdyxc0un0g072" path="res://assets/ui/textures/space_bar.tres" id="1_m2n74"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_n62c3"]
+size = Vector3(2, 2, 2)
+
+[node name="InteractionBox" type="Node3D"]
+script = ExtResource("1_4m3kc")
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("BoxShape3D_n62c3")
+
+[node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="."]
+transform = Transform3D(4.25, 0, 0, 0, 4.25, 0, 0, 0, 1, 0, 4.49513, 0)
+visible = false
+billboard = 1
+texture_filter = 2
+sprite_frames = ExtResource("1_m2n74")
+
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
+[connection signal="body_exited" from="Area3D" to="." method="_on_area_3d_body_exited"]

@@ -42,8 +42,9 @@ func _input(_event: InputEvent) -> void:
 		current_display_time = 0
 		if narration_id >= len(current_narration.lines):
 			active = false
-			current_narration = null
 			narration_over.emit()
+			current_narration = null
+			
 
 func set_narration(narration: Narration) -> void:
 	current_narration = narration

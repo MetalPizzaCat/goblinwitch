@@ -1,0 +1,29 @@
+[gd_resource type="Resource" script_class="Narration" load_steps=7 format=3 uid="uid://cvxfjxoytajph"]
+
+[ext_resource type="Script" path="res://overworld/narrator/narration_line.gd" id="1_7tda0"]
+[ext_resource type="Script" path="res://overworld/narrator/narration.gd" id="2_aot2l"]
+
+[sub_resource type="Resource" id="Resource_sv5jc"]
+script = ExtResource("1_7tda0")
+text = "Ah, you are finally awake"
+speed_modifier = 1.0
+
+[sub_resource type="Resource" id="Resource_jx7tx"]
+script = ExtResource("1_7tda0")
+text = "Rise and shine little one, rise and [fade][shake]shine[/shake][/fade] "
+speed_modifier = 1.0
+
+[sub_resource type="Resource" id="Resource_xjq6y"]
+script = ExtResource("1_7tda0")
+text = "You have an adventure ahead of you my [shake]child[/shake]"
+speed_modifier = 1.0
+
+[sub_resource type="Resource" id="Resource_0mf0l"]
+script = ExtResource("1_7tda0")
+text = "Grab a weapon from that [pulse]chest[/pulse]"
+speed_modifier = 1.0
+
+[resource]
+script = ExtResource("2_aot2l")
+takes_over_control = true
+lines = Array[ExtResource("1_7tda0")]([SubResource("Resource_sv5jc"), SubResource("Resource_jx7tx"), SubResource("Resource_xjq6y"), SubResource("Resource_0mf0l")])
