@@ -180,7 +180,7 @@ func _on_fighter_manager_player_died() -> void:
 
 func _on_player_used_action_points(_amount: int) -> void:
 	combat_ui.set_player_current_ap(player.current_ap)
-	combat_ui.unselect_all_buttons()
+	#combat_ui.unselect_all_buttons()
 
 
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:

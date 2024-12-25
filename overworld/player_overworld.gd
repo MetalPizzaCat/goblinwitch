@@ -10,6 +10,9 @@ class_name PlayerOverworld
 
 @export var character: Character
 
+@export_group("Story flags")
+@export var is_goblin : bool = true
+
 var interaction_target : Node
 
 func _physics_process(_delta: float) -> void:

@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://eu51uk4ydnoe"]
 
 [ext_resource type="Script" path="res://overworld/player_overworld.gd" id="1_6e2w7"]
-[ext_resource type="PackedScene" uid="uid://cnmr128f12cil" path="res://objects/character_body.tscn" id="2_nrwsb"]
+[ext_resource type="PackedScene" uid="uid://bov6vfkmnnxr0" path="res://objects/goblin.tscn" id="2_y6eqx"]
 [ext_resource type="PackedScene" uid="uid://brde3kgsngy4b" path="res://overworld/narrator/narrator.tscn" id="3_plktu"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_su7vw"]
@@ -72,7 +72,7 @@ _data = {
 script = ExtResource("1_6e2w7")
 speed = 7.0
 
-[node name="Body" parent="." instance=ExtResource("2_nrwsb")]
+[node name="Body" parent="." instance=ExtResource("2_y6eqx")]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)

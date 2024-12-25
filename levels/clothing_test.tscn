@@ -1,0 +1,35 @@
+[gd_scene load_steps=5 format=3 uid="uid://dh2qc1on1nqgk"]
+
+[ext_resource type="PackedScene" uid="uid://bov6vfkmnnxr0" path="res://objects/goblin.tscn" id="1_xhgbq"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_4kdjc"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_hod1p"]
+sky_material = SubResource("ProceduralSkyMaterial_4kdjc")
+
+[sub_resource type="Environment" id="Environment_8j3e4"]
+background_mode = 2
+sky = SubResource("Sky_hod1p")
+tonemap_mode = 2
+glow_enabled = true
+
+[node name="ClothingTest" type="Node3D"]
+
+[node name="goblin" parent="." instance=ExtResource("1_xhgbq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.54915, -0.0312639, 0.48948)
+
+[node name="goblin2" parent="." instance=ExtResource("1_xhgbq")]
+body_type = 1
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_8j3e4")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 2.14768, -3.45179)
+current = true
