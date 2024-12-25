@@ -2,20 +2,20 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://beae4pvx02wnu"
-path.s3tc="res://.godot/imported/goblin_human_texture_1.png-e9ee43ab34adcacf1dcdd3c3449c2a9b.s3tc.ctex"
+uid="uid://ujinwgsvkcda"
+path.s3tc="res://.godot/imported/goblin_god_texture_3.png-d40a43b53d7de21436dda3f61684b1d2.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
 generator_parameters={
-"md5": "b611c7af607f00a162605e4ff7f76399"
+"md5": "ffca10d80a1c19cab81d2b9699517be4"
 }
 
 [deps]
 
-source_file="res://models/goblin/goblin_human_texture_1.png"
-dest_files=["res://.godot/imported/goblin_human_texture_1.png-e9ee43ab34adcacf1dcdd3c3449c2a9b.s3tc.ctex"]
+source_file="res://models/body/goblin_god_texture_3.png"
+dest_files=["res://.godot/imported/goblin_god_texture_3.png-d40a43b53d7de21436dda3f61684b1d2.s3tc.ctex"]
 
 [params]
 

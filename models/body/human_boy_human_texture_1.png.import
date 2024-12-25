@@ -2,20 +2,20 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cxs0fnds03vpi"
-path.s3tc="res://.godot/imported/goblin1_hair.png-50da49b04064831b7405f654b2250aa1.s3tc.ctex"
+uid="uid://ct67cn8dqt27"
+path.s3tc="res://.godot/imported/human_boy_human_texture_1.png-e69fc6509a45cd7aea1322ca57d74421.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
 generator_parameters={
-"md5": "b6fc7e17c4f36815a04bc7764d935756"
+"md5": "b611c7af607f00a162605e4ff7f76399"
 }
 
 [deps]
 
-source_file="res://models/goblin/goblin1_hair.png"
-dest_files=["res://.godot/imported/goblin1_hair.png-50da49b04064831b7405f654b2250aa1.s3tc.ctex"]
+source_file="res://models/body/human_boy_human_texture_1.png"
+dest_files=["res://.godot/imported/human_boy_human_texture_1.png-e69fc6509a45cd7aea1322ca57d74421.s3tc.ctex"]
 
 [params]
 

@@ -1,0 +1,47 @@
+[gd_scene load_steps=5 format=3 uid="uid://cu3y01etdq38t"]
+
+[ext_resource type="PackedScene" uid="uid://c0la25qxelmxf" path="res://models/body/goblin_girl.glb" id="1_ucp17"]
+[ext_resource type="PackedScene" uid="uid://ov5pap6qkue5" path="res://models/weapons/axe.glb" id="2_8ipwb"]
+[ext_resource type="Script" path="res://objects/character_body.gd" id="2_bjdms"]
+[ext_resource type="PackedScene" uid="uid://blqqtsyo6gh47" path="res://models/weapons/sword.glb" id="3_kig7t"]
+
+[node name="goblin_girl" instance=ExtResource("1_ucp17")]
+script = ExtResource("2_bjdms")
+
+[node name="Skeleton3D" parent="Armature" index="0"]
+bones/0/position = Vector3(0, 0.0158966, 0.0205626)
+bones/0/rotation = Quaternion(-0.0177291, 0, 0, 0.999843)
+bones/1/rotation = Quaternion(0.0207091, 0, 4.12944e-24, 0.999786)
+bones/2/rotation = Quaternion(-0.109395, -4.35843e-08, -0.767659, 0.631452)
+bones/3/rotation = Quaternion(0.168876, 5.3563e-09, 0.720156, 0.672946)
+bones/6/rotation = Quaternion(-0.0497175, 0.0460458, -0.728078, 0.682137)
+bones/7/rotation = Quaternion(-0.0424225, -0.0378579, -0.495456, 0.86677)
+bones/8/rotation = Quaternion(0.0511198, -0.00447526, 0.0933408, 0.994311)
+bones/9/rotation = Quaternion(0.0640479, -0.148638, 0.713137, 0.682086)
+bones/10/rotation = Quaternion(0.190999, 0.00151218, 0.485808, 0.85294)
+bones/11/rotation = Quaternion(-0.0330055, -5.06964e-05, -0.0699856, 0.997002)
+bones/12/position = Vector3(0, 0.0158966, 0)
+bones/12/rotation = Quaternion(-0.466339, 0.531176, 0.527303, 0.471521)
+bones/13/rotation = Quaternion(-0.699595, 0.0288655, -0.109389, 0.705527)
+bones/14/rotation = Quaternion(-0.0380712, 0.00408075, -0.0442732, 0.998285)
+bones/16/position = Vector3(-1.27821e-15, 0.0158966, 7.31641e-16)
+bones/16/rotation = Quaternion(0.466278, 0.531587, 0.531587, -0.466279)
+bones/17/rotation = Quaternion(-0.670936, -0.101615, 0.176489, 0.713001)
+bones/18/rotation = Quaternion(0.037709, -0.0188828, 0.0656759, 0.996949)
+
+[node name="Weapon" type="BoneAttachment3D" parent="Armature/Skeleton3D" index="0"]
+transform = Transform3D(-0.8048, -0.567552, 0.173723, 0.556367, -0.823313, -0.1123, 0.206765, 0.00627472, 0.97837, -0.398793, 0.193643, -0.0134407)
+bone_name = "Bone.017"
+bone_idx = 11
+
+[node name="axe" parent="Armature/Skeleton3D/Weapon" index="0" instance=ExtResource("2_8ipwb")]
+transform = Transform3D(0.292571, 0.109074, 0.15813, 0.180755, -0.0587701, -0.293894, -0.0650367, 0.327336, -0.105457, 0.140519, 0.192784, 0.635163)
+
+[node name="sword2" parent="Armature/Skeleton3D/Weapon" index="1" instance=ExtResource("3_kig7t")]
+transform = Transform3D(0.2766, 0.178594, 0.11873, 0.16358, -0.0503878, -0.305291, -0.138687, 0.296758, -0.123291, -0.0106932, 0.222526, 0.101823)
+
+[node name="hair_tail" parent="Armature/Skeleton3D" index="1"]
+transform = Transform3D(1, -8.2571e-24, 1.71034e-25, 8.25798e-24, 0.999982, -0.00596102, -1.2181e-25, 0.00596101, 0.999982, -2.1893e-16, 1.53186, 0.00903651)
+
+[node name="head" parent="Armature/Skeleton3D" index="2"]
+transform = Transform3D(-6.4884e-24, 1.34398e-25, 0.785796, 0.785783, -0.00468417, 6.48909e-24, 0.00468417, 0.785782, -9.57177e-26, -2.1893e-16, 0.515502, 0.00297786)

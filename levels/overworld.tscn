@@ -1,9 +1,10 @@
-[gd_scene load_steps=117 format=4 uid="uid://cej7b1eru6x3i"]
+[gd_scene load_steps=118 format=4 uid="uid://cej7b1eru6x3i"]
 
 [ext_resource type="Script" path="res://levels/overworld.gd" id="1_dymff"]
 [ext_resource type="Script" path="res://addons/func_godot/src/map/func_godot_map.gd" id="1_lsw2u"]
 [ext_resource type="Resource" uid="uid://bkhxcqsquw1yg" path="res://addons/func_godot/func_godot_default_map_settings.tres" id="2_pjht8"]
 [ext_resource type="Texture2D" uid="uid://cyg2snr1w5xw5" path="res://addons/func_godot/textures/default_texture.png" id="3_b703v"]
+[ext_resource type="PackedScene" uid="uid://cu3y01etdq38t" path="res://objects/character/goblin_girl.tscn" id="4_iaemi"]
 [ext_resource type="Material" uid="uid://ctxnnlivda46j" path="res://textures/brick1.tres" id="4_kkddk"]
 [ext_resource type="PackedScene" uid="uid://eu51uk4ydnoe" path="res://overworld/player_overworld.tscn" id="4_u10hx"]
 [ext_resource type="Material" uid="uid://61j8ylbnnxw3" path="res://textures/floor_stone_tile.tres" id="5_ufp1t"]
@@ -41,6 +42,7 @@ items = Array[ExtResource("7_7g6il")]([])
 weapon = ExtResource("10_428wq")
 total_ap = 3
 spells = Array[ExtResource("9_4khm8")]([])
+model_prefab = ExtResource("4_iaemi")
 
 [sub_resource type="Environment" id="Environment_aiprv"]
 background_mode = 1

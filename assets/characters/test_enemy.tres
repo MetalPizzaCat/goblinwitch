@@ -1,6 +1,7 @@
-[gd_resource type="Resource" script_class="Character" load_steps=6 format=3 uid="uid://cffptpf4fums8"]
+[gd_resource type="Resource" script_class="Character" load_steps=7 format=3 uid="uid://cffptpf4fums8"]
 
 [ext_resource type="Script" path="res://character/item.gd" id="1_iy5jw"]
+[ext_resource type="PackedScene" uid="uid://c20nhjf3socml" path="res://objects/character/human_boy.tscn" id="2_mxb3u"]
 [ext_resource type="Script" path="res://character/character.gd" id="2_oempx"]
 [ext_resource type="Script" path="res://combat/attack.gd" id="3_osprk"]
 [ext_resource type="Texture2D" uid="uid://4e0gtlq7ma6d" path="res://assets/icons/gob_icon.png" id="4_fuasm"]
@@ -20,3 +21,4 @@ items = Array[ExtResource("1_iy5jw")]([])
 weapon = ExtResource("5_qtvlm")
 total_ap = 2
 spells = Array[ExtResource("3_osprk")]([])
+model_prefab = ExtResource("2_mxb3u")

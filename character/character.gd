@@ -29,6 +29,9 @@ class_name Character
 ## Spells are additional attacks that use mana
 @export var spells : Array[Attack] = []
 
+@export_group("Visuals")
+@export var model_prefab : PackedScene
+
 ## Get max health this character have based on their endurance
 ## [br]
 ## Calculate health based on endurance [br]

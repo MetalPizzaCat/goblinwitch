@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://eu51uk4ydnoe"]
+[gd_scene load_steps=9 format=3 uid="uid://eu51uk4ydnoe"]
 
 [ext_resource type="Script" path="res://overworld/player_overworld.gd" id="1_6e2w7"]
-[ext_resource type="PackedScene" uid="uid://bov6vfkmnnxr0" path="res://objects/goblin.tscn" id="2_y6eqx"]
+[ext_resource type="PackedScene" uid="uid://c52415pqcr3uo" path="res://models/body/goblin.glb" id="2_jg663"]
 [ext_resource type="PackedScene" uid="uid://brde3kgsngy4b" path="res://overworld/narrator/narrator.tscn" id="3_plktu"]
+[ext_resource type="Script" path="res://objects/character_body.gd" id="3_qsude"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_su7vw"]
 radius = 0.607471
@@ -72,7 +73,8 @@ _data = {
 script = ExtResource("1_6e2w7")
 speed = 7.0
 
-[node name="Body" parent="." instance=ExtResource("2_y6eqx")]
+[node name="Body" parent="." instance=ExtResource("2_jg663")]
+script = ExtResource("3_qsude")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)

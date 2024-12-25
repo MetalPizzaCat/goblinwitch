@@ -1,7 +1,6 @@
-[gd_scene load_steps=7 format=3 uid="uid://cgp10p8xr0lh0"]
+[gd_scene load_steps=6 format=3 uid="uid://cgp10p8xr0lh0"]
 
 [ext_resource type="Script" path="res://combat/fighter/fighter.gd" id="1_nbxeo"]
-[ext_resource type="PackedScene" uid="uid://bov6vfkmnnxr0" path="res://objects/goblin.tscn" id="2_u2hwr"]
 [ext_resource type="FontFile" uid="uid://e70dnlpjiko3" path="res://fonts/MorePerfectDOSVGA.ttf" id="3_fejwi"]
 
 [sub_resource type="Animation" id="Animation_mphde"]
@@ -92,8 +91,6 @@ _data = {
 [node name="Fighter" type="Node3D"]
 script = ExtResource("1_nbxeo")
 
-[node name="Body" parent="." instance=ExtResource("2_u2hwr")]
-
 [node name="InfoLabel" type="Label3D" parent="."]
 transform = Transform3D(-1, -2.94468e-08, 8.23142e-08, 6.18172e-08, 0.42761, 0.903963, -6.18172e-08, 0.903963, -0.42761, 0, 2.49676, 0)
 visible = false
@@ -114,5 +111,3 @@ outline_size = 87
 libraries = {
 "": SubResource("AnimationLibrary_ejvyc")
 }
-
-[connection signal="action_animation_finished" from="Body" to="." method="_on_body_action_animation_finished"]

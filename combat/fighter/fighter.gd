@@ -32,6 +32,13 @@ enum ActionState {
 		if value == null:
 			return
 		health = character.get_max_health()
+		if anim_body != null:
+			remove_child(anim_body)
+			anim_body.queue_free()
+		print("for %s created %s" % [name, character.model_prefab.resource_path])
+		anim_body = character.model_prefab.instantiate() as CharacterBody
+		add_child(anim_body)
+		anim_body.action_animation_finished.connect(_on_body_action_animation_finished)
 		
 		
 @export var health: int
@@ -46,8 +53,8 @@ enum ActionState {
 
 @onready var current_ap: int = total_ap
 @onready var info_label: Label3D = $InfoLabel
-@onready var anim_body: CharacterBody = $Body
-@onready var misc_anim_player : AnimationPlayer = $AnimationPlayer
+var anim_body: CharacterBody
+@onready var misc_anim_player: AnimationPlayer = $AnimationPlayer
 
 var combat_arena: CombatArena
 
