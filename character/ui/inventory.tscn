@@ -1,0 +1,84 @@
+[gd_scene load_steps=3 format=3 uid="uid://b7u4aifjb5urw"]
+
+[ext_resource type="Theme" uid="uid://cfgbmdhhipqu" path="res://assets/ui/themes/combat_theme.tres" id="1_rwkxu"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_t0cq3"]
+bg_color = Color(0.844307, 0.45631, 0.617746, 1)
+
+[node name="Inventory" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_rwkxu")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -232.0
+offset_top = -322.0
+offset_right = 224.0
+offset_bottom = 318.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_t0cq3")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 16.0
+offset_top = 72.0
+offset_right = -16.0
+offset_bottom = -16.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="Panel/VBoxContainer"]
+layout_mode = 2
+text = "AAAAAAAAAAAA"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 24.0
+offset_top = 8.0
+offset_bottom = 56.0
+grow_horizontal = 2
+alignment = 1
+
+[node name="Items" type="Button" parent="Panel/HBoxContainer"]
+layout_mode = 2
+text = "Items"
+
+[node name="Spells" type="Button" parent="Panel/HBoxContainer"]
+layout_mode = 2
+text = "Spells"
+
+[node name="Special" type="Button" parent="Panel/HBoxContainer"]
+visible = false
+layout_mode = 2
+text = "Spells"
+
+[node name="InfoPanel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 224.0
+offset_top = -258.0
+offset_right = 488.0
+offset_bottom = 38.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_t0cq3")
