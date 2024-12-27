@@ -40,6 +40,7 @@ enum ActionState {
 		add_child(anim_body)
 		anim_body.action_animation_finished.connect(_on_body_action_animation_finished)
 		current_state = ActionState.IDLE
+		anim_body.set_used_weapon_type(WeaponDisplay.WeaponModel.NONE if character.weapon == null else character.weapon.model)
 		
 		
 @export var health: int

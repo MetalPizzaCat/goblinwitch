@@ -12,3 +12,4 @@ damage = 1
 min_strength = 0
 accuracy = 0
 attacks = Array[ExtResource("1_vgtjr")]([ExtResource("2_0qcdo")])
+model = 3

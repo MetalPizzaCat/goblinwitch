@@ -19,3 +19,6 @@ func on_tile_selected(tile: CombatCell) -> void:
                     attack(target, selected_attack)
             else:
                 print("Distance from %s to %s is %s" % [tile.arena_position, arena_position, tile.arena_position.distance_to(arena_position)])
+
+func update_weapon() -> void:
+    anim_body.set_used_weapon_type(WeaponDisplay.WeaponModel.NONE if character.weapon == null else character.weapon.model)

@@ -2,32 +2,11 @@ extends Node3D
 class_name CharacterBody
 signal action_animation_finished
 
-enum BodyType {GOBLIN, HUMAN, SKELETON}
-
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
+@onready var weapon_model_display : WeaponDisplay = $Armature/Skeleton3D/Weapon
 
-@export var goblin_body_parts: Array[Node3D] = []
-@export var human_body_parts: Array[Node3D] = []
-@export var skeleton_body_parts: Array[Node3D] = []
-@export var all_body_parts : Array[Node3D] = []
-
-@export var body_type: BodyType:
-	get:
-		return _body_type
-	set(value):
-		_enable_body_parts(all_body_parts, false)
-		_body_type = value
-		match value:
-			BodyType.GOBLIN:
-				_enable_body_parts(goblin_body_parts, true)
-			BodyType.HUMAN:
-				_enable_body_parts(human_body_parts, true)
-			BodyType.SKELETON:
-				_enable_body_parts(skeleton_body_parts, true)
-		
-
-var _body_type: BodyType = BodyType.GOBLIN
-
+func set_used_weapon_type(weapon_type : WeaponDisplay.WeaponModel) -> void:
+	weapon_model_display.model = weapon_type
 
 func play_animation(anim: String) -> void:
 	animation_player.play(anim)

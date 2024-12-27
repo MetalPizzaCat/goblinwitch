@@ -19,7 +19,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(1024, 192)]
+"values": [Vector2(760, 1024)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -31,31 +31,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(568, 128)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Panel:visible")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("InfoPanel:visible")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
+"values": [Vector2(568, 960)]
 }
 
 [sub_resource type="Animation" id="Animation_05k75"]
@@ -85,30 +61,6 @@ tracks/1/keys = {
 "update": 0,
 "values": [Vector2(568, 960), Vector2(568, 128)]
 }
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Panel:visible")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.0333333),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [false, true]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("InfoPanel:visible")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.0333333),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [false, true]
-}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_4f6xw"]
 _data = {
@@ -123,11 +75,71 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
+mouse_default_cursor_shape = 2
 theme = ExtResource("1_rwkxu")
 script = ExtResource("2_2boqd")
 
+[node name="InfoPanel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -40.0
+offset_top = 574.0
+offset_right = 224.0
+offset_bottom = 870.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_t0cq3")
+
+[node name="ItemInfo" type="VBoxContainer" parent="InfoPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 8.0
+offset_top = 8.0
+offset_right = -6.0
+offset_bottom = -8.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ItemNameLabel" type="Label" parent="InfoPanel/ItemInfo"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.595987, 0.046891, 0.372244, 1)
+theme_override_font_sizes/font_size = 36
+text = "Select item"
+horizontal_alignment = 1
+
+[node name="Stats" type="HBoxContainer" parent="InfoPanel/ItemInfo"]
+layout_mode = 2
+
+[node name="DamageValLabel" type="Label" parent="InfoPanel/ItemInfo/Stats"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.595987, 0.046891, 0.372244, 1)
+theme_override_font_sizes/font_size = 36
+text = "Damage:"
+horizontal_alignment = 1
+
+[node name="DamageVal" type="Label" parent="InfoPanel/ItemInfo/Stats"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.595987, 0.046891, 0.372244, 1)
+theme_override_font_sizes/font_size = 36
+text = "0
+"
+horizontal_alignment = 1
+
+[node name="ItemDescLabel" type="Label" parent="InfoPanel/ItemInfo"]
+custom_minimum_size = Vector2(250, 20)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.595987, 0.046891, 0.372244, 1)
+theme_override_font_sizes/font_size = 24
+autowrap_mode = 2
+
 [node name="Panel" type="Panel" parent="."]
-visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -135,9 +147,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -232.0
-offset_top = -322.0
+offset_top = 510.0
 offset_right = 224.0
-offset_bottom = 318.0
+offset_bottom = 1150.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_t0cq3")
@@ -193,66 +205,6 @@ text = "Spells"
 visible = false
 layout_mode = 2
 text = "Spells"
-
-[node name="InfoPanel" type="Panel" parent="."]
-visible = false
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = 224.0
-offset_top = -258.0
-offset_right = 488.0
-offset_bottom = 38.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_t0cq3")
-
-[node name="ItemInfo" type="VBoxContainer" parent="InfoPanel"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 8.0
-offset_top = 8.0
-offset_right = -6.0
-offset_bottom = -8.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="ItemNameLabel" type="Label" parent="InfoPanel/ItemInfo"]
-layout_mode = 2
-theme_override_colors/font_color = Color(0.595987, 0.046891, 0.372244, 1)
-theme_override_font_sizes/font_size = 36
-text = "Select item"
-horizontal_alignment = 1
-
-[node name="Stats" type="HBoxContainer" parent="InfoPanel/ItemInfo"]
-layout_mode = 2
-
-[node name="DamageValLabel" type="Label" parent="InfoPanel/ItemInfo/Stats"]
-layout_mode = 2
-theme_override_colors/font_color = Color(0.595987, 0.046891, 0.372244, 1)
-theme_override_font_sizes/font_size = 36
-text = "Damage:"
-horizontal_alignment = 1
-
-[node name="DamageVal" type="Label" parent="InfoPanel/ItemInfo/Stats"]
-layout_mode = 2
-theme_override_colors/font_color = Color(0.595987, 0.046891, 0.372244, 1)
-theme_override_font_sizes/font_size = 36
-text = "0
-"
-horizontal_alignment = 1
-
-[node name="ItemDescLabel" type="Label" parent="InfoPanel/ItemInfo"]
-custom_minimum_size = Vector2(250, 20)
-layout_mode = 2
-theme_override_colors/font_color = Color(0.595987, 0.046891, 0.372244, 1)
-theme_override_font_sizes/font_size = 24
-autowrap_mode = 2
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

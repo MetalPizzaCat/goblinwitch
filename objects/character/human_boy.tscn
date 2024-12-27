@@ -1,26 +1,17 @@
-[gd_scene load_steps=5 format=3 uid="uid://c20nhjf3socml"]
+[gd_scene load_steps=4 format=3 uid="uid://c20nhjf3socml"]
 
 [ext_resource type="PackedScene" uid="uid://bnkn0cwky3d0s" path="res://models/body/human_boy.glb" id="1_dqxc1"]
 [ext_resource type="Script" path="res://objects/character_body.gd" id="2_rafix"]
-[ext_resource type="PackedScene" uid="uid://ov5pap6qkue5" path="res://models/weapons/axe.glb" id="2_sta5d"]
-[ext_resource type="PackedScene" uid="uid://blqqtsyo6gh47" path="res://models/weapons/sword.glb" id="3_gwim4"]
+[ext_resource type="PackedScene" uid="uid://d3sq4iap64f1a" path="res://objects/character/weapon.tscn" id="3_obuj6"]
 
 [node name="human_boy" instance=ExtResource("1_dqxc1")]
 script = ExtResource("2_rafix")
 
-[node name="hair_short" parent="Armature/Skeleton3D" index="0"]
+[node name="Weapon" parent="Armature/Skeleton3D" index="0" instance=ExtResource("3_obuj6")]
+transform = Transform3D(0.101495, -0.994788, -0.00972882, 0.973811, 0.101345, -0.20352, 0.203445, 0.0111822, 0.979023, -0.582598, 0.423891, -0.0144996)
+
+[node name="hair_short" parent="Armature/Skeleton3D" index="1"]
 transform = Transform3D(1, -1.11022e-16, 2.29967e-18, 1.11022e-16, 1, 1.86265e-09, -2.29967e-18, -1.86265e-09, 1, -0.00179189, 1.53624, -0.00428806)
 
-[node name="head_human" parent="Armature/Skeleton3D" index="1"]
+[node name="head_human" parent="Armature/Skeleton3D" index="2"]
 transform = Transform3D(-8.72409e-17, 1.80707e-18, 0.785796, 0.785797, -2.34186e-08, 8.72409e-17, 2.34186e-08, 0.785796, -1.80707e-18, -2.19301e-16, 0.515388, 1.49885e-08)
-
-[node name="Weapon" type="BoneAttachment3D" parent="Armature/Skeleton3D" index="6"]
-transform = Transform3D(0.101495, -0.994788, -0.00972882, 0.973811, 0.101345, -0.20352, 0.203445, 0.0111822, 0.979023, -0.582598, 0.423891, -0.0144996)
-bone_name = "Bone.017"
-bone_idx = 11
-
-[node name="axe" parent="Armature/Skeleton3D/Weapon" index="0" instance=ExtResource("2_sta5d")]
-transform = Transform3D(0.292571, 0.109074, 0.15813, 0.180755, -0.0587701, -0.293894, -0.0650367, 0.327336, -0.105457, 0.140519, 0.192784, 0.635163)
-
-[node name="sword2" parent="Armature/Skeleton3D/Weapon" index="1" instance=ExtResource("3_gwim4")]
-transform = Transform3D(0.2766, 0.178594, 0.11873, 0.16358, -0.0503878, -0.305291, -0.138687, 0.296758, -0.123291, -0.0106932, 0.222526, 0.101823)

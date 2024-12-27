@@ -1,9 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://cu3y01etdq38t"]
+[gd_scene load_steps=4 format=3 uid="uid://cu3y01etdq38t"]
 
 [ext_resource type="PackedScene" uid="uid://c0la25qxelmxf" path="res://models/body/goblin_girl.glb" id="1_ucp17"]
-[ext_resource type="PackedScene" uid="uid://ov5pap6qkue5" path="res://models/weapons/axe.glb" id="2_8ipwb"]
 [ext_resource type="Script" path="res://objects/character_body.gd" id="2_bjdms"]
-[ext_resource type="PackedScene" uid="uid://blqqtsyo6gh47" path="res://models/weapons/sword.glb" id="3_kig7t"]
+[ext_resource type="PackedScene" uid="uid://d3sq4iap64f1a" path="res://objects/character/weapon.tscn" id="3_u7i67"]
 
 [node name="goblin_girl" instance=ExtResource("1_ucp17")]
 script = ExtResource("2_bjdms")
@@ -29,16 +28,8 @@ bones/16/rotation = Quaternion(0.466278, 0.531587, 0.531587, -0.466279)
 bones/17/rotation = Quaternion(-0.670936, -0.101615, 0.176489, 0.713001)
 bones/18/rotation = Quaternion(0.037709, -0.0188828, 0.0656759, 0.996949)
 
-[node name="Weapon" type="BoneAttachment3D" parent="Armature/Skeleton3D" index="0"]
+[node name="Weapon" parent="Armature/Skeleton3D" index="0" instance=ExtResource("3_u7i67")]
 transform = Transform3D(-0.8048, -0.567552, 0.173723, 0.556367, -0.823313, -0.1123, 0.206765, 0.00627472, 0.97837, -0.398793, 0.193643, -0.0134407)
-bone_name = "Bone.017"
-bone_idx = 11
-
-[node name="axe" parent="Armature/Skeleton3D/Weapon" index="0" instance=ExtResource("2_8ipwb")]
-transform = Transform3D(0.292571, 0.109074, 0.15813, 0.180755, -0.0587701, -0.293894, -0.0650367, 0.327336, -0.105457, 0.140519, 0.192784, 0.635163)
-
-[node name="sword2" parent="Armature/Skeleton3D/Weapon" index="1" instance=ExtResource("3_kig7t")]
-transform = Transform3D(0.2766, 0.178594, 0.11873, 0.16358, -0.0503878, -0.305291, -0.138687, 0.296758, -0.123291, -0.0106932, 0.222526, 0.101823)
 
 [node name="hair_tail" parent="Armature/Skeleton3D" index="1"]
 transform = Transform3D(1, -8.2571e-24, 1.71034e-25, 8.25798e-24, 0.999982, -0.00596102, -1.2181e-25, 0.00596101, 0.999982, -2.1893e-16, 1.53186, 0.00903651)

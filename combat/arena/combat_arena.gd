@@ -198,3 +198,4 @@ func _on_combat_ui_player_action_unselected() -> void:
 func _on_player_inventory_updated() -> void:
 	print("player inventory updated")
 	combat_ui.load_player_actions(player.character)
+	player.update_weapon()

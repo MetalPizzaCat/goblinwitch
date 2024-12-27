@@ -14,3 +14,5 @@ class_name Item
 @export var accuracy : int = 0
 ## What attacks can this weapon perform
 @export var attacks : Array[Attack] = []
+## What type of weapon model is used to represent this item during combat
+@export var model : WeaponDisplay.WeaponModel = WeaponDisplay.WeaponModel.NONE
