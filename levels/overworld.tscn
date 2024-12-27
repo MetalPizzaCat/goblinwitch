@@ -1,4 +1,4 @@
-[gd_scene load_steps=119 format=4 uid="uid://cej7b1eru6x3i"]
+[gd_scene load_steps=120 format=4 uid="uid://cej7b1eru6x3i"]
 
 [ext_resource type="Script" path="res://levels/overworld.gd" id="1_dymff"]
 [ext_resource type="Script" path="res://addons/func_godot/src/map/func_godot_map.gd" id="1_lsw2u"]
@@ -15,6 +15,7 @@
 [ext_resource type="Resource" uid="uid://qsvb54u4vnke" path="res://assets/scenarios/combat_arena.tres" id="7_eu5ap"]
 [ext_resource type="Material" uid="uid://d22o004p87ux2" path="res://textures/wall_stone_brick.tres" id="7_k3jlr"]
 [ext_resource type="Script" path="res://character/character.gd" id="8_1jhyx"]
+[ext_resource type="Resource" uid="uid://de4sax5sdcqjm" path="res://assets/items/bow.tres" id="8_3yp0f"]
 [ext_resource type="PackedScene" uid="uid://dan7m2c7flsu8" path="res://combat/arena/combat_arena.tscn" id="8_dcrt3"]
 [ext_resource type="Script" path="res://combat/attack.gd" id="9_4khm8"]
 [ext_resource type="Resource" uid="uid://cu3eouvcjkdhv" path="res://assets/items/stick.tres" id="10_428wq"]
@@ -33,13 +34,13 @@
 [sub_resource type="Resource" id="Resource_dvjdl"]
 script = ExtResource("8_1jhyx")
 name = "Player"
-strength = 20
+strength = 5
 dexterity = 1
 intelligence = 0
 perception = 1
 endurance = 3
 charisma = 0
-items = Array[ExtResource("7_7g6il")]([ExtResource("4_qr1tu"), ExtResource("10_428wq")])
+items = Array[ExtResource("7_7g6il")]([ExtResource("4_qr1tu"), ExtResource("10_428wq"), ExtResource("8_3yp0f")])
 weapon = ExtResource("10_428wq")
 total_ap = 3
 spells = Array[ExtResource("9_4khm8")]([])

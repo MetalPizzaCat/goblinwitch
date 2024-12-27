@@ -1,6 +1,7 @@
 extends Node3D
 class_name Fighter
 
+signal arrow_effect_requested(summoner: Fighter, target: Fighter)
 signal action_completed
 signal used_action_points(amount: int)
 signal used_all_action_points
@@ -140,6 +141,11 @@ func attack(target: Fighter, attack_action: Attack) -> void:
 	current_state = ActionState.PERFORMING
 	anim_body.play_animation(attack_action.character_animation_name)
 	look_at(target.global_position)
+
+	match attack_action.effect:
+		Attack.VisualEffect.ARROW:
+			arrow_effect_requested.emit(self, target)
+		
 	if combat_arena.arena_rng.randf() < chance:
 		var dmg = character.get_melee_damage() * attack_action.damage_modifier
 		print("Attacked for %s" % dmg)

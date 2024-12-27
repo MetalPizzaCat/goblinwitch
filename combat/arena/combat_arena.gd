@@ -23,6 +23,7 @@ signal end_sequence_finished
 @onready var combat_ui: CombatInterface = $CombatUi
 @onready var fighter_manager: FighterManager = $FighterManager
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
+@onready var arrow: ArrowAnim = $AnimatedArrow
 
 var cells: Array[CombatCell] = []
 
@@ -54,7 +55,9 @@ func load_combat_scenario(scenario: CombatScenario) -> void:
 	)
 	
 	for actor in combat_scenario.actors:
-		fighter_manager.create_enemy(actor)
+		var enemy = fighter_manager.create_enemy(actor)
+		# some additional events that don't need to be handled by turn manager
+		enemy.arrow_effect_requested.connect(_on_arrow_effect_requested)
 
 
 ## Start combat and play player entering sequence
@@ -69,7 +72,6 @@ func start_combat(player_world_pos: Vector3, player_data: Character) -> void:
 	combat_ui.start_combat()
 	animation_player.play("start")
 	
-
 
 ## Generate grid used for combat
 func generate_grid() -> void:
@@ -191,6 +193,8 @@ func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 
 
 func _on_combat_ui_player_action_unselected() -> void:
+	player.player_selection = Player.PlayerSelection.NONE
+	player.selected_attack = null
 	for cell in cells:
 		cell.state = CombatCell.TileState.DEFAULT
 
@@ -199,3 +203,12 @@ func _on_player_inventory_updated() -> void:
 	print("player inventory updated")
 	combat_ui.load_player_actions(player.character)
 	player.update_weapon()
+
+
+func _on_arrow_effect_requested(from: Fighter, to: Fighter) -> void:
+	arrow.move(from.position, to.position)
+	arrow.visible = true
+	arrow.look_at(Vector3(to.global_position.x, arrow.global_position.y, to.global_position.z))
+
+func _on_animated_arrow_finished() -> void:
+	arrow.visible = false

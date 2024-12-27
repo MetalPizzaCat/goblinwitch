@@ -6,12 +6,13 @@
 script = ExtResource("1_bvdp0")
 name = "Shoot"
 description = ""
-damage_modifier = 1.0
+damage_modifier = 2.0
 is_spell = false
 attack_type = 1
-attack_range = 1
+effect = 1
+attack_range = 2
 can_target_self = false
 ap_cost = 1
 mana_cost = 1
-character_animation_name = "punch"
+character_animation_name = "magic"
 is_healing = false

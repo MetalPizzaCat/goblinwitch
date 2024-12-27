@@ -1,23 +1,31 @@
-[gd_scene load_steps=6 format=3 uid="uid://d3sq4iap64f1a"]
+[gd_scene load_steps=8 format=3 uid="uid://d3sq4iap64f1a"]
 
 [ext_resource type="Script" path="res://objects/character/weapon_display.gd" id="1_46lxh"]
 [ext_resource type="PackedScene" uid="uid://ov5pap6qkue5" path="res://models/weapons/axe.glb" id="1_tn07l"]
 [ext_resource type="PackedScene" uid="uid://blqqtsyo6gh47" path="res://models/weapons/sword.glb" id="2_dwi3f"]
+[ext_resource type="PackedScene" uid="uid://c5o3qov0ipk65" path="res://models/weapons/stick.glb" id="2_pwc5a"]
 [ext_resource type="FontFile" uid="uid://e70dnlpjiko3" path="res://fonts/MorePerfectDOSVGA.ttf" id="4_jv7q2"]
+[ext_resource type="PackedScene" uid="uid://7xehgk5cgrfb" path="res://models/weapons/bow.glb" id="6_ghtkh"]
 
 [sub_resource type="TextMesh" id="TextMesh_lx37x"]
 text = "FORCEFEM"
 font = ExtResource("4_jv7q2")
 font_size = 72
 
-[node name="Weapon" type="BoneAttachment3D" node_paths=PackedStringArray("axe_model", "sword_model", "stick_model")]
+[node name="Weapon" type="BoneAttachment3D" node_paths=PackedStringArray("axe_model", "sword_model", "stick_model", "bow_model", "text_model")]
 transform = Transform3D(-0.8048, -0.567552, 0.173723, 0.556367, -0.823313, -0.1123, 0.206765, 0.00627472, 0.97837, -0.398793, 0.193643, -0.0134407)
 bone_name = "Bone.017"
 bone_idx = 11
 script = ExtResource("1_46lxh")
 axe_model = NodePath("axe")
 sword_model = NodePath("sword2")
-stick_model = NodePath("forcefem")
+stick_model = NodePath("stick")
+bow_model = NodePath("bow2")
+text_model = NodePath("forcefem")
+
+[node name="stick" parent="." instance=ExtResource("2_pwc5a")]
+transform = Transform3D(0.253138, 0.171541, 0.170279, 0.222158, -0.0679885, -0.26177, -0.0952204, 0.297408, -0.158056, 0.183863, 0.0598926, 0.471813)
+visible = false
 
 [node name="axe" parent="." instance=ExtResource("1_tn07l")]
 transform = Transform3D(0.292571, 0.109074, 0.15813, 0.180755, -0.0587701, -0.293894, -0.0650367, 0.327336, -0.105457, 0.140519, 0.192784, 0.635163)
@@ -31,3 +39,7 @@ visible = false
 transform = Transform3D(0.381973, -0.342536, -0.858351, -0.254594, 0.853837, -0.454031, 0.888414, 0.391958, 0.238935, 0.270292, -0.243857, 0.455496)
 visible = false
 mesh = SubResource("TextMesh_lx37x")
+
+[node name="bow2" parent="." instance=ExtResource("6_ghtkh")]
+transform = Transform3D(0.354481, -0.133765, -0.326267, 0.352374, 0.11698, 0.334885, -0.0132582, -0.467357, 0.177205, -0.0252683, 0.058372, 0.0736417)
+visible = false
