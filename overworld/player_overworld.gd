@@ -1,19 +1,26 @@
 extends CharacterBody3D
 class_name PlayerOverworld
 
+signal inventory_updated
 
 @export var speed: float = 5
 @onready var body: CharacterBody = $Body
 @onready var camera: Camera3D = $Camera3D2
 @onready var narrator: Narrator = $Narrator
-@onready var visuals_anim_player : AnimationPlayer = $Visuals/VisualAnimations
+@onready var visuals_anim_player: AnimationPlayer = $Visuals/VisualAnimations
+@onready var inventory : Inventory = $Inventory
 
 @export var character: Character
 
 @export_group("Story flags")
-@export var is_goblin : bool = true
+@export var is_goblin: bool = true
 
-var interaction_target : Node
+@export_group("DEBUG")
+@export var weapon1: Item
+@export var weapon2: Item
+@export var weapon_toggle_val: bool = true
+
+var interaction_target: Node
 
 func _physics_process(_delta: float) -> void:
 	if narrator.active:
@@ -40,6 +47,11 @@ func _physics_process(_delta: float) -> void:
 func _input(_event: InputEvent) -> void:
 	if Input.is_action_just_pressed("interact") and interaction_target != null and interaction_target.has_method("interact"):
 		interaction_target.interact(self)
+	if Input.is_action_just_pressed("inventory"):
+		if inventory.active:
+			inventory.hide_inventory()
+		else:
+			inventory.show_inventory()
 
 func play_narration(narration: Narration) -> void:
 	narrator.visible = true
@@ -60,3 +72,8 @@ func update_animation() -> void:
 
 func _on_narrator_narration_over() -> void:
 	narrator.visible = false
+
+
+func _on_inventory_item_changed() -> void:
+	inventory_updated.emit()
+	print("item updated")

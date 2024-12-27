@@ -32,6 +32,7 @@ func _ready() -> void:
 	player.combat_arena = self
 	generate_grid()
 	load_combat_scenario(combat_scenario)
+	overworld_player.inventory_updated.connect(_on_player_inventory_updated)
 
 
 ## Load new combat scenario placing combat pawns in the right places [br]
@@ -68,6 +69,7 @@ func start_combat(player_world_pos: Vector3, player_data: Character) -> void:
 	combat_ui.start_combat()
 	animation_player.play("start")
 	
+
 
 ## Generate grid used for combat
 func generate_grid() -> void:
@@ -191,3 +193,8 @@ func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 func _on_combat_ui_player_action_unselected() -> void:
 	for cell in cells:
 		cell.state = CombatCell.TileState.DEFAULT
+
+
+func _on_player_inventory_updated() -> void:
+	print("player inventory updated")
+	combat_ui.load_player_actions(player.character)

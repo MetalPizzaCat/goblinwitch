@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="Item" load_steps=4 format=3 uid="uid://de4sax5sdcqjm"]
+
+[ext_resource type="Script" path="res://combat/attack.gd" id="1_vtdf6"]
+[ext_resource type="Resource" uid="uid://nvnmbnhwsvnb" path="res://assets/attacks/shoot.tres" id="2_32y5k"]
+[ext_resource type="Script" path="res://character/item.gd" id="2_lhbcu"]
+
+[resource]
+script = ExtResource("2_lhbcu")
+name = "Simple bow"
+description = ""
+damage = 1
+min_strength = 0
+accuracy = 6
+attacks = Array[ExtResource("1_vtdf6")]([ExtResource("2_32y5k")])

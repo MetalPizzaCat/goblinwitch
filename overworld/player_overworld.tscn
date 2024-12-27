@@ -1,9 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://eu51uk4ydnoe"]
+[gd_scene load_steps=10 format=3 uid="uid://eu51uk4ydnoe"]
 
 [ext_resource type="Script" path="res://overworld/player_overworld.gd" id="1_6e2w7"]
 [ext_resource type="PackedScene" uid="uid://c52415pqcr3uo" path="res://models/body/goblin.glb" id="2_jg663"]
 [ext_resource type="PackedScene" uid="uid://brde3kgsngy4b" path="res://overworld/narrator/narrator.tscn" id="3_plktu"]
 [ext_resource type="Script" path="res://objects/character_body.gd" id="3_qsude"]
+[ext_resource type="PackedScene" uid="uid://b7u4aifjb5urw" path="res://character/ui/inventory.tscn" id="4_vemmt"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_su7vw"]
 radius = 0.607471
@@ -106,7 +107,11 @@ libraries = {
 "": SubResource("AnimationLibrary_lh6vh")
 }
 
+[node name="Inventory" parent="." node_paths=PackedStringArray("player") instance=ExtResource("4_vemmt")]
+player = NodePath("..")
+
 [node name="Narrator" parent="." instance=ExtResource("3_plktu")]
 visible = false
 
+[connection signal="item_changed" from="Inventory" to="." method="_on_inventory_item_changed"]
 [connection signal="narration_over" from="Narrator" to="." method="_on_narrator_narration_over"]

@@ -27,6 +27,7 @@ func _ready() -> void:
 
 func _on_health_changed() -> void:
 	health_label.text = "%s/%s" % [fighter.health, fighter.character.get_max_health()]
+	print('health: %s ' % fighter.character.get_max_health())
 
 func _on_ap_point_used(_ap_used : int) -> void:
 	# idk do something with this later

@@ -37,6 +37,12 @@ func set_player_current_ap(ap: int) -> void:
 	player_ap_panel.current_action_points = ap
 
 func load_player_actions(player: Character) -> void:
+	
+	for act in player_action_buttons:
+		attacks_box.remove_child(act)
+		act.queue_free()
+	player_action_buttons.clear()
+	
 	for attack in player.weapon.attacks:
 		add_player_action(attack)
 	for spell in player.spells:

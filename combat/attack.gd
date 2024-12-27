@@ -9,6 +9,7 @@ enum AttackType {
 }
 
 @export var name: String = "ATK"
+@export var description : String
 ## Damage of the weapon will be modified by this value before applied[br]
 ## Can be kept as 1 for most attacks
 @export var damage_modifier: float = 1.0

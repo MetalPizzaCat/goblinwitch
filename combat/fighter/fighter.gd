@@ -39,6 +39,7 @@ enum ActionState {
 		anim_body = character.model_prefab.instantiate() as CharacterBody
 		add_child(anim_body)
 		anim_body.action_animation_finished.connect(_on_body_action_animation_finished)
+		current_state = ActionState.IDLE
 		
 		
 @export var health: int

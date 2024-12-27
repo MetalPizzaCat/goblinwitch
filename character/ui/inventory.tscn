@@ -1,9 +1,120 @@
-[gd_scene load_steps=3 format=3 uid="uid://b7u4aifjb5urw"]
+[gd_scene load_steps=8 format=3 uid="uid://b7u4aifjb5urw"]
 
 [ext_resource type="Theme" uid="uid://cfgbmdhhipqu" path="res://assets/ui/themes/combat_theme.tres" id="1_rwkxu"]
+[ext_resource type="Script" path="res://character/ui/inventory.gd" id="2_2boqd"]
+[ext_resource type="ButtonGroup" uid="uid://dvwg5l70ycase" path="res://assets/ui/inv_button_group.tres" id="3_kuxvj"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_t0cq3"]
 bg_color = Color(0.844307, 0.45631, 0.617746, 1)
+
+[sub_resource type="Animation" id="Animation_ih6em"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("InfoPanel:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1024, 192)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Panel:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(568, 128)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Panel:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("InfoPanel:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_05k75"]
+resource_name = "show"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("InfoPanel:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.0333333, 0.266667, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(760, 1024), Vector2(760, 192), Vector2(1024, 192)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Panel:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.0333333, 0.266667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(568, 960), Vector2(568, 128)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Panel:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.0333333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("InfoPanel:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.0333333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_4f6xw"]
+_data = {
+"RESET": SubResource("Animation_ih6em"),
+"show": SubResource("Animation_05k75")
+}
 
 [node name="Inventory" type="Control"]
 layout_mode = 3
@@ -13,8 +124,10 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_rwkxu")
+script = ExtResource("2_2boqd")
 
 [node name="Panel" type="Panel" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -29,7 +142,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_t0cq3")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Panel"]
+[node name="ItemContainer" type="VBoxContainer" parent="Panel"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -41,9 +154,18 @@ offset_bottom = -16.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Label" type="Label" parent="Panel/VBoxContainer"]
-layout_mode = 2
-text = "AAAAAAAAAAAA"
+[node name="SpellContainer" type="VBoxContainer" parent="Panel"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 16.0
+offset_top = 72.0
+offset_right = -16.0
+offset_bottom = -16.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Panel"]
 layout_mode = 1
@@ -57,10 +179,14 @@ alignment = 1
 
 [node name="Items" type="Button" parent="Panel/HBoxContainer"]
 layout_mode = 2
+toggle_mode = true
+button_group = ExtResource("3_kuxvj")
 text = "Items"
 
 [node name="Spells" type="Button" parent="Panel/HBoxContainer"]
 layout_mode = 2
+toggle_mode = true
+button_group = ExtResource("3_kuxvj")
 text = "Spells"
 
 [node name="Special" type="Button" parent="Panel/HBoxContainer"]
@@ -69,6 +195,7 @@ layout_mode = 2
 text = "Spells"
 
 [node name="InfoPanel" type="Panel" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -82,3 +209,55 @@ offset_bottom = 38.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_t0cq3")
+
+[node name="ItemInfo" type="VBoxContainer" parent="InfoPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 8.0
+offset_top = 8.0
+offset_right = -6.0
+offset_bottom = -8.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ItemNameLabel" type="Label" parent="InfoPanel/ItemInfo"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.595987, 0.046891, 0.372244, 1)
+theme_override_font_sizes/font_size = 36
+text = "Select item"
+horizontal_alignment = 1
+
+[node name="Stats" type="HBoxContainer" parent="InfoPanel/ItemInfo"]
+layout_mode = 2
+
+[node name="DamageValLabel" type="Label" parent="InfoPanel/ItemInfo/Stats"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.595987, 0.046891, 0.372244, 1)
+theme_override_font_sizes/font_size = 36
+text = "Damage:"
+horizontal_alignment = 1
+
+[node name="DamageVal" type="Label" parent="InfoPanel/ItemInfo/Stats"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.595987, 0.046891, 0.372244, 1)
+theme_override_font_sizes/font_size = 36
+text = "0
+"
+horizontal_alignment = 1
+
+[node name="ItemDescLabel" type="Label" parent="InfoPanel/ItemInfo"]
+custom_minimum_size = Vector2(250, 20)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.595987, 0.046891, 0.372244, 1)
+theme_override_font_sizes/font_size = 24
+autowrap_mode = 2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_4f6xw")
+}
+
+[connection signal="pressed" from="Panel/HBoxContainer/Items" to="." method="_on_items_pressed"]
+[connection signal="pressed" from="Panel/HBoxContainer/Spells" to="." method="_on_spells_pressed"]
