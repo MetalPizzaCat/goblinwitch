@@ -16,6 +16,7 @@ script = ExtResource("2_0x160")
 
 [node name="DialogSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_n3hgh")
+volume_db = -5.0
 
 [node name="Panel" type="Panel" parent="."]
 layout_mode = 1
