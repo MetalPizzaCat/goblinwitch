@@ -1,0 +1,91 @@
+[gd_scene load_steps=10 format=3 uid="uid://poko6o6nmpo3"]
+
+[ext_resource type="Script" path="res://overworld/interactibles/lever.gd" id="1_5c0n3"]
+[ext_resource type="PackedScene" uid="uid://biymavqfay5c7" path="res://overworld/interactibles/interaction_box.tscn" id="1_7dbgs"]
+[ext_resource type="AudioStream" uid="uid://cc40nvk4ax4jk" path="res://assets/sounds/lever1.ogg" id="1_13pkb"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dfrvw"]
+albedo_color = Color(0.152895, 0.152895, 0.231067, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_5yphl"]
+material = SubResource("StandardMaterial3D_dfrvw")
+size = Vector3(1, 0.4, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_yqfj0"]
+size = Vector3(0.231, 1.845, 0.195)
+
+[sub_resource type="Animation" id="Animation_i2u45"]
+resource_name = "move"
+length = 0.8
+tracks/0/type = "audio"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AudioStreamPlayer3D")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("1_13pkb")
+}],
+"times": PackedFloat32Array(0.366667)
+}
+tracks/0/use_blend = true
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Node3D:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.366667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(-1.0472, 0, 0), Vector3(1.0472, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_xb6pu"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Node3D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-1.0472, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_5180x"]
+_data = {
+"RESET": SubResource("Animation_xb6pu"),
+"move": SubResource("Animation_i2u45")
+}
+
+[node name="Lever" type="Node3D"]
+script = ExtResource("1_5c0n3")
+
+[node name="InteractionBox" parent="." node_paths=PackedStringArray("target") instance=ExtResource("1_7dbgs")]
+target = NodePath("..")
+
+[node name="Bottom" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_5yphl")
+
+[node name="Node3D" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.5, 0.866025, 0, -0.866025, 0.5, 0, 0, 0)
+
+[node name="Top" type="MeshInstance3D" parent="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+mesh = SubResource("BoxMesh_yqfj0")
+skeleton = NodePath("../..")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_5180x")
+}
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]

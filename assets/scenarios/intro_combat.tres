@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="CombatScenario" load_steps=5 format=3 uid="uid://1d5s3eiiwgum"]
+
+[ext_resource type="Script" path="res://combat/scenario/combat_scenario_actor.gd" id="1_5lo0w"]
+[ext_resource type="Script" path="res://combat/scenario/combat_scenario.gd" id="2_uyw4i"]
+[ext_resource type="Resource" uid="uid://bs1phsutll7wr" path="res://assets/characters/bully_01.tres" id="2_vm02h"]
+
+[sub_resource type="Resource" id="Resource_pmtwp"]
+script = ExtResource("1_5lo0w")
+character = ExtResource("2_vm02h")
+start_pos = Vector2i(3, 5)
+
+[resource]
+script = ExtResource("2_uyw4i")
+actors = Array[ExtResource("1_5lo0w")]([SubResource("Resource_pmtwp")])
+player_position = Vector2i(0, 0)

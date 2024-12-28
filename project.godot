@@ -41,6 +41,10 @@ folder_colors={
 "res://overworld/": "blue"
 }
 
+[global_group]
+
+combat_area=""
+
 [input]
 
 move_forward={

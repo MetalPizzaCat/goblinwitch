@@ -1,0 +1,32 @@
+[gd_resource type="SpriteFrames" load_steps=5 format=3 uid="uid://byb4jnrqe30vd"]
+
+[ext_resource type="Texture2D" uid="uid://c5wrhrqrna33e" path="res://assets/effects/firee.png" id="1_kuuu7"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ylfdi"]
+atlas = ExtResource("1_kuuu7")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ldoyq"]
+atlas = ExtResource("1_kuuu7")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xvugn"]
+atlas = ExtResource("1_kuuu7")
+region = Rect2(64, 0, 32, 32)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ylfdi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ldoyq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xvugn")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]

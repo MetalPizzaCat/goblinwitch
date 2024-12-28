@@ -1,0 +1,33 @@
+[gd_scene load_steps=5 format=3 uid="uid://6cmldqtyqa6q"]
+
+[ext_resource type="Script" path="res://objects/torch.gd" id="1_451d2"]
+[ext_resource type="SpriteFrames" uid="uid://byb4jnrqe30vd" path="res://assets/effects/fire.tres" id="1_ojyb0"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7xn40"]
+albedo_color = Color(0.249275, 0.105667, 0.00885392, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_tvp50"]
+material = SubResource("StandardMaterial3D_7xn40")
+size = Vector3(0.2, 0.8, 0.2)
+
+[node name="Torch" type="Node3D"]
+script = ExtResource("1_451d2")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.866025, -0.5, 0, 0.5, 0.866025, 0, 0.2, 0.1)
+cast_shadow = 0
+mesh = SubResource("BoxMesh_tvp50")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, 0.4)
+light_color = Color(0.886178, 0.551224, 7.70092e-07, 1)
+light_energy = 11.317
+shadow_enabled = true
+omni_range = 22.338
+omni_attenuation = 0.672
+
+[node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="."]
+transform = Transform3D(2.41, 0, 0, 0, 2.41, 0, 0, 0, 2.41, -0.0921786, 0.705079, 0.267781)
+billboard = 1
+texture_filter = 2
+sprite_frames = ExtResource("1_ojyb0")

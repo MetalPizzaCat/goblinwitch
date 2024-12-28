@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="Character" load_steps=5 format=3 uid="uid://bs1phsutll7wr"]
+
+[ext_resource type="Script" path="res://character/item.gd" id="1_pv4i6"]
+[ext_resource type="PackedScene" uid="uid://c20nhjf3socml" path="res://objects/character/human_boy.tscn" id="2_14iw4"]
+[ext_resource type="Script" path="res://character/character.gd" id="2_rcpyf"]
+[ext_resource type="Script" path="res://combat/attack.gd" id="3_w62if"]
+
+[resource]
+script = ExtResource("2_rcpyf")
+name = "Bully"
+strength = 2
+dexterity = 1
+intelligence = 0
+perception = 1
+endurance = 2
+charisma = 0
+items = Array[ExtResource("1_pv4i6")]([])
+total_ap = 2
+spells = Array[ExtResource("3_w62if")]([])
+model_prefab = ExtResource("2_14iw4")
