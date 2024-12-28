@@ -1,4 +1,4 @@
-[gd_scene load_steps=120 format=4 uid="uid://cej7b1eru6x3i"]
+[gd_scene load_steps=118 format=4 uid="uid://cej7b1eru6x3i"]
 
 [ext_resource type="Script" path="res://levels/overworld.gd" id="1_dymff"]
 [ext_resource type="Script" path="res://addons/func_godot/src/map/func_godot_map.gd" id="1_lsw2u"]
@@ -6,7 +6,6 @@
 [ext_resource type="Texture2D" uid="uid://cyg2snr1w5xw5" path="res://addons/func_godot/textures/default_texture.png" id="3_b703v"]
 [ext_resource type="PackedScene" uid="uid://cu3y01etdq38t" path="res://objects/character/goblin_girl.tscn" id="4_iaemi"]
 [ext_resource type="Material" uid="uid://ctxnnlivda46j" path="res://textures/brick1.tres" id="4_kkddk"]
-[ext_resource type="Resource" uid="uid://dbnm8xumhetjc" path="res://assets/items/wooden_sword.tres" id="4_qr1tu"]
 [ext_resource type="PackedScene" uid="uid://eu51uk4ydnoe" path="res://overworld/player_overworld.tscn" id="4_u10hx"]
 [ext_resource type="Material" uid="uid://61j8ylbnnxw3" path="res://textures/floor_stone_tile.tres" id="5_ufp1t"]
 [ext_resource type="Material" uid="uid://c55dmlmtk5gs6" path="res://textures/black.tres" id="5_yuhdt"]
@@ -15,7 +14,6 @@
 [ext_resource type="Resource" uid="uid://qsvb54u4vnke" path="res://assets/scenarios/combat_arena.tres" id="7_eu5ap"]
 [ext_resource type="Material" uid="uid://d22o004p87ux2" path="res://textures/wall_stone_brick.tres" id="7_k3jlr"]
 [ext_resource type="Script" path="res://character/character.gd" id="8_1jhyx"]
-[ext_resource type="Resource" uid="uid://de4sax5sdcqjm" path="res://assets/items/bow.tres" id="8_3yp0f"]
 [ext_resource type="PackedScene" uid="uid://dan7m2c7flsu8" path="res://combat/arena/combat_arena.tscn" id="8_dcrt3"]
 [ext_resource type="Script" path="res://combat/attack.gd" id="9_4khm8"]
 [ext_resource type="Resource" uid="uid://cu3eouvcjkdhv" path="res://assets/items/stick.tres" id="10_428wq"]
@@ -40,8 +38,7 @@ intelligence = 0
 perception = 1
 endurance = 3
 charisma = 0
-items = Array[ExtResource("7_7g6il")]([ExtResource("4_qr1tu"), ExtResource("10_428wq"), ExtResource("8_3yp0f")])
-weapon = ExtResource("10_428wq")
+items = Array[ExtResource("7_7g6il")]([])
 total_ap = 3
 spells = Array[ExtResource("9_4khm8")]([])
 model_prefab = ExtResource("4_iaemi")
@@ -444,7 +441,7 @@ game_intro_sequence = NodePath("Sequences/Welcome")
 play_intro_narration = false
 
 [node name="PlayerOverworld" parent="." instance=ExtResource("4_u10hx")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.8846, 0.551009, -15.1774)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -76.1154, 0.551009, 3.8226)
 character = SubResource("Resource_dvjdl")
 
 [node name="CombatArena" parent="." node_paths=PackedStringArray("overworld_player") instance=ExtResource("8_dcrt3")]

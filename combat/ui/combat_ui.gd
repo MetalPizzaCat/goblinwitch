@@ -14,6 +14,8 @@ signal player_action_unselected
 @onready var victory_sound_player: AudioStreamPlayer = $VictorySoundPlayer
 @onready var defeat_sound_player: AudioStreamPlayer = $DefeatSoundPlayer
 
+@export var fallback_attack : Attack
+
 @export var action_button_group: ButtonGroup
 @export var fighter_card_prefab: PackedScene
 
@@ -45,10 +47,13 @@ func load_player_actions(player: Character) -> void:
 	if player == null:
 		return
 	
-	for attack in player.weapon.attacks:
-		add_player_action(attack)
-	for spell in player.spells:
-		add_player_action(spell)
+	if player.weapon == null:
+		add_player_action(fallback_attack)
+	else:
+		for attack in player.weapon.attacks:
+			add_player_action(attack)
+		for spell in player.spells:
+			add_player_action(spell)
 	player_action_unselected.emit()
 
 func clear_character_cards() -> void:
