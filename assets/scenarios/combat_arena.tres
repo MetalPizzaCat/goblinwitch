@@ -13,3 +13,4 @@ start_pos = Vector2i(5, 0)
 script = ExtResource("4_37ejo")
 actors = Array[ExtResource("1_bdqgl")]([SubResource("Resource_yv1eo")])
 player_position = Vector2i(3, 3)
+arena_size = 6

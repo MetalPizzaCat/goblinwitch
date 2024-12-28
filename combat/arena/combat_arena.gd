@@ -67,9 +67,9 @@ func load_combat_scenario(scenario: CombatScenario) -> void:
 
 ## Start combat and play player entering sequence
 func start_combat(player_world_pos: Vector3, player_data: Character) -> void:
-	animation_player.play("start")
 	player.global_position = player_world_pos
 	player.character = player_data
+	player.visible = true
 	player.move_to_tile(find_closest_tile(cell_root.to_local(player_world_pos)))
 	combat_ui.load_player_actions(player_data)
 	combat_ui.set_player_current_ap(player.total_ap)
