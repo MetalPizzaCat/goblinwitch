@@ -22,7 +22,7 @@ enum ActionState {
 	DEAD
 }
 
-@export var fallback_attack: Attack
+@export var fallback_attacks: Array[Attack]
 ## Total action points per each turn
 @export var total_ap: int = 3
 @export var character: Character:
@@ -166,7 +166,7 @@ func receive_damage(dealer: Fighter, damage: int) -> void:
 	health_changed.emit()
 
 func get_weapon_attacks() -> Array[Attack]:
-	return character.weapon.attacks if character.weapon else [fallback_attack]
+	return character.weapon.attacks if character.weapon else fallback_attacks
 
 func _on_body_action_animation_finished() -> void:
 	print("Finished anim, current state is %s" % current_state)

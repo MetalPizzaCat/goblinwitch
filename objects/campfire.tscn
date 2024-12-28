@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=3 uid="uid://c7005gbmpqu4n"]
+
+[ext_resource type="PackedScene" uid="uid://frpc7h0em7so" path="res://objects/campfire_model.tscn" id="1_bp60a"]
+[ext_resource type="Script" path="res://objects/campfire.gd" id="1_ubxlp"]
+[ext_resource type="SpriteFrames" uid="uid://byb4jnrqe30vd" path="res://assets/effects/fire.tres" id="2_12m16"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_nvkl6"]
+size = Vector3(5, 3, 3)
+
+[node name="Campfire" type="StaticBody3D"]
+script = ExtResource("1_ubxlp")
+
+[node name="campfire" parent="." instance=ExtResource("1_bp60a")]
+
+[node name="OmniLight3D12" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.67564, 0)
+light_color = Color(0.941176, 0.541176, 0.184314, 1)
+light_energy = 11.754
+shadow_enabled = true
+omni_range = 26.792
+omni_attenuation = 0.672
+
+[node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="."]
+transform = Transform3D(11.475, 0, 0, 0, 11.475, 0, 0, 0, 11.475, -0.0921786, 1.42476, 0.267781)
+billboard = 1
+texture_filter = 2
+sprite_frames = ExtResource("2_12m16")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("BoxShape3D_nvkl6")

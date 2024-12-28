@@ -42,10 +42,15 @@ func load_combat_scenario(scenario: CombatScenario) -> void:
 	# remove old enemies just in case
 	combat_ui.clear_character_cards()
 	fighter_manager.clear_enemies()
+	clear_grid()
 
 	combat_scenario = scenario
 	if scenario == null:
+		area_size = 6
 		return
+
+	area_size = scenario.arena_size
+	generate_grid()
 
 	var player_local_pos: Vector3 = get_cell_local_pos(scenario.player_position)
 	player.position = Vector3(
@@ -62,6 +67,7 @@ func load_combat_scenario(scenario: CombatScenario) -> void:
 
 ## Start combat and play player entering sequence
 func start_combat(player_world_pos: Vector3, player_data: Character) -> void:
+	animation_player.play("start")
 	player.global_position = player_world_pos
 	player.character = player_data
 	player.move_to_tile(find_closest_tile(cell_root.to_local(player_world_pos)))
@@ -70,8 +76,17 @@ func start_combat(player_world_pos: Vector3, player_data: Character) -> void:
 	combat_ui.create_character_card(player)
 	combat_ui.visible = true
 	combat_ui.start_combat()
-	animation_player.play("start")
+	fighter_manager.start_player_turn()
 	
+	
+
+## Remove all existing cells from the field
+func clear_grid() -> void:
+	for cell in cells:
+		cell_root.remove_child(cell)
+		cell.queue_free()
+	cells.clear()
+
 
 ## Generate grid used for combat
 func generate_grid() -> void:

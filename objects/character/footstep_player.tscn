@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://cl0kwy1iodwd7"]
+
+[ext_resource type="AudioStream" uid="uid://dx4eo3xpbsejx" path="res://assets/sounds/step1.wav" id="1_sbmg6"]
+[ext_resource type="Script" path="res://objects/character/footstep_player.gd" id="2_dcdp4"]
+
+[node name="FootstepPlayer" type="AudioStreamPlayer3D"]
+stream = ExtResource("1_sbmg6")
+script = ExtResource("2_dcdp4")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.13
+autostart = true
+
+[connection signal="finished" from="." to="." method="_on_finished"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

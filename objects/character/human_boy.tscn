@@ -1,11 +1,13 @@
-[gd_scene load_steps=4 format=3 uid="uid://c20nhjf3socml"]
+[gd_scene load_steps=5 format=3 uid="uid://c20nhjf3socml"]
 
 [ext_resource type="PackedScene" uid="uid://bnkn0cwky3d0s" path="res://models/body/human_boy.glb" id="1_dqxc1"]
 [ext_resource type="Script" path="res://objects/character_body.gd" id="2_rafix"]
 [ext_resource type="PackedScene" uid="uid://d3sq4iap64f1a" path="res://objects/character/weapon.tscn" id="3_obuj6"]
+[ext_resource type="PackedScene" uid="uid://cl0kwy1iodwd7" path="res://objects/character/footstep_player.tscn" id="3_v33qd"]
 
 [node name="human_boy" instance=ExtResource("1_dqxc1")]
 script = ExtResource("2_rafix")
+footstep_player_prefab = ExtResource("3_v33qd")
 
 [node name="Weapon" parent="Armature/Skeleton3D" index="0" instance=ExtResource("3_obuj6")]
 transform = Transform3D(0.101495, -0.994788, -0.00972882, 0.973811, 0.101345, -0.20352, 0.203445, 0.0111822, 0.979023, -0.582598, 0.423891, -0.0144996)

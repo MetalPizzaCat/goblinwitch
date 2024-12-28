@@ -6,6 +6,12 @@ class_name Door
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 
 
+func _ready() -> void:
+	if is_open:
+		animation_player.play_backwards("open")
+		await get_tree().create_timer(0.01).timeout
+		animation_player.pause()
+
 func activate() -> void:
 	open()
 		
