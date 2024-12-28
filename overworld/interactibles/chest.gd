@@ -4,6 +4,9 @@ extends WorldButton
 @onready var interaction_box : InteractionBox = $InteractionBox
 @export var open : bool = false
 
+## What item will this chest give once opened
+@export var item : Item 
+
 func _ready() -> void:
 	if open:
 		model_anim.play_backwards("move")
@@ -16,6 +19,7 @@ func _on_anim_finished(_name : String) -> void:
 func interact(actor : PlayerOverworld) -> void:
 	if not open:
 		super(actor)
+		actor.receive_item(item)
 		model_anim.play("move")
 		open = true
 		interaction_box.turn_off()

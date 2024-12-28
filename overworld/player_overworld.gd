@@ -9,6 +9,8 @@ signal inventory_updated
 @onready var visuals_anim_player: AnimationPlayer = $Visuals/VisualAnimations
 @onready var inventory: Inventory = $Inventory
 
+@onready var new_item_name_label : RichTextLabel = $Visuals/Panel/VBoxContainer/RichTextLabel
+
 @onready var human_body: CharacterBody = $human_boy
 @onready var goblin_body: CharacterBody = $goblin_girl
 
@@ -70,6 +72,13 @@ func update_animation() -> void:
 	else:
 		body.play_animation("idle")
 
+func receive_item(item : Item) -> void:
+	if item == null or character.items.any(func (p) : return p == item):
+		return
+	character.items.append(item)
+	new_item_name_label.text = '[center][wave][rainbow]%s[/rainbow][/wave][/center]' % item.name
+	visuals_anim_player.play("got_item")
+	
 
 func _on_narrator_narration_over() -> void:
 	narrator.visible = false

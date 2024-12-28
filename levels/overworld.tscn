@@ -444,7 +444,7 @@ game_intro_sequence = NodePath("Sequences/Welcome")
 play_intro_narration = false
 
 [node name="PlayerOverworld" parent="." instance=ExtResource("4_u10hx")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -80.1154, 0.551009, 1.8226)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.8846, 0.551009, -15.1774)
 character = SubResource("Resource_dvjdl")
 
 [node name="CombatArena" parent="." node_paths=PackedStringArray("overworld_player") instance=ExtResource("8_dcrt3")]
@@ -619,6 +619,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0, -15)
 
 [node name="Chest" parent="SubLevelIntro" node_paths=PackedStringArray("target_objects") instance=ExtResource("23_c80ub")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -5, 1, 8)
+item = ExtResource("10_428wq")
 target_objects = [NodePath("../../Sequences/Intro")]
 
 [node name="Door" parent="SubLevelIntro" instance=ExtResource("23_315li")]

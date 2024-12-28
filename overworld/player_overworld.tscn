@@ -1,9 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://eu51uk4ydnoe"]
+[gd_scene load_steps=13 format=3 uid="uid://eu51uk4ydnoe"]
 
 [ext_resource type="Script" path="res://overworld/player_overworld.gd" id="1_6e2w7"]
 [ext_resource type="PackedScene" uid="uid://cu3y01etdq38t" path="res://objects/character/goblin_girl.tscn" id="2_mguug"]
 [ext_resource type="PackedScene" uid="uid://brde3kgsngy4b" path="res://overworld/narrator/narrator.tscn" id="3_plktu"]
 [ext_resource type="PackedScene" uid="uid://c20nhjf3socml" path="res://objects/character/human_boy.tscn" id="3_u66s7"]
+[ext_resource type="Theme" uid="uid://cfgbmdhhipqu" path="res://assets/ui/themes/combat_theme.tres" id="4_h4118"]
 [ext_resource type="PackedScene" uid="uid://b7u4aifjb5urw" path="res://character/ui/inventory.tscn" id="4_vemmt"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_su7vw"]
@@ -35,6 +36,18 @@ tracks/1/keys = {
 "update": 1,
 "values": [false]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Panel:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(592, 968)]
+}
 
 [sub_resource type="Animation" id="Animation_6twcg"]
 resource_name = "fade_in"
@@ -64,11 +77,31 @@ tracks/1/keys = {
 "values": [true, false]
 }
 
+[sub_resource type="Animation" id="Animation_qtgkf"]
+resource_name = "got_item"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Panel:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.366667, 2.63333, 2.96667),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(592, 968), Vector2(592, 272), Vector2(592, 272), Vector2(592, 968)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_lh6vh"]
 _data = {
 "RESET": SubResource("Animation_61wyj"),
-"fade_in": SubResource("Animation_6twcg")
+"fade_in": SubResource("Animation_6twcg"),
+"got_item": SubResource("Animation_qtgkf")
 }
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_f01fu"]
+bg_color = Color(0.129558, 0.129559, 0.129558, 1)
 
 [node name="PlayerOverworld" type="CharacterBody3D"]
 script = ExtResource("1_6e2w7")
@@ -109,6 +142,46 @@ color = Color(0, 0, 0, 1)
 libraries = {
 "": SubResource("AnimationLibrary_lh6vh")
 }
+
+[node name="Panel" type="Panel" parent="Visuals"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -208.0
+offset_top = 518.0
+offset_right = 208.0
+offset_bottom = 718.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme = ExtResource("4_h4118")
+theme_override_styles/panel = SubResource("StyleBoxFlat_f01fu")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Visuals/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Label" type="Label" parent="Visuals/Panel/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 36
+text = "You got:"
+horizontal_alignment = 1
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Visuals/Panel/VBoxContainer"]
+custom_minimum_size = Vector2(0, 150)
+layout_mode = 2
+mouse_filter = 2
+theme_override_font_sizes/normal_font_size = 65
+bbcode_enabled = true
+text = "[center][wave][rainbow]item[/rainbow][/wave][/center]"
 
 [node name="Inventory" parent="." node_paths=PackedStringArray("player") instance=ExtResource("4_vemmt")]
 player = NodePath("..")
