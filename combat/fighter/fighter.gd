@@ -58,6 +58,7 @@ enum ActionState {
 @onready var info_label: Label3D = $InfoLabel
 var anim_body: CharacterBody
 @onready var misc_anim_player: AnimationPlayer = $AnimationPlayer
+@onready var hit_sound_player : AudioStreamPlayer3D = $HitSoundPlayer
 
 var combat_arena: CombatArena
 
@@ -93,6 +94,11 @@ var movement_destination_cell: Vector2i
 
 var current_mana: int = 0
 
+
+func _ready() -> void:
+	$HealSprite.play("default")
+
+	
 ## Begin moving this pawn to a given tile
 func move_to_tile(pos: Vector2i) -> void:
 	print("%s moving to %s" % [name, pos])
@@ -155,6 +161,7 @@ func attack(target: Fighter, attack_action: Attack) -> void:
 
 func receive_damage(dealer: Fighter, damage: int) -> void:
 	look_at(dealer.global_position)
+	
 	health = max(0, health - damage)
 	if health == 0:
 		anim_body.play_animation("die")
@@ -164,6 +171,22 @@ func receive_damage(dealer: Fighter, damage: int) -> void:
 		anim_body.play_animation("damage")
 		current_state = ActionState.HURT
 	health_changed.emit()
+	await get_tree().create_timer(0.5).timeout
+	hit_sound_player.play()
+
+
+## Attempt to use item[br]
+## This will return false if item is a weapon or EVERY stats that it affects is already at max
+func try_use_item(item: Item) -> bool:
+	if item.is_weapon:
+		return false
+	if health < character.get_max_health() and item.health_restore > 0:
+		misc_anim_player.play("heal")
+	health = min(health + item.health_restore, character.get_max_health())
+	current_mana = min(current_mana + item.mana_restore, 3)
+	health_changed.emit()
+	return true
+
 
 func get_weapon_attacks() -> Array[Attack]:
 	return character.weapon.attacks if character.weapon else fallback_attacks

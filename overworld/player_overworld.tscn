@@ -190,4 +190,5 @@ player = NodePath("..")
 visible = false
 
 [connection signal="item_changed" from="Inventory" to="." method="_on_inventory_item_changed"]
+[connection signal="used_consumable" from="Inventory" to="." method="_on_inventory_used_consumable"]
 [connection signal="narration_over" from="Narrator" to="." method="_on_narrator_narration_over"]

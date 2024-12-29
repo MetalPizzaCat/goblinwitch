@@ -24,6 +24,9 @@ signal end_sequence_finished
 @onready var fighter_manager: FighterManager = $FighterManager
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var arrow: ArrowAnim = $AnimatedArrow
+@onready var combat_music_player : AudioStreamPlayer = $CombatMusicPlayer
+
+var active : bool = false
 
 var cells: Array[CombatCell] = []
 
@@ -34,6 +37,7 @@ func _ready() -> void:
 	generate_grid()
 	load_combat_scenario(combat_scenario)
 	overworld_player.inventory_updated.connect(_on_player_inventory_updated)
+	overworld_player.item_consumed.connect(_on_tried_consume_item)
 
 
 ## Load new combat scenario placing combat pawns in the right places [br]
@@ -77,9 +81,10 @@ func start_combat(player_world_pos: Vector3, player_data: Character) -> void:
 	combat_ui.visible = true
 	combat_ui.start_combat()
 	fighter_manager.start_player_turn()
+	active = true
+	combat_music_player.play()
 	
 	
-
 ## Remove all existing cells from the field
 func clear_grid() -> void:
 	for cell in cells:
@@ -150,6 +155,8 @@ func end_combat(player_won: bool) -> void:
 	animation_player.play("end")
 	combat_ui.end_combat(player_won)
 	combat_ended.emit()
+	active = false
+	combat_music_player.stop()
 	
 
 func clear_tile_states() -> void:
@@ -213,6 +220,14 @@ func _on_combat_ui_player_action_unselected() -> void:
 	for cell in cells:
 		cell.state = CombatCell.TileState.DEFAULT
 
+
+func _on_tried_consume_item(item: Item) -> void:
+	if not active:
+		## Only do something if item can be used
+		return
+	if player.try_use_item(item):
+		overworld_player.remove_item(item)
+		
 
 func _on_player_inventory_updated() -> void:
 	print("player inventory updated")

@@ -1,0 +1,32 @@
+[gd_resource type="SpriteFrames" load_steps=5 format=3 uid="uid://b5xvf3bwd01n6"]
+
+[ext_resource type="Texture2D" uid="uid://cuc0f6b7alqc0" path="res://assets/effects/heal.png" id="1_cahsd"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_44l2v"]
+atlas = ExtResource("1_cahsd")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yva5x"]
+atlas = ExtResource("1_cahsd")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0xjru"]
+atlas = ExtResource("1_cahsd")
+region = Rect2(128, 0, 64, 64)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_44l2v")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yva5x")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0xjru")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]

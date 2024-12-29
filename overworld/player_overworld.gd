@@ -2,6 +2,7 @@ extends CharacterBody3D
 class_name PlayerOverworld
 
 signal inventory_updated
+signal item_consumed(consumable : Item)
 
 @export var speed: float = 5
 @onready var camera: Camera3D = $Camera3D2
@@ -78,7 +79,14 @@ func receive_item(item : Item) -> void:
 	character.items.append(item)
 	new_item_name_label.text = '[center][wave][rainbow]%s[/rainbow][/wave][/center]' % item.name
 	visuals_anim_player.play("got_item")
+	if inventory.active:
+		inventory.create_inventory()
 	
+
+func remove_item(item : Item) -> void:
+	character.items.erase(item)
+	if inventory.active:
+		inventory.hide_inventory()
 
 func _on_narrator_narration_over() -> void:
 	narrator.visible = false
@@ -87,3 +95,7 @@ func _on_narrator_narration_over() -> void:
 func _on_inventory_item_changed() -> void:
 	inventory_updated.emit()
 	print("item updated")
+
+
+func _on_inventory_used_consumable(consumable:Item) -> void:
+	item_consumed.emit(consumable)

@@ -179,6 +179,19 @@ offset_bottom = -16.0
 grow_horizontal = 2
 grow_vertical = 2
 
+[node name="ConsumableContainer" type="VBoxContainer" parent="Panel"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 16.0
+offset_top = 72.0
+offset_right = -16.0
+offset_bottom = -16.0
+grow_horizontal = 2
+grow_vertical = 2
+
 [node name="HBoxContainer" type="HBoxContainer" parent="Panel"]
 layout_mode = 1
 anchors_preset = 10
@@ -201,10 +214,11 @@ toggle_mode = true
 button_group = ExtResource("3_kuxvj")
 text = "Spells"
 
-[node name="Special" type="Button" parent="Panel/HBoxContainer"]
-visible = false
+[node name="Consumable" type="Button" parent="Panel/HBoxContainer"]
 layout_mode = 2
-text = "Spells"
+toggle_mode = true
+button_group = ExtResource("3_kuxvj")
+text = "Potions"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -213,3 +227,4 @@ libraries = {
 
 [connection signal="pressed" from="Panel/HBoxContainer/Items" to="." method="_on_items_pressed"]
 [connection signal="pressed" from="Panel/HBoxContainer/Spells" to="." method="_on_spells_pressed"]
+[connection signal="pressed" from="Panel/HBoxContainer/Consumable" to="." method="_on_consumable_pressed"]

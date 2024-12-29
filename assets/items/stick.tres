@@ -8,8 +8,11 @@
 script = ExtResource("2_deqx7")
 name = "Wooden stick"
 description = "A simple stick for whacking people  you don't like"
+is_weapon = true
 damage = 1
 min_strength = 0
 accuracy = 0
 attacks = Array[ExtResource("1_vgtjr")]([ExtResource("2_0qcdo")])
 model = 3
+health_restore = 0
+mana_restore = 0

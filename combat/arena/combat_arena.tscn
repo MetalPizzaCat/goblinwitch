@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://dan7m2c7flsu8"]
+[gd_scene load_steps=19 format=3 uid="uid://dan7m2c7flsu8"]
 
 [ext_resource type="PackedScene" uid="uid://cgp10p8xr0lh0" path="res://combat/fighter/fighter.tscn" id="1_pgnwb"]
 [ext_resource type="Script" path="res://combat/arena/combat_arena.gd" id="1_rjxb1"]
@@ -9,6 +9,7 @@
 [ext_resource type="Script" path="res://combat/arena/fighter_manager.gd" id="7_7v0sr"]
 [ext_resource type="Resource" uid="uid://c4pqsddd5adww" path="res://assets/attacks/punch.tres" id="7_oe4ot"]
 [ext_resource type="Script" path="res://combat/fighter/player.gd" id="9_hapqf"]
+[ext_resource type="AudioStream" uid="uid://ddr4gvi1kjv1h" path="res://assets/music/dies.ogg" id="10_wbdf2"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_p6xq2"]
 
@@ -182,6 +183,10 @@ combat_arena = NodePath("..")
 libraries = {
 "": SubResource("AnimationLibrary_minni")
 }
+
+[node name="CombatMusicPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("10_wbdf2")
+volume_db = -8.0
 
 [connection signal="finished" from="AnimatedArrow" to="." method="_on_animated_arrow_finished"]
 [connection signal="arrow_effect_requested" from="Player" to="." method="_on_arrow_effect_requested"]
