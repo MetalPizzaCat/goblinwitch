@@ -74,9 +74,10 @@ func update_animation() -> void:
 		body.play_animation("idle")
 
 func receive_item(item : Item) -> void:
-	if item == null or character.items.any(func (p) : return p == item):
+	if item == null or (item.is_weapon and character.items.any(func (p) : return p == item)):
 		return
 	character.items.append(item)
+	print("Got %s" % item.name)
 	new_item_name_label.text = '[center][wave][rainbow]%s[/rainbow][/wave][/center]' % item.name
 	visuals_anim_player.play("got_item")
 	if inventory.active:

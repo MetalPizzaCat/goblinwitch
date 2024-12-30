@@ -1,10 +1,11 @@
 extends Node
 
 @export var monologue : Narration
-@export var narrator_parent : PlayerOverworld
+var narrator_parent : PlayerOverworld
 @export var door : Node3D
 
 func _ready() -> void:
+	narrator_parent = get_tree().get_first_node_in_group("player")
 	narrator_parent.narrator.narration_over.connect(_on_narration_finished)
 
 
