@@ -8,9 +8,7 @@ class_name Door
 
 func _ready() -> void:
 	if is_open:
-		animation_player.play_backwards("open")
-		await get_tree().create_timer(0.01).timeout
-		animation_player.pause()
+		animation_player.play("start_open")
 
 func activate() -> void:
 	open()
@@ -26,4 +24,4 @@ func close() -> void:
 	if not is_open:
 		return
 	is_open = false
-	animation_player.play_backwards("open")
+	animation_player.play("close")

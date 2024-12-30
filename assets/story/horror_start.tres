@@ -1,0 +1,34 @@
+[gd_resource type="Resource" script_class="Narration" load_steps=8 format=3 uid="uid://fnbxy0sw4ssd"]
+
+[ext_resource type="Script" path="res://overworld/narrator/narration_line.gd" id="1_2e20l"]
+[ext_resource type="Script" path="res://overworld/narrator/narration.gd" id="2_xs07q"]
+
+[sub_resource type="Resource" id="Resource_ydajw"]
+script = ExtResource("1_2e20l")
+text = "it [shake]will[/shake] hurt"
+speed_modifier = 1.0
+
+[sub_resource type="Resource" id="Resource_5xysx"]
+script = ExtResource("1_2e20l")
+text = "and you [shake]will[/shake] [wave]suffer[/wave]"
+speed_modifier = 1.0
+
+[sub_resource type="Resource" id="Resource_6lm6a"]
+script = ExtResource("1_2e20l")
+text = "Now run forward"
+speed_modifier = 1.0
+
+[sub_resource type="Resource" id="Resource_hh1wq"]
+script = ExtResource("1_2e20l")
+text = "[shake][color=red]And don't stop[/color][/shake]"
+speed_modifier = 1.0
+
+[sub_resource type="Resource" id="Resource_ooqkl"]
+script = ExtResource("1_2e20l")
+text = "[shake][color=red]I don't want you to have time to think[/color][/shake]"
+speed_modifier = 1.0
+
+[resource]
+script = ExtResource("2_xs07q")
+takes_over_control = true
+lines = Array[ExtResource("1_2e20l")]([SubResource("Resource_ydajw"), SubResource("Resource_5xysx"), SubResource("Resource_6lm6a"), SubResource("Resource_hh1wq"), SubResource("Resource_ooqkl")])
