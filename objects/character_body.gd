@@ -9,6 +9,22 @@ signal action_animation_finished
 
 var footstep_player : FootstepPlayer
 
+var animation_paused: bool:
+	get:
+		return _animation_paused
+	set(value):
+		_animation_paused = value
+		if value:
+			print("paused")
+			animation_player.pause()
+			footstep_player.active = false
+		else:
+			print_rich("[shake]unpaused[/shake]")
+			animation_player.play()
+			footstep_player.active = animation_player.current_animation == "run"
+
+var _animation_paused : bool = false
+
 func set_used_weapon_type(weapon_type : WeaponDisplay.WeaponModel) -> void:
 	weapon_model_display.model = weapon_type
 

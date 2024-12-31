@@ -21,6 +21,16 @@ signal item_consumed(consumable : Item)
 @export var is_goblin: bool = true
 
 
+var cutscene_paused : bool:
+	get:
+		return _cutscene_paused
+	set(value):
+		_cutscene_paused = value
+		human_body.animation_paused = value
+		goblin_body.animation_paused = value
+
+var _cutscene_paused : bool = false
+
 var interaction_target: Node
 
 var body: CharacterBody:
@@ -28,6 +38,11 @@ var body: CharacterBody:
 		return goblin_body if is_goblin else human_body
 
 func _physics_process(_delta: float) -> void:
+	## prevent ALL updates to simulate being stuck
+	if cutscene_paused:
+		if Input.is_action_just_pressed("cutscene_test") and false:
+			cutscene_paused = false
+		return
 	if narrator.active:
 		update_animation()
 		return
@@ -52,7 +67,10 @@ func _physics_process(_delta: float) -> void:
 	else:
 		velocity.x = move_toward(velocity.x, 0, speed)
 		velocity.z = move_toward(velocity.z, 0, speed)
-		
+	
+	if Input.is_action_just_pressed("cutscene_test"):
+		cutscene_paused = true
+		return
 
 	update_animation()
 	move_and_slide()

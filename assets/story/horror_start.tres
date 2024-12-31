@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Narration" load_steps=8 format=3 uid="uid://fnbxy0sw4ssd"]
+[gd_resource type="Resource" script_class="Narration" load_steps=9 format=3 uid="uid://fnbxy0sw4ssd"]
 
 [ext_resource type="Script" path="res://overworld/narrator/narration_line.gd" id="1_2e20l"]
 [ext_resource type="Script" path="res://overworld/narrator/narration.gd" id="2_xs07q"]
@@ -11,6 +11,11 @@ speed_modifier = 1.0
 [sub_resource type="Resource" id="Resource_5xysx"]
 script = ExtResource("1_2e20l")
 text = "and you [shake]will[/shake] [wave]suffer[/wave]"
+speed_modifier = 1.0
+
+[sub_resource type="Resource" id="Resource_onsdm"]
+script = ExtResource("1_2e20l")
+text = "But it's for your own good"
 speed_modifier = 1.0
 
 [sub_resource type="Resource" id="Resource_6lm6a"]
@@ -31,4 +36,4 @@ speed_modifier = 1.0
 [resource]
 script = ExtResource("2_xs07q")
 takes_over_control = true
-lines = Array[ExtResource("1_2e20l")]([SubResource("Resource_ydajw"), SubResource("Resource_5xysx"), SubResource("Resource_6lm6a"), SubResource("Resource_hh1wq"), SubResource("Resource_ooqkl")])
+lines = Array[ExtResource("1_2e20l")]([SubResource("Resource_ydajw"), SubResource("Resource_5xysx"), SubResource("Resource_onsdm"), SubResource("Resource_6lm6a"), SubResource("Resource_hh1wq"), SubResource("Resource_ooqkl")])

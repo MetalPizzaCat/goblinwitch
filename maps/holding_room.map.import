@@ -1,0 +1,14 @@
+[remap]
+
+importer="func_godot.map"
+type="Resource"
+uid="uid://cjr3kh7lst1iu"
+path="res://.godot/imported/holding_room.map-ce83c77cd72fdb8893f0848a2d6bf3ca.tres"
+
+[deps]
+
+source_file="res://maps/holding_room.map"
+dest_files=["res://.godot/imported/holding_room.map-ce83c77cd72fdb8893f0848a2d6bf3ca.tres"]
+
+[params]
+

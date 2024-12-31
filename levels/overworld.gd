@@ -4,7 +4,8 @@ class_name Overworld
 @export var combat_arena: CombatArena
 @export var player: PlayerOverworld
 @export var game_intro_sequence : Node
-@export var play_intro_narration : bool = true  
+@export var play_intro_narration : bool = true 
+@export var level_transition_box : Node3D 
 
 @onready var combat_arena_storage: Node3D = $CombatArenaStorage
 @onready var transition_camera: TransitionCamera = $TransitionCamera
@@ -68,3 +69,17 @@ func _on_transition_camera_finish() -> void:
 func _on_combat_arena_end_sequence_finished() -> void:
 	combat_arena.visible = false
 	combat_arena.position = combat_arena_storage.position
+
+
+func _on_sub_level_intro_horror_event_started() -> void:
+	$AmbientSoundPlayer.stop()
+
+
+func _on_sub_level_intro_horror_event_ended() -> void:
+	print("over!")
+	player.global_position =  level_transition_box.global_position
+	$AmbientSoundPlayer.play()
+	player.cutscene_paused = false
+	var lvl = $SubLevelIntro
+	remove_child(lvl)
+	lvl.queue_free()

@@ -1,0 +1,7 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://c43gdxnmjb4ht"]
+
+[ext_resource type="FontFile" uid="uid://e70dnlpjiko3" path="res://fonts/MorePerfectDOSVGA.ttf" id="1_bdmac"]
+
+[resource]
+default_font = ExtResource("1_bdmac")
+default_font_size = 36
