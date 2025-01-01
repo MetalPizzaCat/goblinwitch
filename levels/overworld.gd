@@ -35,12 +35,13 @@ var is_in_combat: bool = false:
 var _is_in_combat: bool
 
 func _ready() -> void:
+	level_manager.started_game_save.connect(_on_game_save_started)
 	if level_manager.has_loaded:
 		load_save_data(level_manager.save_data['overworld'])
 	var combat_areas = get_tree().get_nodes_in_group("combat_area")
 	for area in combat_areas:
 		area.combat_triggered.connect(_on_combat_triggered)
-	if play_intro_narration:
+	if play_intro_narration and not welcome_played:
 		game_intro_sequence.activate()
 		welcome_played = true
 	
@@ -142,6 +143,9 @@ func get_save_data() -> Dictionary:
 			"sublevel_data": intro_sublevel.get_save_data() if sub_level == null else sub_level.get_save_data()
 		}
 
+
+func _on_game_save_started()->void:
+	interface_animations.play("save")
 
 func load_save_data(data: Dictionary) -> void:
 	intro_unloaded = data['finished_intro']

@@ -1,4 +1,4 @@
-[gd_scene load_steps=248 format=4 uid="uid://ccnlyh145g44i"]
+[gd_scene load_steps=249 format=4 uid="uid://ccnlyh145g44i"]
 
 [ext_resource type="Script" path="res://levels/sub_level_intro.gd" id="1_343kp"]
 [ext_resource type="Resource" uid="uid://fnbxy0sw4ssd" path="res://assets/story/horror_start.tres" id="2_1agof"]
@@ -36,6 +36,7 @@
 [ext_resource type="PackedScene" uid="uid://poko6o6nmpo3" path="res://objects/lever.tscn" id="31_qtfhv"]
 [ext_resource type="Script" path="res://levels/terminal.gd" id="31_x38vf"]
 [ext_resource type="PackedScene" uid="uid://c7005gbmpqu4n" path="res://objects/campfire.tscn" id="32_lmpyd"]
+[ext_resource type="PackedScene" uid="uid://d1qj3fdyd8iti" path="res://objects/game_save_trigger.tscn" id="37_l8xal"]
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_q6q48"]
 _surfaces = [{
@@ -1934,7 +1935,6 @@ door = NodePath("../Door")
 [node name="Lever2" parent="." node_paths=PackedStringArray("target_objects") groups=["intro_level", "save"] instance=ExtResource("31_qtfhv")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 17, 0.6, 7)
 target_objects = [NodePath("../Door2")]
-one_time_use = null
 
 [node name="Campfire" parent="." instance=ExtResource("32_lmpyd")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 1, -32)
@@ -1942,7 +1942,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 1, -32)
 [node name="Lever" parent="." node_paths=PackedStringArray("target_objects") groups=["intro_level", "save"] instance=ExtResource("31_qtfhv")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -31, 0.606935, 44)
 target_objects = [NodePath("../Door3")]
-one_time_use = null
+
+[node name="GameSaveTrigger" parent="." instance=ExtResource("37_l8xal")]
+transform = Transform3D(-2.98023e-08, 0, -1, 0, 1, 0, 1, 0, -2.98023e-08, 13, 1, 15)
 
 [connection signal="body_entered" from="HorrorSequenceTrigger" to="." method="_on_horror_sequence_trigger_body_entered"]
 [connection signal="body_entered" from="HorrorSequenceStartTrigger" to="." method="_on_horror_sequence_start_trigger_body_entered"]

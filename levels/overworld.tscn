@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=4 uid="uid://cej7b1eru6x3i"]
+[gd_scene load_steps=34 format=4 uid="uid://cej7b1eru6x3i"]
 
 [ext_resource type="Script" path="res://levels/overworld.gd" id="1_dymff"]
 [ext_resource type="Script" path="res://addons/func_godot/src/map/func_godot_map.gd" id="1_lsw2u"]
@@ -112,6 +112,30 @@ tracks/0/keys = {
 "update": 1,
 "values": [0]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("SaveLabe:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("SaveLabe:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
 
 [sub_resource type="Animation" id="Animation_n6ux4"]
 resource_name = "load"
@@ -130,10 +154,39 @@ tracks/0/keys = {
 "values": [0, 1, 2, 3, 4, 5]
 }
 
+[sub_resource type="Animation" id="Animation_dsv8j"]
+resource_name = "save"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SaveLabe:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("SaveLabe:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(-0.0666667, 0.3, 0.7, 1.06667, 1.4, 1.76667, 2.16667, 2.53333, 2.86667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(0.356863, 0.807843, 0.980392, 1), Color(0.960784, 0.662745, 0.721569, 1), Color(1, 1, 1, 1), Color(0.960784, 0.662745, 0.721569, 1), Color(0.356863, 0.807843, 0.980392, 1), Color(0.960784, 0.662745, 0.721569, 1), Color(1, 1, 1, 1), Color(0.960784, 0.662745, 0.721569, 1), Color(0.356863, 0.807843, 0.980392, 1)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_4qu7o"]
 _data = {
 "RESET": SubResource("Animation_8lclm"),
-"load": SubResource("Animation_n6ux4")
+"load": SubResource("Animation_n6ux4"),
+"save": SubResource("Animation_dsv8j")
 }
 
 [node name="Overworld" type="Node3D" node_paths=PackedStringArray("combat_arena", "player", "game_intro_sequence", "level_transition_box") groups=["overworld"]]
@@ -141,11 +194,10 @@ script = ExtResource("1_dymff")
 combat_arena = NodePath("CombatArena")
 player = NodePath("PlayerOverworld")
 game_intro_sequence = NodePath("Sequences/Welcome")
-play_intro_narration = false
 level_transition_box = NodePath("PersistentArea/HoldingAreaPos")
 
 [node name="PlayerOverworld" parent="." groups=["player"] instance=ExtResource("4_u10hx")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -26.1154, 0.551009, 12.8226)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.8846, 0.551009, -54.1774)
 character = SubResource("Resource_dvjdl")
 
 [node name="CombatArena" parent="." node_paths=PackedStringArray("overworld_player") instance=ExtResource("8_dcrt3")]
@@ -280,6 +332,17 @@ offset_bottom = 90.0
 mouse_filter = 1
 mouse_default_cursor_shape = 2
 text = "load"
+
+[node name="SaveLabe" type="Label" parent="Interface"]
+visible = false
+texture_filter = 3
+layout_mode = 0
+offset_left = 1504.0
+offset_top = 864.0
+offset_right = 1594.0
+offset_bottom = 880.0
+theme = ExtResource("26_w02g1")
+text = "Saving...."
 
 [connection signal="combat_ended" from="CombatArena" to="." method="_on_combat_arena_combat_ended"]
 [connection signal="end_sequence_finished" from="CombatArena" to="." method="_on_combat_arena_end_sequence_finished"]
