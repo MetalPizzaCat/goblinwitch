@@ -2,7 +2,7 @@ extends Resource
 class_name Character
 
 @export var name: String = "YOUR_MOM"
-@export var texture : Texture
+@export var texture: Texture
 @export_group("Stats")
 ## How much damage can character deal with melee weapons or bows
 @export var strength: int = 0
@@ -19,18 +19,18 @@ class_name Character
 
 @export_group("Inventory")
 ## Which items does the character have in their inventory
-@export var items : Array[Item] = []
+@export var items: Array[Item] = []
 ## What item is currently equipped[br]
 ## Characters can only hold one weapon at a time
-@export var weapon  : Item 
+@export var weapon: Item
 
 @export_group("Combat")
-@export var total_ap : int = 3
+@export var total_ap: int = 3
 ## Spells are additional attacks that use mana
-@export var spells : Array[Attack] = []
+@export var spells: Array[Attack] = []
 
 @export_group("Visuals")
-@export var model_prefab : PackedScene
+@export var model_prefab: PackedScene
 
 ## Get max health this character have based on their endurance
 ## [br]
@@ -43,3 +43,25 @@ func get_max_health() -> int:
 func get_melee_damage() -> int:
     var base_damage = weapon.damage if weapon != null else 0
     return base_damage + round(strength / 2.0)
+
+
+func get_player_save_data() -> Dictionary:
+    return {
+        "items": items.map(func(p: Item): return p.resource_path),
+        "spells": spells.map(func(p: Attack): return p.resource_path),
+        "has_weapon" : weapon != null,
+        "weapon_id" : items.find(weapon) 
+    }
+
+func load_data(data : Dictionary) -> void:
+    items.clear()
+    print(data['items'])
+    for item_path in data['items']:
+        var itm = ResourceLoader.load(item_path, "Item")
+        if itm != null:
+            items.append(itm)
+        else:
+            printerr("Failed to load %s " % item_path)
+    for spell in data['spells']:
+        pass
+    print(items)

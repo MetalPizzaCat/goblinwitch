@@ -8,9 +8,7 @@ extends WorldButton
 @export var item: Item
 
 func _ready() -> void:
-	if open:
-		model_anim.play_backwards("move")
-		model_anim.pause()
+	model_anim.play("idle_open" if open else "idle")
 	model_anim.animation_finished.connect(_on_anim_finished)
 
 func _on_anim_finished(_name: String) -> void:
@@ -24,3 +22,13 @@ func interact(actor: PlayerOverworld) -> void:
 		model_anim.play("move")
 		open = true
 		interaction_box.turn_off()
+
+
+func get_save_data() -> Dictionary:
+	return {"open" : open}
+
+
+func load_save_data(data : Dictionary) -> void:
+	open = data['open']
+	model_anim.play("idle_open" if open else "idle")
+

@@ -2,7 +2,7 @@ extends CharacterBody3D
 class_name PlayerOverworld
 
 signal inventory_updated
-signal item_consumed(consumable : Item)
+signal item_consumed(consumable: Item)
 
 @export var speed: float = 5
 @onready var camera: Camera3D = $Camera3D2
@@ -10,7 +10,8 @@ signal item_consumed(consumable : Item)
 @onready var visuals_anim_player: AnimationPlayer = $Visuals/VisualAnimations
 @onready var inventory: Inventory = $Inventory
 
-@onready var new_item_name_label : RichTextLabel = $Visuals/Panel/VBoxContainer/RichTextLabel
+@onready var new_item_name_label: RichTextLabel = $Visuals/Panel/VBoxContainer/RichTextLabel
+@onready var cheat_console : CheatConsole = $CheatConsole
 
 @onready var human_body: CharacterBody = $human_boy
 @onready var goblin_body: CharacterBody = $goblin_girl
@@ -21,15 +22,16 @@ signal item_consumed(consumable : Item)
 @export var is_goblin: bool = true
 
 
-var cutscene_paused : bool:
+var cutscene_paused: bool:
 	get:
 		return _cutscene_paused
 	set(value):
 		_cutscene_paused = value
 		human_body.animation_paused = value
 		goblin_body.animation_paused = value
+		cheat_console.visible = cheat_console.visible and value
 
-var _cutscene_paused : bool = false
+var _cutscene_paused: bool = false
 
 var interaction_target: Node
 
@@ -52,6 +54,9 @@ func _physics_process(_delta: float) -> void:
 			inventory.hide_inventory()
 		else:
 			inventory.show_inventory()
+	if Input.is_action_just_pressed("cheat"):
+		cheat_console.visible = not cheat_console.visible
+
 	if Input.is_action_just_pressed("interact") and interaction_target != null and interaction_target.has_method("interact"):
 		interaction_target.interact(self)
 
@@ -91,8 +96,8 @@ func update_animation() -> void:
 	else:
 		body.play_animation("idle")
 
-func receive_item(item : Item) -> void:
-	if item == null or (item.is_weapon and character.items.any(func (p) : return p == item)):
+func receive_item(item: Item) -> void:
+	if item == null or (item.is_weapon and character.items.any(func(p): return p == item)):
 		return
 	character.items.append(item)
 	print("Got %s" % item.name)
@@ -102,7 +107,7 @@ func receive_item(item : Item) -> void:
 		inventory.create_inventory()
 	
 
-func remove_item(item : Item) -> void:
+func remove_item(item: Item) -> void:
 	character.items.erase(item)
 	if inventory.active:
 		inventory.hide_inventory()
@@ -116,5 +121,17 @@ func _on_inventory_item_changed() -> void:
 	print("item updated")
 
 
-func _on_inventory_used_consumable(consumable:Item) -> void:
+func _on_inventory_used_consumable(consumable: Item) -> void:
 	item_consumed.emit(consumable)
+
+func get_save_data() -> Dictionary:
+	return {"pos": position, "data": character.get_player_save_data(), "trans": is_goblin}
+
+func load_save_data(data : Dictionary) -> void:
+	global_position = data['pos']
+	is_goblin = data['trans']
+	character.load_data(data['data'])
+
+
+func _on_cheat_console_item_added(item:Item) -> void:
+	receive_item(item)

@@ -1,0 +1,40 @@
+[gd_scene load_steps=2 format=3 uid="uid://ceuravdunhrcv"]
+
+[ext_resource type="Script" path="res://objects/dev/cheat_console.gd" id="1_jepvh"]
+
+[node name="CheatConsole" type="Control"]
+layout_mode = 3
+anchor_right = 0.52
+anchor_bottom = 0.071
+offset_right = -6.10352e-05
+offset_bottom = 0.0999985
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_jepvh")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 0
+offset_right = 832.0
+offset_bottom = 64.0
+
+[node name="OptionButton" type="OptionButton" parent="HBoxContainer"]
+layout_mode = 2
+mouse_filter = 1
+selected = 0
+item_count = 2
+popup/item_0/text = "give_weapon"
+popup/item_1/text = "give_spell"
+popup/item_1/id = 1
+
+[node name="TextEdit" type="TextEdit" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 1
+
+[node name="CheatButton" type="Button" parent="HBoxContainer"]
+layout_mode = 2
+mouse_filter = 1
+text = "Do"
+
+[connection signal="pressed" from="HBoxContainer/CheatButton" to="." method="_on_cheat_button_pressed"]

@@ -25,3 +25,12 @@ func close() -> void:
 		return
 	is_open = false
 	animation_player.play("close")
+
+func get_save_data() -> Dictionary:
+	return {"open" : is_open}
+
+
+func load_save_data(data : Dictionary) -> void:
+	is_open = data['open']
+	if is_open:
+		animation_player.play("start_open")

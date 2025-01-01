@@ -16,3 +16,10 @@ func interact(player: PlayerOverworld) -> void:
 		for obj in target_objects:
 			obj.activate()
 		used.emit()
+
+
+func get_save_data() -> Dictionary:
+	return {"active" : was_used}
+
+func load_save_data(data : Dictionary) -> void:
+	was_used = data['active']

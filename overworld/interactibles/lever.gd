@@ -10,3 +10,10 @@ func interact(actor : PlayerOverworld) -> void:
 		super(actor)
 		anim.play("move")
 		interaction_box.turn_off()
+
+
+
+func load_save_data(data : Dictionary) -> void:
+	super(data)
+	if was_used:
+		anim.play("start_moved")

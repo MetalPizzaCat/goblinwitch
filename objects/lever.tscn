@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://poko6o6nmpo3"]
+[gd_scene load_steps=11 format=3 uid="uid://poko6o6nmpo3"]
 
 [ext_resource type="Script" path="res://overworld/interactibles/lever.gd" id="1_5c0n3"]
 [ext_resource type="PackedScene" uid="uid://biymavqfay5c7" path="res://overworld/interactibles/interaction_box.tscn" id="1_7dbgs"]
@@ -13,6 +13,21 @@ size = Vector3(1, 0.4, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_yqfj0"]
 size = Vector3(0.231, 1.845, 0.195)
+
+[sub_resource type="Animation" id="Animation_xb6pu"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Node3D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-1.0472, 0, 0)]
+}
 
 [sub_resource type="Animation" id="Animation_i2u45"]
 resource_name = "move"
@@ -45,8 +60,9 @@ tracks/1/keys = {
 "values": [Vector3(-1.0472, 0, 0), Vector3(1.0472, 0, 0)]
 }
 
-[sub_resource type="Animation" id="Animation_xb6pu"]
-length = 0.001
+[sub_resource type="Animation" id="Animation_6i8hr"]
+resource_name = "start_moved"
+length = 0.01
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -57,17 +73,19 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector3(-1.0472, 0, 0)]
+"values": [Vector3(1.0472, 0, 0)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_5180x"]
 _data = {
 "RESET": SubResource("Animation_xb6pu"),
-"move": SubResource("Animation_i2u45")
+"move": SubResource("Animation_i2u45"),
+"start_moved": SubResource("Animation_6i8hr")
 }
 
 [node name="Lever" type="Node3D"]
 script = ExtResource("1_5c0n3")
+one_time_use = null
 
 [node name="InteractionBox" parent="." node_paths=PackedStringArray("target") instance=ExtResource("1_7dbgs")]
 target = NodePath("..")
@@ -76,7 +94,7 @@ target = NodePath("..")
 mesh = SubResource("BoxMesh_5yphl")
 
 [node name="Node3D" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.5, 0.866025, 0, -0.866025, 0.5, 0, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 0.499998, 0.866026, 0, -0.866026, 0.499998, 0, 0, 0)
 
 [node name="Top" type="MeshInstance3D" parent="Node3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)

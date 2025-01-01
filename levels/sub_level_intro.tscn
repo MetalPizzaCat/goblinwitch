@@ -1014,28 +1014,29 @@ animation_player = NodePath("RunSequence/AnimationPlayer")
 door = NodePath("HorrorDoor")
 horror_tp_pos1 = NodePath("HorrorPoint1")
 horror_tp_pos2 = NodePath("HorrorPoint2")
+level_name = "intro"
 
-[node name="CombatTrigger" parent="." node_paths=PackedStringArray("combat_spawn_position") instance=ExtResource("3_pjwcl")]
+[node name="CombatTrigger" parent="." node_paths=PackedStringArray("combat_spawn_position") groups=["intro_level", "save"] instance=ExtResource("3_pjwcl")]
 transform = Transform3D(8.4, 0, 0, 0, 8.4, 0, 0, 0, 8.4, 12, 1, 25)
 scenario = ExtResource("4_cddhq")
 combat_spawn_position = NodePath("../IntroCombatPos")
 
-[node name="Chest" parent="." node_paths=PackedStringArray("target_objects") instance=ExtResource("5_127tg")]
+[node name="Chest" parent="." node_paths=PackedStringArray("target_objects") groups=["intro_level", "save"] instance=ExtResource("5_127tg")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -5, 0.5, 9.2)
 item = ExtResource("6_hwej2")
 target_objects = [NodePath("../Intro")]
 
-[node name="Chest2" parent="." instance=ExtResource("5_127tg")]
+[node name="Chest2" parent="." groups=["intro_level", "save"] instance=ExtResource("5_127tg")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 42, 0.5, 6.2)
 item = ExtResource("7_vsv0u")
 
-[node name="Door" parent="." instance=ExtResource("7_y3fh6")]
+[node name="Door" parent="." groups=["intro_level", "save"] instance=ExtResource("7_y3fh6")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.24633, 0.5, 3.99363)
 
-[node name="Door2" parent="." instance=ExtResource("7_y3fh6")]
+[node name="Door2" parent="." groups=["intro_level", "save"] instance=ExtResource("7_y3fh6")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.2463, 0.5, 3.99363)
 
-[node name="Door3" parent="." instance=ExtResource("7_y3fh6")]
+[node name="Door3" parent="." groups=["intro_level", "save"] instance=ExtResource("7_y3fh6")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 12.2463, 0.5, 42.3936)
 
 [node name="FuncGodotMap" type="Node3D" parent="."]
@@ -1762,7 +1763,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.68396, 1, 1.73529)
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 12, 0.4, 74.3)
 is_open = true
 
-[node name="CombatTrigger2" parent="." node_paths=PackedStringArray("combat_spawn_position") instance=ExtResource("3_pjwcl")]
+[node name="CombatTrigger2" parent="." node_paths=PackedStringArray("combat_spawn_position") groups=["intro_level", "save"] instance=ExtResource("3_pjwcl")]
 transform = Transform3D(8.26, 0, 0, 0, 8.26, 0, 0, 0, 8.26, -6, 3, -5)
 scenario = ExtResource("25_1b3o3")
 combat_spawn_position = NodePath("../Intro0CombatPos")
@@ -1820,6 +1821,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 color = Color(0, 0, 0, 1)
 
 [node name="Terminal" type="VBoxContainer" parent="RunSequence/Scarecrow3" node_paths=PackedStringArray("blip_sound_player")]
@@ -1827,6 +1829,7 @@ texture_filter = 3
 layout_mode = 0
 offset_right = 1600.0
 offset_bottom = 896.0
+mouse_filter = 2
 theme = ExtResource("29_iwbwk")
 script = ExtResource("31_x38vf")
 blip_sound_player = NodePath("../terminalsounds")
@@ -1928,16 +1931,18 @@ script = ExtResource("29_4yjwt")
 monologue = ExtResource("30_o6n71")
 door = NodePath("../Door")
 
-[node name="Lever2" parent="." node_paths=PackedStringArray("target_objects") instance=ExtResource("31_qtfhv")]
+[node name="Lever2" parent="." node_paths=PackedStringArray("target_objects") groups=["intro_level", "save"] instance=ExtResource("31_qtfhv")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 17, 0.6, 7)
 target_objects = [NodePath("../Door2")]
+one_time_use = null
 
 [node name="Campfire" parent="." instance=ExtResource("32_lmpyd")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 1, -32)
 
-[node name="Lever" parent="." node_paths=PackedStringArray("target_objects") instance=ExtResource("31_qtfhv")]
+[node name="Lever" parent="." node_paths=PackedStringArray("target_objects") groups=["intro_level", "save"] instance=ExtResource("31_qtfhv")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -31, 0.606935, 44)
 target_objects = [NodePath("../Door3")]
+one_time_use = null
 
 [connection signal="body_entered" from="HorrorSequenceTrigger" to="." method="_on_horror_sequence_trigger_body_entered"]
 [connection signal="body_entered" from="HorrorSequenceStartTrigger" to="." method="_on_horror_sequence_start_trigger_body_entered"]

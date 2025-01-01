@@ -13,3 +13,8 @@ func _on_trigger_body_entered(body:Node3D) -> void:
 		combat_triggered.emit(self)
 		active = false
 
+func get_save_data() -> Dictionary:
+	return {"active" : active}
+
+func load_save_data(data : Dictionary) -> void:
+	active = data['active']

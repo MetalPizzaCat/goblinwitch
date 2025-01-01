@@ -1,6 +1,8 @@
 extends Node3D
 class_name Overworld
 
+signal sublevel_loaded
+
 @export var combat_arena: CombatArena
 @export var player: PlayerOverworld
 @export var game_intro_sequence: Node
@@ -12,9 +14,12 @@ class_name Overworld
 @onready var loading_interface: Control = $Interface/LoadingInterface
 @onready var interface_animations: AnimationPlayer = $Interface/AnimationPlayer
 
+@onready var level_manager: LevelManager = get_node('/root/LevelManager')
+@onready var intro_sublevel: Level = $SubLevelIntro
+
 var currently_loading_level: String
 var is_loading_level: bool
-var sub_level: Node3D
+var sub_level: Level
 
 var intro_unloaded: bool = false
 var welcome_played: bool = false
@@ -30,6 +35,8 @@ var is_in_combat: bool = false:
 var _is_in_combat: bool
 
 func _ready() -> void:
+	if level_manager.has_loaded:
+		load_save_data(level_manager.save_data['overworld'])
 	var combat_areas = get_tree().get_nodes_in_group("combat_area")
 	for area in combat_areas:
 		area.combat_triggered.connect(_on_combat_triggered)
@@ -89,9 +96,8 @@ func _on_sub_level_intro_horror_event_ended() -> void:
 	player.global_position = level_transition_box.global_position
 	$AmbientSoundPlayer.play()
 	player.cutscene_paused = false
-	var lvl = $SubLevelIntro
-	remove_child(lvl)
-	lvl.queue_free()
+	remove_child(intro_sublevel)
+	intro_sublevel.queue_free()
 
 func load_sub_level(path: String) -> void:
 	if ResourceLoader.exists(path):
@@ -123,17 +129,34 @@ func _add_sub_level() -> void:
 	if level is PackedScene:
 		sub_level = level.instantiate()
 		add_child(sub_level)
+		sublevel_loaded.emit()
 
 
 func get_save_data() -> Dictionary:
 	return {
 			"finished_intro": intro_unloaded,
 		 	"finished_welcome": welcome_played,
-			"has_sublevel" : sub_level != null,
-			"sublevel" : currently_loading_level
+			"has_sublevel": sub_level != null,
+			"sublevel": currently_loading_level,
+			"player": player.get_save_data(),
+			"sublevel_data": intro_sublevel.get_save_data() if sub_level == null else sub_level.get_save_data()
 		}
 
-func load_save_data(data : Dictionary) -> void:
+
+func load_save_data(data: Dictionary) -> void:
 	intro_unloaded = data['finished_intro']
 	welcome_played = data['finished_welcome']
+	if data['has_sublevel']:
+		load_sub_level(data['sublevel'])
+		await sublevel_loaded
+		sub_level.load_save_data(data['sublevel_data'])
+	else:
+		intro_sublevel.load_save_data(data['sublevel_data'])
+	player.load_save_data(data['player'])
 	
+
+func _on_load_button_pressed() -> void:
+	level_manager.load_game()
+
+func _on_save_button_pressed() -> void:
+	level_manager.save_game()

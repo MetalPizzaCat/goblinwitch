@@ -1,9 +1,10 @@
-[gd_scene load_steps=13 format=3 uid="uid://eu51uk4ydnoe"]
+[gd_scene load_steps=14 format=3 uid="uid://eu51uk4ydnoe"]
 
 [ext_resource type="Script" path="res://overworld/player_overworld.gd" id="1_6e2w7"]
 [ext_resource type="PackedScene" uid="uid://cu3y01etdq38t" path="res://objects/character/goblin_girl.tscn" id="2_mguug"]
 [ext_resource type="PackedScene" uid="uid://brde3kgsngy4b" path="res://overworld/narrator/narrator.tscn" id="3_plktu"]
 [ext_resource type="PackedScene" uid="uid://c20nhjf3socml" path="res://objects/character/human_boy.tscn" id="3_u66s7"]
+[ext_resource type="PackedScene" uid="uid://ceuravdunhrcv" path="res://objects/dev/cheat_console.tscn" id="4_axy25"]
 [ext_resource type="Theme" uid="uid://cfgbmdhhipqu" path="res://assets/ui/themes/combat_theme.tres" id="4_h4118"]
 [ext_resource type="PackedScene" uid="uid://b7u4aifjb5urw" path="res://character/ui/inventory.tscn" id="4_vemmt"]
 
@@ -107,6 +108,11 @@ bg_color = Color(0.129558, 0.129559, 0.129558, 1)
 script = ExtResource("1_6e2w7")
 speed = 7.0
 
+[node name="CheatConsole" parent="." instance=ExtResource("4_axy25")]
+mouse_default_cursor_shape = 2
+
+[node name="DevUi" type="CanvasLayer" parent="."]
+
 [node name="goblin_girl" parent="." instance=ExtResource("2_mguug")]
 
 [node name="human_boy" parent="." instance=ExtResource("3_u66s7")]
@@ -188,7 +194,9 @@ player = NodePath("..")
 
 [node name="Narrator" parent="." instance=ExtResource("3_plktu")]
 visible = false
+mouse_filter = 2
 
+[connection signal="item_added" from="CheatConsole" to="." method="_on_cheat_console_item_added"]
 [connection signal="item_changed" from="Inventory" to="." method="_on_inventory_item_changed"]
 [connection signal="used_consumable" from="Inventory" to="." method="_on_inventory_used_consumable"]
 [connection signal="narration_over" from="Narrator" to="." method="_on_narrator_narration_over"]

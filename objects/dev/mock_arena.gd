@@ -53,6 +53,8 @@ func generate_grid() -> void:
 	if cell_prefab == null:
 		printerr("Missing cell prefab!")
 		return
+	if cell_root == null:
+		return	
 	for x in range(area_size):
 		for y in range(area_size):
 			var cell = cell_prefab.instantiate() as CombatCell
