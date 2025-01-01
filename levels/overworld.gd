@@ -3,13 +3,21 @@ class_name Overworld
 
 @export var combat_arena: CombatArena
 @export var player: PlayerOverworld
-@export var game_intro_sequence : Node
-@export var play_intro_narration : bool = true 
-@export var level_transition_box : Node3D 
+@export var game_intro_sequence: Node
+@export var play_intro_narration: bool = true
+@export var level_transition_box: Node3D
 
 @onready var combat_arena_storage: Node3D = $CombatArenaStorage
 @onready var transition_camera: TransitionCamera = $TransitionCamera
+@onready var loading_interface: Control = $Interface/LoadingInterface
+@onready var interface_animations: AnimationPlayer = $Interface/AnimationPlayer
 
+var currently_loading_level: String
+var is_loading_level: bool
+var sub_level: Node3D
+
+var intro_unloaded: bool = false
+var welcome_played: bool = false
 
 var is_in_combat: bool = false:
 	get:
@@ -27,6 +35,7 @@ func _ready() -> void:
 		area.combat_triggered.connect(_on_combat_triggered)
 	if play_intro_narration:
 		game_intro_sequence.activate()
+		welcome_played = true
 	
 
 func start_combat(combat_scenario: CombatScenario, combat_pos: Vector3) -> void:
@@ -77,9 +86,54 @@ func _on_sub_level_intro_horror_event_started() -> void:
 
 func _on_sub_level_intro_horror_event_ended() -> void:
 	print("over!")
-	player.global_position =  level_transition_box.global_position
+	player.global_position = level_transition_box.global_position
 	$AmbientSoundPlayer.play()
 	player.cutscene_paused = false
 	var lvl = $SubLevelIntro
 	remove_child(lvl)
 	lvl.queue_free()
+
+func load_sub_level(path: String) -> void:
+	if ResourceLoader.exists(path):
+		if sub_level != null:
+			remove_child(sub_level)
+			sub_level.queue_free()
+		currently_loading_level = path
+		is_loading_level = true
+		ResourceLoader.load_threaded_request(path)
+	else:
+		printerr("attempted to load invalid level: %s" % path)
+
+func _process(_delta: float) -> void:
+	if is_loading_level:
+		match ResourceLoader.load_threaded_get_status(currently_loading_level):
+			ResourceLoader.THREAD_LOAD_IN_PROGRESS:
+				interface_animations.play("load")
+				loading_interface.visible = true
+			ResourceLoader.THREAD_LOAD_INVALID_RESOURCE:
+				printerr("Failed to load")
+			ResourceLoader.THREAD_LOAD_LOADED:
+				loading_interface.visible = false
+				is_loading_level = false
+				call_deferred("_add_sub_level")
+
+
+func _add_sub_level() -> void:
+	var level = ResourceLoader.load_threaded_get(currently_loading_level)
+	if level is PackedScene:
+		sub_level = level.instantiate()
+		add_child(sub_level)
+
+
+func get_save_data() -> Dictionary:
+	return {
+			"finished_intro": intro_unloaded,
+		 	"finished_welcome": welcome_played,
+			"has_sublevel" : sub_level != null,
+			"sublevel" : currently_loading_level
+		}
+
+func load_save_data(data : Dictionary) -> void:
+	intro_unloaded = data['finished_intro']
+	welcome_played = data['finished_welcome']
+	

@@ -45,6 +45,7 @@ folder_colors={
 
 combat_area=""
 player=""
+overworld=""
 
 [input]
 

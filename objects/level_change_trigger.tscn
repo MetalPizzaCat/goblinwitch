@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://cluj5k0dnyu0g"]
+
+[ext_resource type="Script" path="res://objects/level_change_trigger.gd" id="1_kqalm"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_cvj1q"]
+size = Vector3(1, 11, 13)
+
+[node name="LevelChangeTrigger" type="Node3D"]
+script = ExtResource("1_kqalm")
+level = "res://levels/sublevelloadtest.tscn"
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 1)
+shape = SubResource("BoxShape3D_cvj1q")
+
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
