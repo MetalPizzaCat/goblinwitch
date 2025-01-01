@@ -194,10 +194,11 @@ script = ExtResource("1_dymff")
 combat_arena = NodePath("CombatArena")
 player = NodePath("PlayerOverworld")
 game_intro_sequence = NodePath("Sequences/Welcome")
+play_intro_narration = false
 level_transition_box = NodePath("PersistentArea/HoldingAreaPos")
 
 [node name="PlayerOverworld" parent="." groups=["player"] instance=ExtResource("4_u10hx")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.8846, 0.551009, -54.1774)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.8846, 0.551009, 31.8226)
 character = SubResource("Resource_dvjdl")
 
 [node name="CombatArena" parent="." node_paths=PackedStringArray("overworld_player") instance=ExtResource("8_dcrt3")]

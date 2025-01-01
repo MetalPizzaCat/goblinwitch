@@ -23,6 +23,9 @@ func save_game(saver: Node = null) -> void:
 
 
 func load_game() -> void:
+	call_deferred('_load_game')
+
+func _load_game() -> void:
 	get_tree().reload_current_scene()
 	var save_file = FileAccess.open("user://%s" % save_file_name, FileAccess.READ)
 	has_loaded = true

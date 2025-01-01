@@ -12,6 +12,8 @@ signal horror_event_ended
 @export var horror_tp_pos2: Node3D
 @export var horror_final_pos: Node3D
 
+
+
 var player: PlayerOverworld
 var started: bool = false
 
@@ -23,7 +25,7 @@ func _on_horror_sequence_trigger_body_entered(body: Node3D) -> void:
 		horror_event_started.emit()
 		player = body
 		body.play_narration(narration)
-		body.narrator.narration_over.connect(_on_intro_narration_over)
+		body.narrator.narration_over.connect(_on_intro_narration_over, ConnectFlags.CONNECT_ONE_SHOT)
 		print("Did anyone catch the game last night?")
 		door.close()
 
@@ -44,7 +46,6 @@ func horror_teleport_back() -> void:
 	player.global_position = old_pos
 
 func _on_intro_narration_over() -> void:
-	player.narrator.narration_over.disconnect(_on_intro_narration_over)
 	animation_player.play("run")
 
 
@@ -58,3 +59,15 @@ func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 		horror_event_ended.emit()
 
 
+
+
+func _on_goblin_girl_player_caught() -> void:
+	animation_player.pause()
+
+
+func _on_branch_1_path_trigger_body_entered(body:Node3D) -> void:
+	pass # Replace with function body.
+
+
+func _on_branch_1_path_trigger_2_body_entered(body:Node3D) -> void:
+	pass # Replace with function body.

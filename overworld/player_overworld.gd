@@ -11,10 +11,12 @@ signal item_consumed(consumable: Item)
 @onready var inventory: Inventory = $Inventory
 
 @onready var new_item_name_label: RichTextLabel = $Visuals/Panel/VBoxContainer/RichTextLabel
-@onready var cheat_console : CheatConsole = $CheatConsole
+@onready var cheat_console: CheatConsole = $CheatConsole
 
 @onready var human_body: CharacterBody = $human_boy
 @onready var goblin_body: CharacterBody = $goblin_girl
+
+@onready var failure_screen: Control = $FailureScreen
 
 @export var character: Character
 
@@ -127,11 +129,14 @@ func _on_inventory_used_consumable(consumable: Item) -> void:
 func get_save_data() -> Dictionary:
 	return {"pos": position, "data": character.get_player_save_data(), "trans": is_goblin}
 
-func load_save_data(data : Dictionary) -> void:
+func load_save_data(data: Dictionary) -> void:
 	global_position = data['pos']
 	is_goblin = data['trans']
 	character.load_data(data['data'])
 
 
-func _on_cheat_console_item_added(item:Item) -> void:
+func _on_cheat_console_item_added(item: Item) -> void:
 	receive_item(item)
+
+func show_failure_screen(fast: bool = true) -> void:
+	visuals_anim_player.play("failure_fast" if fast else "failure")

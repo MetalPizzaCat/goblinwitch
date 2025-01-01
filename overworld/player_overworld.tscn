@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://eu51uk4ydnoe"]
+[gd_scene load_steps=16 format=3 uid="uid://eu51uk4ydnoe"]
 
 [ext_resource type="Script" path="res://overworld/player_overworld.gd" id="1_6e2w7"]
 [ext_resource type="PackedScene" uid="uid://cu3y01etdq38t" path="res://objects/character/goblin_girl.tscn" id="2_mguug"]
@@ -49,6 +49,30 @@ tracks/2/keys = {
 "update": 0,
 "values": [Vector2(592, 968)]
 }
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../FailureScreen:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("../FailureScreen:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
 
 [sub_resource type="Animation" id="Animation_6twcg"]
 resource_name = "fade_in"
@@ -78,6 +102,61 @@ tracks/1/keys = {
 "values": [true, false]
 }
 
+[sub_resource type="Animation" id="Animation_4ckew"]
+resource_name = "failure"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../FailureScreen:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0666667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../FailureScreen:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.0333333, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_bkyy5"]
+resource_name = "failure_fast"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../FailureScreen:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0666667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../FailureScreen:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.0333333, 0.0666667),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
 [sub_resource type="Animation" id="Animation_qtgkf"]
 resource_name = "got_item"
 length = 3.0
@@ -98,6 +177,8 @@ tracks/0/keys = {
 _data = {
 "RESET": SubResource("Animation_61wyj"),
 "fade_in": SubResource("Animation_6twcg"),
+"failure": SubResource("Animation_4ckew"),
+"failure_fast": SubResource("Animation_bkyy5"),
 "got_item": SubResource("Animation_qtgkf")
 }
 
@@ -195,6 +276,45 @@ player = NodePath("..")
 [node name="Narrator" parent="." instance=ExtResource("3_plktu")]
 visible = false
 mouse_filter = 2
+
+[node name="FailureScreen" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme = ExtResource("4_h4118")
+
+[node name="ColorRect2" type="ColorRect" parent="FailureScreen"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+
+[node name="RichTextLabel" type="RichTextLabel" parent="FailureScreen"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -208.0
+offset_top = -10.0
+offset_right = 240.0
+offset_bottom = 70.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_font_sizes/normal_font_size = 72
+bbcode_enabled = true
+text = "[pulse][shake]try again.[/shake][/pulse]"
 
 [connection signal="item_added" from="CheatConsole" to="." method="_on_cheat_console_item_added"]
 [connection signal="item_changed" from="Inventory" to="." method="_on_inventory_item_changed"]
