@@ -107,6 +107,9 @@ func _on_player_finished_turn() -> void:
 	
 
 func _on_player_died() -> void:
+	for enemy in enemies:
+		enemy.active = false
+		enemy.visible = false
 	player_died.emit()
 
 

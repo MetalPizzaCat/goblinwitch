@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="Narration" load_steps=5 format=3 uid="uid://ckebrwd3sf5sw"]
+
+[ext_resource type="Script" path="res://overworld/narrator/narration_line.gd" id="1_gh1fr"]
+[ext_resource type="Script" path="res://overworld/narrator/narration.gd" id="2_dwytu"]
+
+[sub_resource type="Resource" id="Resource_q2o60"]
+script = ExtResource("1_gh1fr")
+text = "This door appears to be locked"
+speed_modifier = 1.0
+
+[sub_resource type="Resource" id="Resource_8821w"]
+script = ExtResource("1_gh1fr")
+text = "Maybe there is a [pulse]lever[/pulse] somewhere?"
+speed_modifier = 1.0
+
+[resource]
+script = ExtResource("2_dwytu")
+takes_over_control = true
+lines = Array[ExtResource("1_gh1fr")]([SubResource("Resource_q2o60"), SubResource("Resource_8821w")])

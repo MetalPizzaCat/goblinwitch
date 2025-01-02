@@ -7,7 +7,7 @@
 [sub_resource type="BoxShape3D" id="BoxShape3D_8b2ni"]
 size = Vector3(1.3, 1.3, 2)
 
-[node name="Chest" type="StaticBody3D"]
+[node name="Chest" type="StaticBody3D" groups=["save"]]
 script = ExtResource("1_5yqlt")
 
 [node name="InteractionBox" parent="." node_paths=PackedStringArray("target") instance=ExtResource("1_q443w")]

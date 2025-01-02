@@ -102,9 +102,11 @@ func _on_sub_level_intro_horror_event_ended() -> void:
 
 func load_sub_level(path: String) -> void:
 	if ResourceLoader.exists(path):
+		# for now we can only sub load only one level at a time
 		if sub_level != null:
 			remove_child(sub_level)
 			sub_level.queue_free()
+			sub_level = null
 		currently_loading_level = path
 		is_loading_level = true
 		ResourceLoader.load_threaded_request(path)
@@ -164,3 +166,7 @@ func _on_load_button_pressed() -> void:
 
 func _on_save_button_pressed() -> void:
 	level_manager.save_game()
+
+
+func _on_combat_arena_player_lost() -> void:
+	player.die()

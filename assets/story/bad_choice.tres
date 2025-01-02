@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="Narration" load_steps=4 format=3 uid="uid://cfcnqlv851dq6"]
+
+[ext_resource type="Script" path="res://overworld/narrator/narration_line.gd" id="1_d2nli"]
+[ext_resource type="Script" path="res://overworld/narrator/narration.gd" id="2_8ityu"]
+
+[sub_resource type="Resource" id="Resource_tl5qw"]
+script = ExtResource("1_d2nli")
+text = "I don't want you to take [shake]this[/shake] path"
+speed_modifier = 1.0
+
+[resource]
+script = ExtResource("2_8ityu")
+takes_over_control = true
+lines = Array[ExtResource("1_d2nli")]([SubResource("Resource_tl5qw")])

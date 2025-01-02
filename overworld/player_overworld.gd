@@ -19,9 +19,21 @@ signal item_consumed(consumable: Item)
 @onready var failure_screen: Control = $FailureScreen
 
 @export var character: Character
+@export var human_fighter_body_scene: PackedScene
+@export var goblin_fighter_body_scene: PackedScene
 
 @export_group("Story flags")
-@export var is_goblin: bool = true
+@export var is_goblin: bool:
+	get:
+		return _is_goblin
+	set(value):
+		_is_goblin = value
+		
+		if human_body == null or goblin_body == null:
+			return
+		human_body.visible = not value
+		goblin_body.visible = value
+		character.model_prefab = human_fighter_body_scene if not value else goblin_fighter_body_scene
 
 
 var cutscene_paused: bool:
@@ -34,6 +46,7 @@ var cutscene_paused: bool:
 		cheat_console.visible = cheat_console.visible and value
 
 var _cutscene_paused: bool = false
+var _is_goblin: bool = true
 
 var interaction_target: Node
 
@@ -41,11 +54,16 @@ var body: CharacterBody:
 	get:
 		return goblin_body if is_goblin else human_body
 
+
+var dead: bool = false
+
+func _ready() -> void:
+	is_goblin = is_goblin
+
+
 func _physics_process(_delta: float) -> void:
 	## prevent ALL updates to simulate being stuck
-	if cutscene_paused:
-		if Input.is_action_just_pressed("cutscene_test") and false:
-			cutscene_paused = false
+	if cutscene_paused or dead:
 		return
 	if narrator.active:
 		update_animation()
@@ -140,3 +158,23 @@ func _on_cheat_console_item_added(item: Item) -> void:
 
 func show_failure_screen(fast: bool = true) -> void:
 	visuals_anim_player.play("failure_fast" if fast else "failure")
+
+
+## Play death animation and show death sequence 
+func die() -> void:
+	# lol rip bozo
+	body.play_animation("die")
+	dead = true
+	await body.animation_player.animation_finished
+	show_failure_screen(false)
+
+func _on_load_button_pressed() -> void:
+	get_node("/root/LevelManager").load_game()
+
+
+func _on_exit_button_pressed() -> void:
+	get_tree().quit()
+
+
+func _on_save_button_pressed() -> void:
+	get_node("/root/LevelManager").save_game()

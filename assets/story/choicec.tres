@@ -1,0 +1,34 @@
+[gd_resource type="Resource" script_class="Narration" load_steps=8 format=3 uid="uid://bu3scx66mux0c"]
+
+[ext_resource type="Script" path="res://overworld/narrator/narration_line.gd" id="1_lvn82"]
+[ext_resource type="Script" path="res://overworld/narrator/narration.gd" id="2_oxmqh"]
+
+[sub_resource type="Resource" id="Resource_xdok7"]
+script = ExtResource("1_lvn82")
+text = "You are now ready to choose your path"
+speed_modifier = 1.0
+
+[sub_resource type="Resource" id="Resource_htj64"]
+script = ExtResource("1_lvn82")
+text = "I know you just started"
+speed_modifier = 1.0
+
+[sub_resource type="Resource" id="Resource_esgnv"]
+script = ExtResource("1_lvn82")
+text = "But it is time for you to define your life"
+speed_modifier = 1.0
+
+[sub_resource type="Resource" id="Resource_2xlgn"]
+script = ExtResource("1_lvn82")
+text = "This decision will determine [shake]everything[/shake]"
+speed_modifier = 1.0
+
+[sub_resource type="Resource" id="Resource_5yx0w"]
+script = ExtResource("1_lvn82")
+text = "Choose [shake][pulse][wave]any[/wave][/pulse][/shake] path"
+speed_modifier = 1.0
+
+[resource]
+script = ExtResource("2_oxmqh")
+takes_over_control = true
+lines = Array[ExtResource("1_lvn82")]([SubResource("Resource_xdok7"), SubResource("Resource_htj64"), SubResource("Resource_esgnv"), SubResource("Resource_2xlgn"), SubResource("Resource_5yx0w")])

@@ -2,6 +2,7 @@ extends Node3D
 class_name CombatArena
 
 signal combat_ended
+signal player_lost
 signal end_sequence_finished
 
 @export var area_size: int = 5
@@ -157,6 +158,8 @@ func end_combat(player_won: bool) -> void:
 	combat_ended.emit()
 	active = false
 	combat_music_player.stop()
+	if not player_won:
+		player_lost.emit()
 	
 
 func clear_tile_states() -> void:

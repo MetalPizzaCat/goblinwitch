@@ -28,7 +28,7 @@ strength = 5
 dexterity = 1
 intelligence = 0
 perception = 1
-endurance = 3
+endurance = -6
 charisma = 0
 items = Array[ExtResource("7_7g6il")]([ExtResource("4_tmrc5")])
 total_ap = 3
@@ -198,8 +198,9 @@ play_intro_narration = false
 level_transition_box = NodePath("PersistentArea/HoldingAreaPos")
 
 [node name="PlayerOverworld" parent="." groups=["player"] instance=ExtResource("4_u10hx")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.8846, 0.551009, 31.8226)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.8846, 0.551009, 48.8226)
 character = SubResource("Resource_dvjdl")
+is_goblin = false
 
 [node name="CombatArena" parent="." node_paths=PackedStringArray("overworld_player") instance=ExtResource("8_dcrt3")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 45, 0, -58)
@@ -310,6 +311,7 @@ visible_characters = 0
 visible_ratio = 0.0
 
 [node name="TestSaveMenu" type="Control" parent="Interface"]
+visible = false
 anchors_preset = 0
 offset_top = 96.0
 offset_right = 40.0
@@ -347,6 +349,7 @@ text = "Saving...."
 
 [connection signal="combat_ended" from="CombatArena" to="." method="_on_combat_arena_combat_ended"]
 [connection signal="end_sequence_finished" from="CombatArena" to="." method="_on_combat_arena_end_sequence_finished"]
+[connection signal="player_lost" from="CombatArena" to="." method="_on_combat_arena_player_lost"]
 [connection signal="finish" from="TransitionCamera" to="." method="_on_transition_camera_finish"]
 [connection signal="horror_event_ended" from="SubLevelIntro" to="." method="_on_sub_level_intro_horror_event_ended"]
 [connection signal="horror_event_started" from="SubLevelIntro" to="." method="_on_sub_level_intro_horror_event_started"]
