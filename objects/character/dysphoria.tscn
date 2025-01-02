@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://oq4i2gkicuva"]
 
 [ext_resource type="PackedScene" uid="uid://c0la25qxelmxf" path="res://models/body/goblin_girl.glb" id="1_oixnr"]
-[ext_resource type="Material" uid="uid://de11pmcp1p8xi" path="res://models/void_material.tres" id="2_ww2h0"]
+[ext_resource type="Material" uid="uid://tghyi3u45rnf" path="res://assets/ui/textures/materials/pulsing_darkness.tres" id="3_3kjse"]
 
 [node name="goblin_girl" instance=ExtResource("1_oixnr")]
 
@@ -39,25 +39,26 @@ bones/19/scale = Vector3(1, 1, 1)
 transform = Transform3D(1, -8.2571e-24, 1.71034e-25, 8.2571e-24, 1, 2.04891e-08, -1.71034e-25, -2.04891e-08, 1, -2.1893e-16, 1.53176, 1.69107e-08)
 
 [node name="hair_tail" parent="Armature/Skeleton3D/hair_tail" index="0"]
-material_override = ExtResource("2_ww2h0")
+surface_material_override/0 = ExtResource("3_3kjse")
 
 [node name="head" parent="Armature/Skeleton3D" index="1"]
 transform = Transform3D(-6.4884e-24, 1.34398e-25, 0.785796, 0.785797, -8.78196e-09, 6.4884e-24, 8.78196e-09, 0.785796, -1.34398e-25, -2.1893e-16, 0.515388, 9.33817e-09)
 
 [node name="head" parent="Armature/Skeleton3D/head" index="0"]
-surface_material_override/0 = ExtResource("2_ww2h0")
+surface_material_override/0 = ExtResource("3_3kjse")
 
 [node name="ears" parent="Armature/Skeleton3D" index="2"]
-material_override = ExtResource("2_ww2h0")
+surface_material_override/0 = ExtResource("3_3kjse")
 
 [node name="hands" parent="Armature/Skeleton3D" index="3"]
-material_override = ExtResource("2_ww2h0")
+surface_material_override/0 = ExtResource("3_3kjse")
 
 [node name="legs" parent="Armature/Skeleton3D" index="4"]
-material_override = ExtResource("2_ww2h0")
+surface_material_override/0 = ExtResource("3_3kjse")
 
 [node name="skirt" parent="Armature/Skeleton3D" index="5"]
-material_override = ExtResource("2_ww2h0")
+surface_material_override/0 = ExtResource("3_3kjse")
 
 [node name="torso_dress" parent="Armature/Skeleton3D" index="6"]
-material_override = ExtResource("2_ww2h0")
+surface_material_override/0 = ExtResource("3_3kjse")
+surface_material_override/1 = ExtResource("3_3kjse")

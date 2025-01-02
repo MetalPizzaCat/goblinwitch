@@ -28,7 +28,7 @@ strength = 5
 dexterity = 1
 intelligence = 0
 perception = 1
-endurance = -6
+endurance = 5
 charisma = 0
 items = Array[ExtResource("7_7g6il")]([ExtResource("4_tmrc5")])
 total_ap = 3
@@ -194,11 +194,10 @@ script = ExtResource("1_dymff")
 combat_arena = NodePath("CombatArena")
 player = NodePath("PlayerOverworld")
 game_intro_sequence = NodePath("Sequences/Welcome")
-play_intro_narration = false
 level_transition_box = NodePath("PersistentArea/HoldingAreaPos")
 
 [node name="PlayerOverworld" parent="." groups=["player"] instance=ExtResource("4_u10hx")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.8846, 0.551009, 48.8226)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.8846, 0.551009, -51.1774)
 character = SubResource("Resource_dvjdl")
 is_goblin = false
 
