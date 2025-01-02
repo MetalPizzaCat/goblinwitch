@@ -12,6 +12,7 @@ signal horror_event_ended
 @export var horror_tp_pos2: Node3D
 @export var horror_final_pos: Node3D
 
+@onready var horror_goblin : Dysphoria = $RunSequence/goblin_girl
 
 
 var player: PlayerOverworld
@@ -66,8 +67,10 @@ func _on_goblin_girl_player_caught() -> void:
 
 
 func _on_branch_1_path_trigger_body_entered(body:Node3D) -> void:
-	pass # Replace with function body.
+	if body is PlayerOverworld:
+		horror_goblin.move_to_branch(0)
 
 
 func _on_branch_1_path_trigger_2_body_entered(body:Node3D) -> void:
-	pass # Replace with function body.
+	if body is PlayerOverworld:
+		horror_goblin.move_to_branch(1)

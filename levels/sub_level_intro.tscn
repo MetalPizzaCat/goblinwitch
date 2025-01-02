@@ -2328,19 +2328,23 @@ shape = SubResource("BoxShape3D_6bpky")
 
 [node name="RunSequence" type="Node3D" parent="."]
 
-[node name="goblin_girl" parent="RunSequence" node_paths=PackedStringArray("base_path") instance=ExtResource("26_2bvwa")]
+[node name="goblin_girl" parent="RunSequence" node_paths=PackedStringArray("base_path", "branches", "final_path") instance=ExtResource("26_2bvwa")]
 transform = Transform3D(-0.999897, 0, 0.0143811, 0, 1, 0, -0.0143811, 0, -0.999897, 11.83, 1, 71.85)
 visible = false
 script = ExtResource("29_p2y68")
-speed = null
 base_path = [NodePath("../Navigation/Node3D"), NodePath("../Navigation/Node3D2"), NodePath("../Navigation/Node3D3")]
-active = null
+branches = [NodePath("../Navigation/branch1"), NodePath("../Navigation/branch2")]
+final_path = [NodePath("../Navigation/combine"), NodePath("../Navigation/capture1")]
 
 [node name="Area3D" type="Area3D" parent="RunSequence/goblin_girl"]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="RunSequence/goblin_girl/Area3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
 shape = SubResource("BoxShape3D_ku6tn")
+
+[node name="BranchTimer" type="Timer" parent="RunSequence/goblin_girl"]
+wait_time = 2.0
+one_shot = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="RunSequence"]
 root_node = NodePath("../..")
@@ -2417,13 +2421,13 @@ text = "0>i know how to help you"
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13, 0, 70)
 
 [node name="Node3D" type="Node3D" parent="RunSequence/Navigation"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 2, 74)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 74)
 
 [node name="Node3D2" type="Node3D" parent="RunSequence/Navigation"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -35, 2, 75)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -35, 0, 75)
 
 [node name="Node3D3" type="Node3D" parent="RunSequence/Navigation"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -35, 2, 128)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -35, 0, 128)
 
 [node name="combine" type="Node3D" parent="RunSequence/Navigation"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14, 0, 157)
@@ -2558,6 +2562,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.2528, 0.5, 40.0553)
 [connection signal="body_entered" from="HorrorSequenceStartTrigger" to="." method="_on_horror_sequence_start_trigger_body_entered"]
 [connection signal="player_caught" from="RunSequence/goblin_girl" to="." method="_on_goblin_girl_player_caught"]
 [connection signal="body_entered" from="RunSequence/goblin_girl/Area3D" to="RunSequence/goblin_girl" method="_on_area_3d_body_entered"]
+[connection signal="timeout" from="RunSequence/goblin_girl/BranchTimer" to="RunSequence/goblin_girl" method="_on_branch_timer_timeout"]
 [connection signal="animation_finished" from="RunSequence/AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
 [connection signal="body_entered" from="RunSequence/branch1_path_trigger" to="." method="_on_branch_1_path_trigger_body_entered"]
 [connection signal="body_entered" from="RunSequence/branch1_path_trigger2" to="." method="_on_branch_1_path_trigger_2_body_entered"]
