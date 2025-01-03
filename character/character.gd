@@ -63,6 +63,11 @@ func load_data(data : Dictionary) -> void:
             items.append(itm)
         else:
             printerr("Failed to load %s " % item_path)
-    for spell in data['spells']:
-        pass
+    for spell_path in data['spells']:
+        var spell = ResourceLoader.load(spell_path, "Attack")
+        if spell != null:
+            spells.append(spell)
+        else:
+            printerr("Failed to load %s " % spell_path)
     print(items)
+    print(spells)

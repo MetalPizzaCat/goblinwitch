@@ -10,7 +10,18 @@ signal finished
 var moving: bool = false
 var time: float = 0
 
+var _is_magic : bool = false
+var is_magic : bool:
+	get:
+		return _is_magic
+	set(value):
+		_is_magic = false
+		arrow_mesh.visible = not value
+		magic_sprite.visible = value
+
 @onready var hit_sound : AudioStreamPlayer3D = $HitSound
+@onready var arrow_mesh : Node3D = $arrow2
+@onready var magic_sprite : AnimatedSprite3D = $MagicSprite
 
 func move(from: Vector3, to: Vector3) -> void:
 	start_location = Vector3(from.x, position.y, from.z)
@@ -19,6 +30,8 @@ func move(from: Vector3, to: Vector3) -> void:
 	time = 0
 	moving = true
 
+func _ready() -> void:
+	magic_sprite.play("default")
 
 func _process(delta: float) -> void:
 	if moving:

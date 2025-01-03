@@ -244,9 +244,10 @@ func _on_player_inventory_updated() -> void:
 	player.update_weapon()
 
 
-func _on_arrow_effect_requested(from: Fighter, to: Fighter) -> void:
+func _on_arrow_effect_requested(from: Fighter, to: Fighter, magic : bool) -> void:
 	arrow.move(from.position, to.position)
 	arrow.visible = true
+	arrow.is_magic = magic
 	arrow.look_at(Vector3(to.global_position.x, arrow.global_position.y, to.global_position.z))
 
 func _on_animated_arrow_finished() -> void:

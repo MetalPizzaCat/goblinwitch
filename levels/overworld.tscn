@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=4 uid="uid://cej7b1eru6x3i"]
+[gd_scene load_steps=37 format=4 uid="uid://cej7b1eru6x3i"]
 
 [ext_resource type="Script" path="res://levels/overworld.gd" id="1_dymff"]
 [ext_resource type="Script" path="res://addons/func_godot/src/map/func_godot_map.gd" id="1_lsw2u"]
@@ -11,7 +11,6 @@
 [ext_resource type="Script" path="res://character/item.gd" id="7_7g6il"]
 [ext_resource type="Script" path="res://character/character.gd" id="8_1jhyx"]
 [ext_resource type="PackedScene" uid="uid://dan7m2c7flsu8" path="res://combat/arena/combat_arena.tscn" id="8_dcrt3"]
-[ext_resource type="Resource" uid="uid://c4ctev2k0sxp0" path="res://assets/attacks/spells/poison_spray.tres" id="8_p1n5e"]
 [ext_resource type="Script" path="res://combat/attack.gd" id="9_4khm8"]
 [ext_resource type="Script" path="res://objects/transition_camera.gd" id="19_jjhu6"]
 [ext_resource type="PackedScene" uid="uid://bnacf6fsyyquf" path="res://levels/sub_level/sub_level.tscn" id="21_dygyu"]
@@ -37,7 +36,7 @@ charisma = 0
 items = Array[ExtResource("7_7g6il")]([ExtResource("4_tmrc5")])
 total_ap = 3
 total_mana = 3
-spells = Array[ExtResource("9_4khm8")]([ExtResource("8_p1n5e")])
+spells = Array[ExtResource("9_4khm8")]([])
 model_prefab = ExtResource("4_iaemi")
 
 [sub_resource type="Environment" id="Environment_aiprv"]
@@ -387,7 +386,9 @@ is_loaded = true
 
 [node name="@Node3D@59155" parent="SubLevel2" instance=ExtResource("22_87jtc")]
 
-[node name="@Node3D@18137" type="Node3D" parent="SubLevel2" instance=ExtResource("22_87jtc")]
+[node name="@Node3D@18137" parent="SubLevel2" instance=ExtResource("22_87jtc")]
+
+[node name="@Node3D@21134" type="Node3D" parent="SubLevel2" instance=ExtResource("22_87jtc")]
 script = ExtResource("23_35yf6")
 
 [connection signal="combat_ended" from="CombatArena" to="." method="_on_combat_arena_combat_ended"]

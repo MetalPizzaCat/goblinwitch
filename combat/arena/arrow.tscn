@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://c6mausjuup61q"]
+[gd_scene load_steps=5 format=3 uid="uid://c6mausjuup61q"]
 
 [ext_resource type="Script" path="res://combat/arena/arrow_anim.gd" id="1_kk0c8"]
 [ext_resource type="PackedScene" uid="uid://dlmyt70cde1xn" path="res://models/weapons/arrow.glb" id="2_m0dp7"]
 [ext_resource type="AudioStream" uid="uid://cmi51y1oq32v6" path="res://assets/sounds/hit2.ogg" id="3_epj55"]
+[ext_resource type="SpriteFrames" uid="uid://cjwqw880rpevr" path="res://assets/effects/magic.tres" id="4_rq81h"]
 
 [node name="Arrow" type="Node3D"]
 script = ExtResource("1_kk0c8")
@@ -12,3 +13,9 @@ transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 
 
 [node name="HitSound" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("3_epj55")
+
+[node name="MagicSprite" type="AnimatedSprite3D" parent="."]
+transform = Transform3D(3, 0, 0, 0, -1.31134e-07, 3, 0, -3, -1.31134e-07, 0, 0, 0)
+billboard = 1
+texture_filter = 2
+sprite_frames = ExtResource("4_rq81h")

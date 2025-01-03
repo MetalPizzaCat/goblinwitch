@@ -1,7 +1,7 @@
 extends Node3D
 class_name Fighter
 
-signal arrow_effect_requested(summoner: Fighter, target: Fighter)
+signal arrow_effect_requested(summoner: Fighter, target: Fighter, magic : bool)
 signal action_completed
 signal hurt_animation_finished
 signal used_action_points(amount: int)
@@ -203,7 +203,8 @@ func attack(target: Fighter, attack_action: Attack) -> void:
 
 	match attack_action.effect:
 		Attack.VisualEffect.ARROW:
-			arrow_effect_requested.emit(self, target)
+			arrow_effect_requested.emit(self, target, attack_action.is_spell)
+			
 	target.add_effect(attack_action.damage_effect, attack_action.effect_duration)	
 	if combat_arena.arena_rng.randf() < chance:
 		var dmg = character.get_melee_damage() * attack_action.damage_modifier

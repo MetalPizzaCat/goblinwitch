@@ -1,0 +1,25 @@
+[gd_resource type="SpriteFrames" load_steps=4 format=3 uid="uid://cjwqw880rpevr"]
+
+[ext_resource type="Texture2D" uid="uid://dlt8nirov03bf" path="res://assets/effects/magic.png" id="1_hm2og"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k8nss"]
+atlas = ExtResource("1_hm2og")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nerr0"]
+atlas = ExtResource("1_hm2og")
+region = Rect2(32, 0, 32, 32)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k8nss")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nerr0")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
