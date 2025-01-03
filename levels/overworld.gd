@@ -19,7 +19,6 @@ signal sublevel_loaded
 
 var currently_loading_level: String
 var is_loading_level: bool
-var sub_level: Level
 
 var intro_unloaded: bool = false
 var welcome_played: bool = false
@@ -99,65 +98,36 @@ func _on_sub_level_intro_horror_event_ended() -> void:
 	player.cutscene_paused = false
 	remove_child(intro_sublevel)
 	intro_sublevel.queue_free()
-
-func load_sub_level(path: String) -> void:
-	if ResourceLoader.exists(path):
-		# for now we can only sub load only one level at a time
-		if sub_level != null:
-			remove_child(sub_level)
-			sub_level.queue_free()
-			sub_level = null
-		currently_loading_level = path
-		is_loading_level = true
-		ResourceLoader.load_threaded_request(path)
-	else:
-		printerr("attempted to load invalid level: %s" % path)
-
-func _process(_delta: float) -> void:
-	if is_loading_level:
-		match ResourceLoader.load_threaded_get_status(currently_loading_level):
-			ResourceLoader.THREAD_LOAD_IN_PROGRESS:
-				interface_animations.play("load")
-				loading_interface.visible = true
-			ResourceLoader.THREAD_LOAD_INVALID_RESOURCE:
-				printerr("Failed to load")
-			ResourceLoader.THREAD_LOAD_LOADED:
-				loading_interface.visible = false
-				is_loading_level = false
-				call_deferred("_add_sub_level")
-
-
-func _add_sub_level() -> void:
-	var level = ResourceLoader.load_threaded_get(currently_loading_level)
-	if level is PackedScene:
-		sub_level = level.instantiate()
-		add_child(sub_level)
-		sublevel_loaded.emit()
+	intro_sublevel = null
 
 
 func get_save_data() -> Dictionary:
 	return {
 			"finished_intro": intro_unloaded,
 		 	"finished_welcome": welcome_played,
-			"has_sublevel": sub_level != null,
-			"sublevel": currently_loading_level,
+			"sublevels": get_tree().get_nodes_in_group("sublevel").map(func(p): return {'node': p.name, 'data': p.get_save_data(), 'loaded' : p.is_loaded}),
 			"player": player.get_save_data(),
-			"sublevel_data": intro_sublevel.get_save_data() if sub_level == null else sub_level.get_save_data()
+			"intro_data": intro_sublevel.get_save_data(),
+			"has_intro": intro_sublevel != null
 		}
 
 
-func _on_game_save_started()->void:
+func _on_game_save_started() -> void:
 	interface_animations.play("save")
 
 func load_save_data(data: Dictionary) -> void:
 	intro_unloaded = data['finished_intro']
 	welcome_played = data['finished_welcome']
-	if data['has_sublevel']:
-		load_sub_level(data['sublevel'])
-		await sublevel_loaded
-		sub_level.load_save_data(data['sublevel_data'])
+	for sublevel in data['sublevels']:
+		var sub = get_node(str(sublevel['node'])) as Sublevel
+		sub.load_save_data(sublevel['data'])
+		sub.is_loaded = sublevel['loaded']
+	if data['has_intro']:
+		intro_sublevel.load_save_data(data['intro_data'])
 	else:
-		intro_sublevel.load_save_data(data['sublevel_data'])
+		remove_child(intro_sublevel)
+		intro_sublevel.queue_free()
+		intro_sublevel = null
 	player.load_save_data(data['player'])
 	
 

@@ -108,7 +108,7 @@ _data = {
 "start_open": SubResource("Animation_akhbf")
 }
 
-[node name="Door" type="Node3D"]
+[node name="Door" type="Node3D" groups=["save"]]
 script = ExtResource("1_t723s")
 
 [node name="door" parent="." instance=ExtResource("1_eg4dc")]

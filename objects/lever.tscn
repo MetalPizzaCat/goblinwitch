@@ -83,7 +83,7 @@ _data = {
 "start_moved": SubResource("Animation_6i8hr")
 }
 
-[node name="Lever" type="Node3D"]
+[node name="Lever" type="Node3D" groups=["save"]]
 script = ExtResource("1_5c0n3")
 one_time_use = null
 

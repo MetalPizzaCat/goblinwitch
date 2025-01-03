@@ -1680,13 +1680,13 @@ target_objects = [NodePath("../Intro")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 42, 0.5, 6.2)
 item = ExtResource("7_vsv0u")
 
-[node name="Door" parent="." groups=["intro_level", "save"] instance=ExtResource("7_y3fh6")]
+[node name="Door" parent="." groups=["intro_level"] instance=ExtResource("7_y3fh6")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.24633, 0.5, 3.99363)
 
-[node name="Door2" parent="." groups=["intro_level", "save"] instance=ExtResource("7_y3fh6")]
+[node name="Door2" parent="." groups=["intro_level"] instance=ExtResource("7_y3fh6")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.2463, 0.5, 3.99363)
 
-[node name="Door3" parent="." groups=["intro_level", "save"] instance=ExtResource("7_y3fh6")]
+[node name="Door3" parent="." groups=["intro_level"] instance=ExtResource("7_y3fh6")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 11.9463, 0.5, 42.3936)
 
 [node name="FuncGodotMap" type="Node3D" parent="."]
@@ -3217,14 +3217,14 @@ script = ExtResource("29_4yjwt")
 monologue = ExtResource("30_o6n71")
 door = NodePath("../Door")
 
-[node name="Lever2" parent="." node_paths=PackedStringArray("target_objects") groups=["intro_level", "save"] instance=ExtResource("31_qtfhv")]
+[node name="Lever2" parent="." node_paths=PackedStringArray("target_objects") groups=["intro_level"] instance=ExtResource("31_qtfhv")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 17, 0.6, 7)
 target_objects = [NodePath("../Door2")]
 
 [node name="Campfire" parent="." instance=ExtResource("32_lmpyd")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 1, -32)
 
-[node name="Lever" parent="." node_paths=PackedStringArray("target_objects") groups=["intro_level", "save"] instance=ExtResource("31_qtfhv")]
+[node name="Lever" parent="." node_paths=PackedStringArray("target_objects") groups=["intro_level"] instance=ExtResource("31_qtfhv")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -31, 1.60694, 44.8)
 target_objects = [NodePath("../Door3")]
 

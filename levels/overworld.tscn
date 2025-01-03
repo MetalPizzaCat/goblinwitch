@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=4 uid="uid://cej7b1eru6x3i"]
+[gd_scene load_steps=35 format=4 uid="uid://cej7b1eru6x3i"]
 
 [ext_resource type="Script" path="res://levels/overworld.gd" id="1_dymff"]
 [ext_resource type="Script" path="res://addons/func_godot/src/map/func_godot_map.gd" id="1_lsw2u"]
@@ -13,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://dan7m2c7flsu8" path="res://combat/arena/combat_arena.tscn" id="8_dcrt3"]
 [ext_resource type="Script" path="res://combat/attack.gd" id="9_4khm8"]
 [ext_resource type="Script" path="res://objects/transition_camera.gd" id="19_jjhu6"]
+[ext_resource type="PackedScene" uid="uid://bnacf6fsyyquf" path="res://levels/sub_level/sub_level.tscn" id="21_dygyu"]
 [ext_resource type="PackedScene" uid="uid://ccnlyh145g44i" path="res://levels/sub_level_intro.tscn" id="21_yvqu8"]
 [ext_resource type="Material" uid="uid://dc832g8ylc07g" path="res://textures/stone_wall.tres" id="24_hn8qk"]
 [ext_resource type="Material" uid="uid://dokvfv1k2qj0d" path="res://textures/rock_tile.tres" id="25_eg5eu"]
@@ -194,10 +195,11 @@ script = ExtResource("1_dymff")
 combat_arena = NodePath("CombatArena")
 player = NodePath("PlayerOverworld")
 game_intro_sequence = NodePath("Sequences/Welcome")
+play_intro_narration = false
 level_transition_box = NodePath("PersistentArea/HoldingAreaPos")
 
 [node name="PlayerOverworld" parent="." groups=["player"] instance=ExtResource("4_u10hx")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.8846, 0.551009, -51.1774)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -183.115, 0.551009, -1.1774)
 character = SubResource("Resource_dvjdl")
 is_goblin = false
 
@@ -273,8 +275,9 @@ spot_angle = 67.2249
 [node name="HoldingAreaPos" type="Node3D" parent="PersistentArea"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 2, 1)
 
-[node name="LevelChangeTrigger" parent="PersistentArea" instance=ExtResource("2_6hap2")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -1, 0, 1)
+[node name="LevelChangeTrigger" parent="PersistentArea" node_paths=PackedStringArray("sub_level") instance=ExtResource("2_6hap2")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -1, 0, -3)
+sub_level = NodePath("../../SubLevel")
 
 [node name="Interface" type="Control" parent="."]
 layout_mode = 3
@@ -310,7 +313,6 @@ visible_characters = 0
 visible_ratio = 0.0
 
 [node name="TestSaveMenu" type="Control" parent="Interface"]
-visible = false
 anchors_preset = 0
 offset_top = 96.0
 offset_right = 40.0
@@ -345,6 +347,10 @@ offset_right = 1594.0
 offset_bottom = 880.0
 theme = ExtResource("26_w02g1")
 text = "Saving...."
+
+[node name="SubLevel" parent="." instance=ExtResource("21_dygyu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -185, 0, -6)
+level_path = "res://levels/sublevelloadtest.tscn"
 
 [connection signal="combat_ended" from="CombatArena" to="." method="_on_combat_arena_combat_ended"]
 [connection signal="end_sequence_finished" from="CombatArena" to="." method="_on_combat_arena_end_sequence_finished"]

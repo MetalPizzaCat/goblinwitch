@@ -22,6 +22,17 @@ enum ActionState {
 	DEAD
 }
 
+enum Effect{
+	## Does nothing, i am not sure why this would be used
+	NONE,
+	## Deals 3 damage every turn for 3 turns
+	POISON,
+	## Deals 3 damage every turn for 3 turns
+	FIRE,
+	## Removes 1 AP(with min AP being 1) for 2 turns
+	SLOWNESS,
+}
+
 @export var fallback_attacks: Array[Attack]
 ## Total action points per each turn
 @export var total_ap: int = 3
@@ -94,6 +105,9 @@ var movement_destination_cell: Vector2i
 
 var current_mana: int = 0
 
+
+## What effects fighter has and how many turns have they been going for
+var effects : Dictionary = {}
 
 func _ready() -> void:
 	$HealSprite.play("default")

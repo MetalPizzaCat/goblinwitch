@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bnacf6fsyyquf"]
+
+[ext_resource type="Script" path="res://levels/sub_level/sub_level.gd" id="1_0lyui"]
+
+[node name="SubLevel" type="Node3D" groups=["sublevel"]]
+script = ExtResource("1_0lyui")
