@@ -2,18 +2,22 @@ extends Fighter
 class_name Enemy
 
 @export var target: Fighter
-@export var active : bool = false
+@export var active: bool = false
 
 func _ready() -> void:
 	action_completed.connect(_on_action_finished)
 
 func run_ai_logic() -> void:
+	if is_dead:
+		# just in case
+		return
 	if health < character.get_max_health() * 0.3:
 		# heal yourself, but we can't heal yet
 		pass
 	var dist = target.arena_position.distance_to(arena_position)
 	var melee_attacks = generate_list_of_possible_attacks(Attack.AttackType.MELEE)
 	var ranged_attacks = generate_list_of_possible_attacks(Attack.AttackType.RANGED)
+	
 
 	print("Melee: %s; Ranged: %s; Dist: %s; Points: %s" % [len(melee_attacks), len(ranged_attacks), dist, current_ap])
 	# can attack melee 
@@ -41,7 +45,7 @@ func generate_list_of_possible_attacks(attack_type: Attack.AttackType) -> Array[
 		if atk.attack_type == attack_type and atk.ap_cost <= current_ap:
 			attacks.append(atk)
 	for spell in character.spells:
-		if (spell.ap_cost == attack_type
+		if (spell.attack_type == attack_type
 			and spell.ap_cost <= current_ap
 			and spell.mana_cost <= current_mana # spells use additional resource
 			and combat_arena.arena_rng.randf() > 0.5 # to prevent ai from using too many spells

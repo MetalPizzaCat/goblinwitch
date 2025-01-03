@@ -3,7 +3,9 @@ class_name Fighter
 
 signal arrow_effect_requested(summoner: Fighter, target: Fighter)
 signal action_completed
+signal hurt_animation_finished
 signal used_action_points(amount: int)
+## Event emitted once fighter ended their turn
 signal used_all_action_points
 signal health_changed
 signal died
@@ -22,17 +24,6 @@ enum ActionState {
 	DEAD
 }
 
-enum Effect{
-	## Does nothing, i am not sure why this would be used
-	NONE,
-	## Deals 3 damage every turn for 3 turns
-	POISON,
-	## Deals 3 damage every turn for 3 turns
-	FIRE,
-	## Removes 1 AP(with min AP being 1) for 2 turns
-	SLOWNESS,
-}
-
 @export var fallback_attacks: Array[Attack]
 ## Total action points per each turn
 @export var total_ap: int = 3
@@ -44,6 +35,7 @@ enum Effect{
 		if value == null:
 			return
 		health = character.get_max_health()
+		current_mana = character.total_mana
 		if anim_body != null:
 			remove_child(anim_body)
 			anim_body.queue_free()
@@ -69,7 +61,11 @@ enum Effect{
 @onready var info_label: Label3D = $InfoLabel
 var anim_body: CharacterBody
 @onready var misc_anim_player: AnimationPlayer = $AnimationPlayer
-@onready var hit_sound_player : AudioStreamPlayer3D = $HitSoundPlayer
+@onready var hit_sound_player: AudioStreamPlayer3D = $HitSoundPlayer
+
+@onready var fire_effect :GPUParticles3D = $FireEffectParticles
+@onready var slow_effect : GPUParticles3D = $SlowEffectParticles
+@onready var poison_effect : GPUParticles3D = $PoisonEffectParticles
 
 var combat_arena: CombatArena
 
@@ -107,7 +103,7 @@ var current_mana: int = 0
 
 
 ## What effects fighter has and how many turns have they been going for
-var effects : Dictionary = {}
+var effects: Dictionary = {}
 
 func _ready() -> void:
 	$HealSprite.play("default")
@@ -146,6 +142,47 @@ func use_ap(amount: int) -> void:
 	if current_ap == 0:
 		used_all_action_points.emit()
 
+## Reset start of turn values and run all the logic related to applying effects at the start of the term
+func start_turn() -> bool:
+	current_ap = total_ap
+	var applying_damage : bool = false
+	for effect in effects.keys():
+		match effect:
+			Attack.Effect.POISON:
+				receive_damage(self, 3)
+				applying_damage = true
+			Attack.Effect.FIRE:
+				receive_damage(self, 3)
+				applying_damage = true
+			Attack.Effect.SLOWNESS:
+				# at least let the ai do SOMETHING 
+				current_ap = max(current_ap - 1, 1)
+		effects[effect] -= 1
+		if effects[effect] <= 0:
+			effects.erase(effect)
+			match effect:
+				Attack.Effect.FIRE:
+					fire_effect.emitting = false
+				Attack.Effect.POISON:
+					poison_effect.emitting = false
+				Attack.Effect.SLOWNESS:
+					slow_effect.emitting = false
+	if is_dead:
+		used_all_action_points.emit()
+	return applying_damage
+
+
+func add_effect(effect: Attack.Effect, duration: int) -> void:
+	if effect == Attack.Effect.NONE:
+		return
+	effects[effect] = duration
+	match effect:
+		Attack.Effect.FIRE:
+			fire_effect.emitting = true
+		Attack.Effect.POISON:
+			poison_effect.emitting = true
+		Attack.Effect.SLOWNESS:
+			slow_effect.emitting = true
 
 func attack(target: Fighter, attack_action: Attack) -> void:
 	var target_str = character.weapon.min_strength if character.weapon else 0
@@ -158,6 +195,8 @@ func attack(target: Fighter, attack_action: Attack) -> void:
 		Attack.AttackType.RANGED:
 			chance = min(1.0, float(character.strength - target_str + character.perception) / (acc * (attack_action.attack_range / dist)))
 	use_ap(attack_action.ap_cost)
+	if attack_action.is_spell:
+		current_mana -= attack_action.mana_cost
 	current_state = ActionState.PERFORMING
 	anim_body.play_animation(attack_action.character_animation_name)
 	look_at(target.global_position)
@@ -165,7 +204,7 @@ func attack(target: Fighter, attack_action: Attack) -> void:
 	match attack_action.effect:
 		Attack.VisualEffect.ARROW:
 			arrow_effect_requested.emit(self, target)
-		
+	target.add_effect(attack_action.damage_effect, attack_action.effect_duration)	
 	if combat_arena.arena_rng.randf() < chance:
 		var dmg = character.get_melee_damage() * attack_action.damage_modifier
 		print("Attacked for %s" % dmg)
@@ -174,7 +213,8 @@ func attack(target: Fighter, attack_action: Attack) -> void:
 		misc_anim_player.play("miss")
 
 func receive_damage(dealer: Fighter, damage: int) -> void:
-	look_at(dealer.global_position)
+	if dealer != self:
+		look_at(dealer.global_position)
 	
 	health = max(0, health - damage)
 	if health == 0:
@@ -211,3 +251,5 @@ func _on_body_action_animation_finished() -> void:
 	current_state = ActionState.IDLE if prev_state != ActionState.DEAD else prev_state
 	if prev_state == ActionState.PERFORMING:
 		action_completed.emit()
+	elif prev_state == ActionState.HURT:
+		hurt_animation_finished.emit()

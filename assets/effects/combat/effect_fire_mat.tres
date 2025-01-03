@@ -1,0 +1,11 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://dik0mkcsop4is"]
+
+[ext_resource type="Texture2D" uid="uid://wijj2yd4yp2t" path="res://assets/effects/combat/fire_effect.png" id="1_gcmlr"]
+
+[resource]
+transparency = 1
+cull_mode = 2
+shading_mode = 0
+albedo_texture = ExtResource("1_gcmlr")
+texture_filter = 2
+disable_receive_shadows = true

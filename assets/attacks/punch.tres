@@ -15,4 +15,6 @@ can_target_self = false
 ap_cost = 1
 mana_cost = 1
 character_animation_name = "punch"
+damage_effect = 0
+effect_duration = 1
 is_healing = false

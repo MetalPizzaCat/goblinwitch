@@ -1,10 +1,13 @@
-[gd_scene load_steps=12 format=3 uid="uid://cgp10p8xr0lh0"]
+[gd_scene load_steps=15 format=3 uid="uid://cgp10p8xr0lh0"]
 
 [ext_resource type="Script" path="res://combat/fighter/fighter.gd" id="1_nbxeo"]
 [ext_resource type="Script" path="res://combat/attack.gd" id="2_j5pgn"]
 [ext_resource type="FontFile" uid="uid://e70dnlpjiko3" path="res://fonts/MorePerfectDOSVGA.ttf" id="3_fejwi"]
 [ext_resource type="Resource" uid="uid://c4pqsddd5adww" path="res://assets/attacks/punch.tres" id="3_uujgf"]
+[ext_resource type="PackedScene" uid="uid://cscqphx52klfn" path="res://assets/effects/combat/fire_effect_particles.tscn" id="4_br4c4"]
+[ext_resource type="PackedScene" uid="uid://0n4t0hevwlbu" path="res://assets/effects/combat/poison_effect_particles.tscn" id="4_r854s"]
 [ext_resource type="AudioStream" uid="uid://bpeeq8yfb5dla" path="res://assets/sounds/heal1.ogg" id="5_dvoyo"]
+[ext_resource type="PackedScene" uid="uid://bn2cxdry0d7do" path="res://assets/effects/combat/slowness_effect_particles.tscn" id="5_nggub"]
 [ext_resource type="SpriteFrames" uid="uid://b5xvf3bwd01n6" path="res://assets/effects/heal.tres" id="5_wctq1"]
 [ext_resource type="AudioStream" uid="uid://chdb1ucxup45s" path="res://assets/sounds/hit1.ogg" id="7_4m6nr"]
 
@@ -188,6 +191,15 @@ _data = {
 [node name="Fighter" type="Node3D"]
 script = ExtResource("1_nbxeo")
 fallback_attacks = Array[ExtResource("2_j5pgn")]([ExtResource("3_uujgf")])
+
+[node name="FireEffectParticles" parent="." instance=ExtResource("4_br4c4")]
+emitting = false
+
+[node name="PoisonEffectParticles" parent="." instance=ExtResource("4_r854s")]
+emitting = false
+
+[node name="SlowEffectParticles" parent="." instance=ExtResource("5_nggub")]
+emitting = false
 
 [node name="InfoLabel" type="Label3D" parent="."]
 transform = Transform3D(-1, -2.94468e-08, 8.23142e-08, 6.18172e-08, 0.42761, 0.903963, -6.18172e-08, 0.903963, -0.42761, 0, 2.49676, 0)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=4 uid="uid://cej7b1eru6x3i"]
+[gd_scene load_steps=38 format=4 uid="uid://cej7b1eru6x3i"]
 
 [ext_resource type="Script" path="res://levels/overworld.gd" id="1_dymff"]
 [ext_resource type="Script" path="res://addons/func_godot/src/map/func_godot_map.gd" id="1_lsw2u"]
@@ -11,10 +11,13 @@
 [ext_resource type="Script" path="res://character/item.gd" id="7_7g6il"]
 [ext_resource type="Script" path="res://character/character.gd" id="8_1jhyx"]
 [ext_resource type="PackedScene" uid="uid://dan7m2c7flsu8" path="res://combat/arena/combat_arena.tscn" id="8_dcrt3"]
+[ext_resource type="Resource" uid="uid://c4ctev2k0sxp0" path="res://assets/attacks/spells/poison_spray.tres" id="8_p1n5e"]
 [ext_resource type="Script" path="res://combat/attack.gd" id="9_4khm8"]
 [ext_resource type="Script" path="res://objects/transition_camera.gd" id="19_jjhu6"]
 [ext_resource type="PackedScene" uid="uid://bnacf6fsyyquf" path="res://levels/sub_level/sub_level.tscn" id="21_dygyu"]
 [ext_resource type="PackedScene" uid="uid://ccnlyh145g44i" path="res://levels/sub_level_intro.tscn" id="21_yvqu8"]
+[ext_resource type="PackedScene" uid="uid://b1kl4b17oc5ow" path="res://levels/dev/combat_test.tscn" id="22_87jtc"]
+[ext_resource type="Script" path="res://levels/level.gd" id="23_35yf6"]
 [ext_resource type="Material" uid="uid://dc832g8ylc07g" path="res://textures/stone_wall.tres" id="24_hn8qk"]
 [ext_resource type="Material" uid="uid://dokvfv1k2qj0d" path="res://textures/rock_tile.tres" id="25_eg5eu"]
 [ext_resource type="Script" path="res://overworld/sequences/welcome_sequence.gd" id="26_5b4xm"]
@@ -33,7 +36,8 @@ endurance = 5
 charisma = 0
 items = Array[ExtResource("7_7g6il")]([ExtResource("4_tmrc5")])
 total_ap = 3
-spells = Array[ExtResource("9_4khm8")]([])
+total_mana = 3
+spells = Array[ExtResource("9_4khm8")]([ExtResource("8_p1n5e")])
 model_prefab = ExtResource("4_iaemi")
 
 [sub_resource type="Environment" id="Environment_aiprv"]
@@ -199,7 +203,7 @@ play_intro_narration = false
 level_transition_box = NodePath("PersistentArea/HoldingAreaPos")
 
 [node name="PlayerOverworld" parent="." groups=["player"] instance=ExtResource("4_u10hx")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -183.115, 0.551009, -1.1774)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -231.115, 0.551009, -17.1774)
 character = SubResource("Resource_dvjdl")
 is_goblin = false
 
@@ -271,6 +275,18 @@ transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 9, 
 light_energy = 9.646
 spot_range = 19.0
 spot_angle = 67.2249
+
+[node name="SpotLight3D2" type="SpotLight3D" parent="PersistentArea"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -49, 9, 2)
+light_energy = 16.0
+spot_range = 47.776
+spot_angle = 68.679
+
+[node name="SpotLight3D3" type="SpotLight3D" parent="PersistentArea"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -49, 9, -27)
+light_energy = 16.0
+spot_range = 47.776
+spot_angle = 68.679
 
 [node name="HoldingAreaPos" type="Node3D" parent="PersistentArea"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 2, 1)
@@ -351,6 +367,28 @@ text = "Saving...."
 [node name="SubLevel" parent="." instance=ExtResource("21_dygyu")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -185, 0, -6)
 level_path = "res://levels/sublevelloadtest.tscn"
+
+[node name="SubLevel2" parent="." instance=ExtResource("21_dygyu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -234, 0, -29)
+level_path = "res://levels/dev/combat_test.tscn"
+is_loaded = true
+
+[node name="CombatTest" parent="SubLevel2" instance=ExtResource("22_87jtc")]
+
+[node name="@Node3D@68439" parent="SubLevel2" instance=ExtResource("22_87jtc")]
+
+[node name="@Node3D@69638" parent="SubLevel2" instance=ExtResource("22_87jtc")]
+
+[node name="@Node3D@86342" parent="SubLevel2" instance=ExtResource("22_87jtc")]
+
+[node name="@Node3D@51107" parent="SubLevel2" instance=ExtResource("22_87jtc")]
+
+[node name="@Node3D@51128" parent="SubLevel2" instance=ExtResource("22_87jtc")]
+
+[node name="@Node3D@59155" parent="SubLevel2" instance=ExtResource("22_87jtc")]
+
+[node name="@Node3D@18137" type="Node3D" parent="SubLevel2" instance=ExtResource("22_87jtc")]
+script = ExtResource("23_35yf6")
 
 [connection signal="combat_ended" from="CombatArena" to="." method="_on_combat_arena_combat_ended"]
 [connection signal="end_sequence_finished" from="CombatArena" to="." method="_on_combat_arena_end_sequence_finished"]

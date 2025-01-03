@@ -52,8 +52,8 @@ func load_player_actions(player: Character) -> void:
 	else:
 		for attack in player.weapon.attacks:
 			add_player_action(attack)
-		for spell in player.spells:
-			add_player_action(spell)
+	for spell in player.spells:
+		add_player_action(spell)
 	player_action_unselected.emit()
 
 func clear_character_cards() -> void:

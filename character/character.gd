@@ -26,6 +26,7 @@ class_name Character
 
 @export_group("Combat")
 @export var total_ap: int = 3
+@export var total_mana: int = 1
 ## Spells are additional attacks that use mana
 @export var spells: Array[Attack] = []
 

@@ -1,0 +1,32 @@
+[gd_scene load_steps=4 format=3 uid="uid://bn2cxdry0d7do"]
+
+[ext_resource type="Material" uid="uid://4q72ygq6vv4b" path="res://assets/effects/combat/effect_slow_mat.tres" id="1_xo4rt"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_6mg53"]
+particle_flag_rotate_y = true
+emission_shape_offset = Vector3(0, 2, 0)
+emission_shape = 3
+emission_box_extents = Vector3(1, 1, 1)
+angle_min = -356.4
+angle_max = 456.1
+velocity_pivot = Vector3(1, 1, 1)
+direction = Vector3(1, 1, 1)
+spread = 67.677
+gravity = Vector3(0, -1, 0)
+linear_accel_min = -2.23517e-06
+linear_accel_max = 0.999998
+damping_max = 1.0
+scale_max = 1.2
+hue_variation_min = -2.23517e-08
+hue_variation_max = 0.7
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_v1xmp"]
+material = ExtResource("1_xo4rt")
+size = Vector2(0.2, 0.2)
+
+[node name="SlowEffectParticles" type="GPUParticles3D"]
+lifetime = 0.5
+explosiveness = 0.06
+randomness = 0.08
+process_material = SubResource("ParticleProcessMaterial_6mg53")
+draw_pass_1 = SubResource("PlaneMesh_v1xmp")

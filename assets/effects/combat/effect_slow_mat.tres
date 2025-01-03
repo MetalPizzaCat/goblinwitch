@@ -1,0 +1,11 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://4q72ygq6vv4b"]
+
+[ext_resource type="Texture2D" uid="uid://cvychysk8u4yh" path="res://assets/effects/combat/slowness_effect.png" id="1_o6t8n"]
+
+[resource]
+transparency = 1
+cull_mode = 2
+shading_mode = 0
+albedo_texture = ExtResource("1_o6t8n")
+texture_filter = 2
+disable_receive_shadows = true

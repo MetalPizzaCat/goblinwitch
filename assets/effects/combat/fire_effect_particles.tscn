@@ -1,0 +1,15 @@
+[gd_scene load_steps=4 format=3 uid="uid://cscqphx52klfn"]
+
+[ext_resource type="Material" uid="uid://cvcqboghhx44s" path="res://assets/effects/combat/poison_effect_particles.tres" id="1_ihvdu"]
+[ext_resource type="Material" uid="uid://dik0mkcsop4is" path="res://assets/effects/combat/effect_fire_mat.tres" id="2_p8qt7"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_n6x32"]
+material = ExtResource("2_p8qt7")
+size = Vector2(0.3, 0.3)
+
+[node name="FireEffectParticles" type="GPUParticles3D"]
+lifetime = 0.5
+explosiveness = 0.06
+randomness = 0.08
+process_material = ExtResource("1_ihvdu")
+draw_pass_1 = SubResource("PlaneMesh_n6x32")

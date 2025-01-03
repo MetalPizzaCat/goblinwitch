@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://dmaijc774ji44"]
+
+[ext_resource type="Material" uid="uid://xvuv5usbpmp8" path="res://assets/effects/combat/effect_mat.tres" id="1_hdu6e"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_gxsie"]
+angle_min = -356.7
+angle_max = 277.4
+direction = Vector3(1, 1, 1)
+spread = 67.677
+gravity = Vector3(0, 1, 0)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_ffh7o"]
+material = ExtResource("1_hdu6e")
+
+[node name="Node3D" type="Node3D"]
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
+process_material = SubResource("ParticleProcessMaterial_gxsie")
+draw_pass_1 = SubResource("PlaneMesh_ffh7o")

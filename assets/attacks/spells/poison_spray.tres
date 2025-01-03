@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="Attack" load_steps=2 format=3 uid="uid://c4ctev2k0sxp0"]
+
+[ext_resource type="Script" path="res://combat/attack.gd" id="1_qrye8"]
+
+[resource]
+script = ExtResource("1_qrye8")
+name = "Poison spray"
+description = "Poisons the target for 3 turns dealing damage at the start of each"
+damage_modifier = 1.0
+is_spell = true
+attack_type = 1
+effect = 1
+attack_range = 4
+can_target_self = false
+ap_cost = 1
+mana_cost = 1
+character_animation_name = "magic"
+damage_effect = 1
+effect_duration = 3
+is_healing = false

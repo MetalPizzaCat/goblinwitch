@@ -14,6 +14,17 @@ enum VisualEffect {
 	MAGIC
 }
 
+enum Effect{
+	## Does nothing, i am not sure why this would be used
+	NONE,
+	## Deals 3 damage every turn for 3 turns
+	POISON,
+	## Deals 3 damage every turn for 3 turns
+	FIRE,
+	## Removes 1 AP(with min AP being 1) for 2 turns
+	SLOWNESS,
+}
+
 @export var name: String = "ATK"
 @export var description: String
 ## Damage of the weapon will be modified by this value before applied[br]
@@ -36,7 +47,10 @@ enum VisualEffect {
 @export var mana_cost: int = 1
 ## Name of the animation to play when using this attack
 @export var character_animation_name: String = "punch"
-
+@export_group("Effects")
+## Additional effect that will be applied to the target on use
+@export var damage_effect : Effect = Effect.NONE
+@export var effect_duration : int = 1
 
 @export_group("AI")
 @export var is_healing: bool = false

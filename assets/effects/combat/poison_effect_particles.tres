@@ -1,0 +1,18 @@
+[gd_resource type="ParticleProcessMaterial" format=3 uid="uid://cvcqboghhx44s"]
+
+[resource]
+particle_flag_rotate_y = true
+emission_shape = 3
+emission_box_extents = Vector3(1, 1, 1)
+angle_min = -356.4
+angle_max = 456.1
+velocity_pivot = Vector3(1, 1, 1)
+direction = Vector3(1, 1, 1)
+spread = 67.677
+gravity = Vector3(0, 1, 0)
+linear_accel_min = -2.23517e-06
+linear_accel_max = 0.999998
+damping_max = 1.0
+scale_max = 1.2
+hue_variation_min = -2.23517e-08
+hue_variation_max = 0.7

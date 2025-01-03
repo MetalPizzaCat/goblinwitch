@@ -197,7 +197,13 @@ func _on_combat_ui_player_action_selected(action: Attack) -> void:
 func _on_combat_ui_player_move_selected() -> void:
 	player.player_selection = Player.PlayerSelection.MOVING
 	for cell in cells:
-		cell.state = CombatCell.TileState.DEFAULT if cell.arena_position.distance_to(player.arena_position) > 1 else CombatCell.TileState.GOOD
+		if cell.arena_position.distance_to(player.arena_position) > 1:
+			cell.state = CombatCell.TileState.DEFAULT
+		elif not is_valid_position(cell.arena_position):
+			cell.state = CombatCell.TileState.BAD
+		else:
+			cell.state = CombatCell.TileState.GOOD
+		#cell.state = CombatCell.TileState.DEFAULT if cell.arena_position.distance_to(player.arena_position) > 1 else CombatCell.TileState.GOOD
 
 
 func _on_fighter_manager_all_enemies_died() -> void:

@@ -59,7 +59,11 @@ func create_inventory() -> void:
 			btn.selected = true
 			
 	for spell in player.character.spells:
-		pass
+		var btn = InventoryAttackButton.new()
+		btn.attack = spell
+		btn.attack_selected.connect(_on_spell_selected)
+		spell_buttons.append(btn)
+		spell_container.add_child(btn)
 
 func hide_inventory() -> void:
 	animation_player.play_backwards("show")
@@ -88,7 +92,7 @@ func _on_spell_pressed(spell : Attack) -> void:
 	pass
 
 func _on_spell_selected(spell : Attack) -> void:
-	pass
+	show_spell(spell)
 
 func _on_spell_unselected(spell : Attack) -> void:
 	pass
@@ -98,6 +102,11 @@ func show_item(item : Item) -> void:
 	item_desc_label.text = item.description
 	stats_box.visible = item.is_weapon
 	item_damage_label.text = str(item.damage)
+
+func show_spell(spell : Attack) -> void:
+	item_name_label.text = spell.name
+	item_desc_label.text = spell.description
+	stats_box.visible = false
 
 func _on_spells_pressed() -> void:
 	item_container.visible = false

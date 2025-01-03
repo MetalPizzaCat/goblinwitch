@@ -16,5 +16,6 @@ endurance = 2
 charisma = 0
 items = Array[ExtResource("1_pv4i6")]([])
 total_ap = 2
+total_mana = 1
 spells = Array[ExtResource("3_w62if")]([])
 model_prefab = ExtResource("2_14iw4")

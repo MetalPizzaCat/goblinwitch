@@ -66,18 +66,25 @@ func get_next_active_enemy_id(start: int = 0) -> int:
 
 
 ## Reset player ap and start player turn
-func start_player_turn() -> void:
-	is_player_turn = true
+func start_player_turn() -> void:	
 	current_enemy_id = -1
-	player.current_ap = player.total_ap
+	if player.start_turn():
+		await player.hurt_animation_finished
+	is_player_turn = true
 	combat_ui.set_active_turn_character(player)
 
 ## Start enemy turn and 
 func start_enemy_turn() -> void:
-	current_enemy.current_ap = current_enemy.total_ap
 	current_enemy.active = true
-	combat_ui.set_active_turn_character(current_enemy)
-	current_enemy.run_ai_logic()
+	if current_enemy.start_turn():
+		# we should wait till all animations finish to not confuse ai
+		await current_enemy.hurt_animation_finished
+	# start of turn can apply effects which can cause enemy to die at the start of the turn
+	# if this happens we don't run the logic
+	# and this will also cause "end of turn" signal to be emited so we use that
+	if not current_enemy.is_dead:
+		combat_ui.set_active_turn_character(current_enemy)
+		current_enemy.run_ai_logic()
 
 ## Move to the next fighter in the turn order. If player is current fighter it moves to the first enemy in the list.
 ## If it is an enemy it moves through the enemy list until there are no more enemies, which is when it switches to the player

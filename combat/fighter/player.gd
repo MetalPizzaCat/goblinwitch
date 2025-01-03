@@ -9,7 +9,7 @@ var player_selection: PlayerSelection = PlayerSelection.NONE
 func on_tile_selected(tile: CombatCell) -> void:
 	match player_selection:
 		PlayerSelection.MOVING:
-			if tile.arena_position.distance_to(arena_position) <= 1:
+			if tile.arena_position.distance_to(arena_position) <= 1 and combat_arena.is_valid_position(tile.arena_position):
 				move_to_tile(tile.arena_position)
 				use_ap(1)
 		PlayerSelection.ATTACK:
