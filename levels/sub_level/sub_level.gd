@@ -52,6 +52,11 @@ func _process(_delta) -> void:
 func _add_sub_level() -> void:
 	var scene = ResourceLoader.load_threaded_get(level_path)
 	if scene is PackedScene:
+		var obj = scene.instantiate()
+		if not obj is Level:
+			obj.queue_free()
+			printerr("Loaded sublevel didn't have Level type")
+			return
 		level = scene.instantiate()
 		add_child(level)
 		# required for the level to be loaded in the editor
