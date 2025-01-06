@@ -8,29 +8,29 @@ func _ready() -> void:
 	action_completed.connect(_on_action_finished)
 
 func run_ai_logic() -> void:
-	if is_dead:
+	if is_dead or not active:
 		# just in case
 		return
 	if health < character.get_max_health() * 0.3:
 		# heal yourself, but we can't heal yet
 		pass
-	var dist = target.arena_position.distance_to(arena_position)
-	var melee_attacks = generate_list_of_possible_attacks(Attack.AttackType.MELEE)
-	var ranged_attacks = generate_list_of_possible_attacks(Attack.AttackType.RANGED)
-	
+	var dist : float  = target.arena_position.distance_to(arena_position)
+	var melee_attacks : Array[Attack] = generate_list_of_possible_attacks(Attack.AttackType.MELEE)
+	var ranged_attacks : Array[Attack] = generate_list_of_possible_attacks(Attack.AttackType.RANGED)
+	var dumb : bool = combat_arena.arena_rng.randf() > 0.5
 
 	print("Melee: %s; Ranged: %s; Dist: %s; Points: %s" % [len(melee_attacks), len(ranged_attacks), dist, current_ap])
 	# can attack melee 
 	if dist <= 1 and not melee_attacks.is_empty():
 		print("Punching!")
 		attack(target, melee_attacks.pick_random())
-	# can attack ranged
-	elif dist <= 3 and not ranged_attacks.is_empty():
-		attack(target, ranged_attacks.pick_random())
 	# can attack ranged but too close for it to be effective
-	elif dist <= 3 and not ranged_attacks.is_empty():
+	elif dist <= 1 and not ranged_attacks.is_empty() and not dumb:
 		move_to_tile(find_suitable_tile(func(a, b): return a > b))
 		use_ap(1)
+	# can attack ranged
+	elif dist <= 2 and not ranged_attacks.is_empty():
+		attack(target, ranged_attacks.pick_random())
 	# can attack melee but can't reach
 	elif dist > 1 and not melee_attacks.is_empty():
 		move_to_tile(find_suitable_tile(func(a, b): return a < b))

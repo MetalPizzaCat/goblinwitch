@@ -5,7 +5,7 @@
 [sub_resource type="BoxShape3D" id="BoxShape3D_fps72"]
 size = Vector3(1, 7, 10)
 
-[node name="CombatTrigger" type="Area3D" groups=["combat_area"]]
+[node name="CombatTrigger" type="Area3D" groups=["combat_area", "save"]]
 input_ray_pickable = false
 script = ExtResource("1_wicf6")
 

@@ -203,7 +203,7 @@ play_intro_narration = false
 level_transition_box = NodePath("PersistentArea/HoldingAreaPos")
 
 [node name="PlayerOverworld" parent="." groups=["player"] instance=ExtResource("4_u10hx")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -149.831, 0.551009, 63.6504)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -41.831, 0.551009, 67.6504)
 character = SubResource("Resource_dvjdl")
 is_goblin = false
 
@@ -369,7 +369,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -200.633, 6, 11)
 level_path = "res://levels/sub_level/school_1.tscn"
 is_loaded = true
 
-[node name="School1" type="Node3D" parent="SubLevel_School" instance=ExtResource("22_ibje6")]
+[node name="School1" type="Node3D" parent="SubLevel_School" groups=["school1_level"] instance=ExtResource("22_ibje6")]
 script = ExtResource("23_mx8fo")
 level_name = "school1"
 

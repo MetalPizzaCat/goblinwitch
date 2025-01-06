@@ -17,6 +17,7 @@ config/icon="res://icon.svg"
 
 [autoload]
 
+SaveManager="*res://levels/save_manager.gd"
 LevelManager="*res://levels/level_manager.gd"
 
 [display]
@@ -44,6 +45,11 @@ folder_colors={
 "res://objects/": "pink",
 "res://overworld/": "blue"
 }
+
+[gameplay]
+
+saves/default_filename="goblin"
+saves/default_file_extension="save"
 
 [global_group]
 

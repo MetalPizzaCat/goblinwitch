@@ -25,6 +25,7 @@ var level: Level = null
 var has_save_data: bool = false
 var sublevel_save_data: Dictionary
 
+
 func load_level() -> void:
 	if level != null:
 		printerr("Level is already loaded")

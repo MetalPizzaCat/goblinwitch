@@ -14,7 +14,7 @@ signal sublevel_loaded
 @onready var loading_interface: Control = $Interface/LoadingInterface
 @onready var interface_animations: AnimationPlayer = $Interface/AnimationPlayer
 
-@onready var level_manager: LevelManager = get_node('/root/LevelManager')
+@onready var save_manager: SaveManager = get_node('/root/SaveManager')
 @onready var intro_sublevel: Level = $SubLevelIntro
 
 var currently_loading_level: String
@@ -34,9 +34,9 @@ var is_in_combat: bool = false:
 var _is_in_combat: bool
 
 func _ready() -> void:
-	level_manager.started_game_save.connect(_on_game_save_started)
-	if level_manager.has_loaded:
-		load_save_data(level_manager.save_data['overworld'])
+	save_manager.started_game_save.connect(_on_game_save_started)
+	if save_manager.has_loaded:
+		load_save_data(save_manager.save_data['overworld'])
 	var combat_areas = get_tree().get_nodes_in_group("combat_area")
 	for area in combat_areas:
 		area.combat_triggered.connect(_on_combat_triggered)
@@ -132,10 +132,10 @@ func load_save_data(data: Dictionary) -> void:
 	
 
 func _on_load_button_pressed() -> void:
-	level_manager.load_game()
+	save_manager.load_game()
 
 func _on_save_button_pressed() -> void:
-	level_manager.save_game()
+	save_manager.save_game()
 
 
 func _on_combat_arena_player_lost() -> void:

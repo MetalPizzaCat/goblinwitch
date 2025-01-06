@@ -4,7 +4,7 @@ class_name Dysphoria
 
 signal player_caught
 
-@onready var save_manager: LevelManager = get_node("/root/LevelManager")
+@onready var save_manager: SaveManager = get_node("/root/SaveManager")
 @onready var choice_timer: Timer = $BranchTimer
 
 @export var speed: float = 6

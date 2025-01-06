@@ -169,7 +169,7 @@ func die() -> void:
 	show_failure_screen(false)
 
 func _on_load_button_pressed() -> void:
-	get_node("/root/LevelManager").load_game()
+	get_node("/root/SaveManager").load_game()
 
 
 func _on_exit_button_pressed() -> void:
@@ -177,4 +177,4 @@ func _on_exit_button_pressed() -> void:
 
 
 func _on_save_button_pressed() -> void:
-	get_node("/root/LevelManager").save_game()
+	get_node("/root/SaveManager").save_game()
