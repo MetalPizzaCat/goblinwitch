@@ -28,7 +28,7 @@ func run_ai_logic() -> void:
 	elif dist <= 3 and not ranged_attacks.is_empty():
 		attack(target, ranged_attacks.pick_random())
 	# can attack ranged but too close for it to be effective
-	elif dist < 1 and not ranged_attacks.is_empty():
+	elif dist <= 3 and not ranged_attacks.is_empty():
 		move_to_tile(find_suitable_tile(func(a, b): return a > b))
 		use_ap(1)
 	# can attack melee but can't reach
@@ -36,7 +36,9 @@ func run_ai_logic() -> void:
 		move_to_tile(find_suitable_tile(func(a, b): return a < b))
 		use_ap(1)
 	else:
-		printerr("Enemy doesn't know what to do")
+		move_to_tile(find_suitable_tile(func(a, b): return a < b))
+		use_ap(1)
+		print_rich("[color=yellow]Enemy doesn't know what to do so it will run towards player to get beaten up[/color]")
 	
 
 func generate_list_of_possible_attacks(attack_type: Attack.AttackType) -> Array[Attack]:

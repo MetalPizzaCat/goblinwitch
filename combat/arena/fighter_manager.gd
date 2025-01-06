@@ -31,6 +31,7 @@ func _ready() -> void:
 	player.used_all_action_points.connect(_on_player_finished_turn)
 	player.died.connect(_on_player_died)
 	player.action_completed.connect(_on_action_finished)
+	player.hurt_animation_finished.connect(_on_action_finished)
 
 func clear_enemies() -> void:
 	for enemy in enemies:
@@ -50,6 +51,7 @@ func create_enemy(actor: CombatScenarioActor) -> Enemy:
 	enemy.used_all_action_points.connect(_on_enemy_finished_turn)
 	enemy.action_completed.connect(_on_action_finished)
 	enemy.died.connect(_on_enemy_died)
+	enemy.hurt_animation_finished.connect(_on_action_finished)
 	combat_ui.create_character_card(enemy)
 	return enemy
 

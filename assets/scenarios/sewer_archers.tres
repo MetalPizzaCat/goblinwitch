@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="CombatScenario" load_steps=6 format=3 uid="uid://d4ea7d6x0bk7b"]
+
+[ext_resource type="Script" path="res://combat/scenario/combat_scenario_actor.gd" id="1_7ulv0"]
+[ext_resource type="Resource" uid="uid://cmy68ukx15iyx" path="res://assets/characters/bully_archer.tres" id="2_dxui7"]
+[ext_resource type="Script" path="res://combat/scenario/combat_scenario.gd" id="4_mjpo8"]
+
+[sub_resource type="Resource" id="Resource_yv1eo"]
+script = ExtResource("1_7ulv0")
+character = ExtResource("2_dxui7")
+start_pos = Vector2i(3, 5)
+
+[sub_resource type="Resource" id="Resource_wem6x"]
+script = ExtResource("1_7ulv0")
+character = ExtResource("2_dxui7")
+start_pos = Vector2i(3, 0)
+
+[resource]
+script = ExtResource("4_mjpo8")
+actors = Array[ExtResource("1_7ulv0")]([SubResource("Resource_yv1eo"), SubResource("Resource_wem6x")])
+player_position = Vector2i(3, 3)
+arena_size = 6

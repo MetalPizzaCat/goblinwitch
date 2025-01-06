@@ -8,8 +8,12 @@
 script = ExtResource("2_lhbcu")
 name = "Simple bow"
 description = ""
+is_weapon = true
+is_key = false
 damage = 1
 min_strength = 0
 accuracy = 6
 attacks = Array[ExtResource("1_vtdf6")]([ExtResource("2_32y5k")])
 model = 4
+health_restore = 0
+mana_restore = 0
