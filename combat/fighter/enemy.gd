@@ -53,17 +53,27 @@ func generate_list_of_possible_attacks(attack_type: Attack.AttackType) -> Array[
 			attacks.append(spell)
 	return attacks
 	
+
+## Attempt to find most suitable time using distance and provided sorted function [br]
+## If no valid tile is near the enemy(all nearby tiles are occupied) current position is returned
 func find_suitable_tile(comp: Callable) -> Vector2i:
-	var movement_ops: Array[Vector2i] = [Vector2i(1, 0), Vector2i(0, 1), Vector2i(-1, 0), Vector2i(0, -1)]
-	var curr: Vector2i = arena_position
-	var best_fit: float = target.arena_position.distance_to(curr)
-	for op in movement_ops:
-		var pos = arena_position + op
-		print("Considering tile %s -> %s; valid = %s " % [pos, target.arena_position.distance_to(pos), combat_arena.is_valid_position(pos)])
-		if comp.call(target.arena_position.distance_to(pos), best_fit) and combat_arena.is_valid_position(pos):
-			curr = pos
-			best_fit = target.arena_position.distance_to(pos)
-	return curr
+	var move_ops: Array[Vector2i] = [Vector2i(1, 0), Vector2i(0, 1), Vector2i(-1, 0), Vector2i(0, -1)]
+	var move_consideration: Array[Dictionary] = []
+	for move in move_ops:
+		var pos = arena_position + move
+		#print("Considering tile %s -> %s; valid = %s " % [pos, target.arena_position.distance_to(pos), combat_arena.is_valid_position(pos)])
+		if not combat_arena.is_valid_position(pos):
+			continue
+		move_consideration.append({"pos": pos, "dist": target.arena_position.distance_to(pos)})
+	if move_consideration.is_empty():
+		# if no position near enemy is valid then we fallback to moving in place
+		return arena_position
+	# if there is *any* position that is closer we pick that
+	#print("Possible moved: %s" % move_consideration.map(func(p): return "p: %s;%s d: %s" % [p['pos'].x, p['pos'].y, p['dist']]))
+	move_consideration.sort_custom(func(a, b): return comp.call(a['dist'], b['dist']))
+	# for con in move_consideration:
+	# 	print("possible move: p: %s;%s d: %s" % [con['pos'].x, con['pos'].y, con['dist']])
+	return move_consideration[0]['pos']
 
 
 func _on_action_finished() -> void:

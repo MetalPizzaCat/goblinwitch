@@ -25,9 +25,9 @@ signal end_sequence_finished
 @onready var fighter_manager: FighterManager = $FighterManager
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var arrow: ArrowAnim = $AnimatedArrow
-@onready var combat_music_player : AudioStreamPlayer = $CombatMusicPlayer
+@onready var combat_music_player: AudioStreamPlayer = $CombatMusicPlayer
 
-var active : bool = false
+var active: bool = false
 
 var cells: Array[CombatCell] = []
 
@@ -184,7 +184,7 @@ func _on_combat_ui_player_action_selected(action: Attack) -> void:
 	player.selected_attack = action
 	for cell in cells:
 		var dist = cell.arena_position.distance_to(player.arena_position)
-		if dist <= action.attack_range:
+		if dist <= action.attack_range and fighter_manager.enemies.any(func(p): return p.arena_position == cell.arena_position):
 			match action.attack_type:
 				Attack.AttackType.MELEE:
 					cell.state = CombatCell.TileState.GOOD if dist <= 1 else CombatCell.TileState.WARNING
@@ -244,7 +244,7 @@ func _on_player_inventory_updated() -> void:
 	player.update_weapon()
 
 
-func _on_arrow_effect_requested(from: Fighter, to: Fighter, magic : bool) -> void:
+func _on_arrow_effect_requested(from: Fighter, to: Fighter, magic: bool) -> void:
 	arrow.move(from.position, to.position)
 	arrow.visible = true
 	arrow.is_magic = magic

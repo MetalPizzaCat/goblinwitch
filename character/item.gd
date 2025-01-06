@@ -5,6 +5,7 @@ class_name Item
 @export var name : String = "ITEM_NAME"
 @export var description : String = ""
 @export var is_weapon : bool = true
+@export var is_key : bool = false
 @export_group("Weapon")
 ## How much does this item deal when used as a weapon
 @export var damage : int = 1
