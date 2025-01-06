@@ -8,6 +8,7 @@ script = ExtResource("2_a2cuj")
 name = "Health potion"
 description = "Health potion that resotres 10 hp"
 is_weapon = false
+is_key = false
 damage = 1
 min_strength = 0
 accuracy = 0

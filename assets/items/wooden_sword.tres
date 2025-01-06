@@ -8,8 +8,12 @@
 script = ExtResource("3_3dvyn")
 name = "Wooden sword"
 description = "A simple kids toy that can still hurt a lot if used right"
+is_weapon = true
+is_key = false
 damage = 5
 min_strength = 1
 accuracy = 0
 attacks = Array[ExtResource("1_2m3g1")]([ExtResource("2_lg47o")])
 model = 2
+health_restore = 0
+mana_restore = 0

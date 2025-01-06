@@ -61,7 +61,6 @@ func find_suitable_tile(comp: Callable) -> Vector2i:
 	var move_consideration: Array[Dictionary] = []
 	for move in move_ops:
 		var pos = arena_position + move
-		#print("Considering tile %s -> %s; valid = %s " % [pos, target.arena_position.distance_to(pos), combat_arena.is_valid_position(pos)])
 		if not combat_arena.is_valid_position(pos):
 			continue
 		move_consideration.append({"pos": pos, "dist": target.arena_position.distance_to(pos)})
@@ -69,10 +68,7 @@ func find_suitable_tile(comp: Callable) -> Vector2i:
 		# if no position near enemy is valid then we fallback to moving in place
 		return arena_position
 	# if there is *any* position that is closer we pick that
-	#print("Possible moved: %s" % move_consideration.map(func(p): return "p: %s;%s d: %s" % [p['pos'].x, p['pos'].y, p['dist']]))
 	move_consideration.sort_custom(func(a, b): return comp.call(a['dist'], b['dist']))
-	# for con in move_consideration:
-	# 	print("possible move: p: %s;%s d: %s" % [con['pos'].x, con['pos'].y, con['dist']])
 	return move_consideration[0]['pos']
 
 

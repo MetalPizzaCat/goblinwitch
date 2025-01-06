@@ -1,0 +1,14 @@
+[remap]
+
+importer="func_godot.map"
+type="Resource"
+uid="uid://epioup08jhg2"
+path="res://.godot/imported/classrooms.map-61ca0461b2a8e09a61dece14d711f4b4.tres"
+
+[deps]
+
+source_file="res://maps/classrooms.map"
+dest_files=["res://.godot/imported/classrooms.map-61ca0461b2a8e09a61dece14d711f4b4.tres"]
+
+[params]
+

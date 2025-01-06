@@ -15,8 +15,8 @@
 [ext_resource type="Script" path="res://objects/transition_camera.gd" id="19_jjhu6"]
 [ext_resource type="PackedScene" uid="uid://bnacf6fsyyquf" path="res://levels/sub_level/sub_level.tscn" id="21_dygyu"]
 [ext_resource type="PackedScene" uid="uid://ccnlyh145g44i" path="res://levels/sub_level_intro.tscn" id="21_yvqu8"]
-[ext_resource type="PackedScene" uid="uid://csro47j7ctwtb" path="res://levels/sub_level/school_1.tscn" id="22_xyhto"]
-[ext_resource type="Script" path="res://levels/level.gd" id="23_35yf6"]
+[ext_resource type="PackedScene" uid="uid://csro47j7ctwtb" path="res://levels/sub_level/school_1.tscn" id="22_ibje6"]
+[ext_resource type="Script" path="res://levels/level.gd" id="23_mx8fo"]
 [ext_resource type="PackedScene" uid="uid://dxpp0hatuvvhw" path="res://objects/dev/mock_arena.tscn" id="24_fjcmo"]
 [ext_resource type="Material" uid="uid://dc832g8ylc07g" path="res://textures/stone_wall.tres" id="24_hn8qk"]
 [ext_resource type="Material" uid="uid://dokvfv1k2qj0d" path="res://textures/rock_tile.tres" id="25_eg5eu"]
@@ -203,7 +203,7 @@ play_intro_narration = false
 level_transition_box = NodePath("PersistentArea/HoldingAreaPos")
 
 [node name="PlayerOverworld" parent="." groups=["player"] instance=ExtResource("4_u10hx")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -206.115, 0.551009, 10.8226)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -197.831, 0.551009, 16.6504)
 character = SubResource("Resource_dvjdl")
 is_goblin = false
 
@@ -293,7 +293,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 2, 1)
 
 [node name="LevelChangeTrigger" parent="PersistentArea" node_paths=PackedStringArray("sub_level") instance=ExtResource("2_6hap2")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -1, 0, -3)
-sub_level = NodePath("../../SubLevel")
+sub_level = NodePath("../../SubLevel_School")
 
 [node name="Interface" type="Control" parent="."]
 layout_mode = 3
@@ -364,14 +364,18 @@ offset_bottom = 880.0
 theme = ExtResource("26_w02g1")
 text = "Saving...."
 
-[node name="SubLevel" parent="." instance=ExtResource("21_dygyu")]
+[node name="SubLevel_School" parent="." instance=ExtResource("21_dygyu")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -200.633, 6, 11)
 level_path = "res://levels/sub_level/school_1.tscn"
 is_loaded = true
 
-[node name="School1" type="Node3D" parent="SubLevel" instance=ExtResource("22_xyhto")]
-script = ExtResource("23_35yf6")
+[node name="School1" type="Node3D" parent="SubLevel_School" instance=ExtResource("22_ibje6")]
+script = ExtResource("23_mx8fo")
 level_name = "school1"
+
+[node name="SubLevel_Classrooms" parent="." instance=ExtResource("21_dygyu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -162.633, 0.5, 98.6)
+level_path = "res://levels/sub_level/classrooms_1.tscn"
 
 [node name="CombatTest" parent="." instance=ExtResource("21_dygyu")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -234, 0, -29)

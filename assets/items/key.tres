@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="Item" load_steps=3 format=3 uid="uid://ca8i3px6qeglt"]
+
+[ext_resource type="Script" path="res://combat/attack.gd" id="1_qncwe"]
+[ext_resource type="Script" path="res://character/item.gd" id="2_ah1we"]
+
+[resource]
+script = ExtResource("2_ah1we")
+name = "Key"
+description = "A key to the locked door(duh)"
+is_weapon = false
+is_key = true
+damage = 1
+min_strength = 0
+accuracy = 0
+attacks = Array[ExtResource("1_qncwe")]([])
+model = 0
+health_restore = 0
+mana_restore = 0
