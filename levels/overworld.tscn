@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=4 uid="uid://cej7b1eru6x3i"]
+[gd_scene load_steps=48 format=4 uid="uid://cej7b1eru6x3i"]
 
 [ext_resource type="Script" path="res://levels/overworld.gd" id="1_dymff"]
 [ext_resource type="Script" path="res://addons/func_godot/src/map/func_godot_map.gd" id="1_lsw2u"]
@@ -12,17 +12,24 @@
 [ext_resource type="Script" path="res://character/character.gd" id="8_1jhyx"]
 [ext_resource type="PackedScene" uid="uid://dan7m2c7flsu8" path="res://combat/arena/combat_arena.tscn" id="8_dcrt3"]
 [ext_resource type="Script" path="res://combat/attack.gd" id="9_4khm8"]
+[ext_resource type="PackedScene" uid="uid://c0la25qxelmxf" path="res://models/body/goblin_girl.glb" id="14_1daho"]
 [ext_resource type="Script" path="res://objects/transition_camera.gd" id="19_jjhu6"]
+[ext_resource type="AudioStream" uid="uid://b3h6l5obxv31p" path="res://assets/music/trans.ogg" id="21_50mry"]
 [ext_resource type="PackedScene" uid="uid://bnacf6fsyyquf" path="res://levels/sub_level/sub_level.tscn" id="21_dygyu"]
 [ext_resource type="PackedScene" uid="uid://ccnlyh145g44i" path="res://levels/sub_level_intro.tscn" id="21_yvqu8"]
-[ext_resource type="PackedScene" uid="uid://csro47j7ctwtb" path="res://levels/sub_level/school_1.tscn" id="22_pvc6o"]
-[ext_resource type="Script" path="res://levels/level.gd" id="23_8cvai"]
+[ext_resource type="PackedScene" uid="uid://bnkn0cwky3d0s" path="res://models/body/human_boy.glb" id="22_6x8d8"]
 [ext_resource type="PackedScene" uid="uid://dxpp0hatuvvhw" path="res://objects/dev/mock_arena.tscn" id="24_fjcmo"]
 [ext_resource type="Material" uid="uid://dc832g8ylc07g" path="res://textures/stone_wall.tres" id="24_hn8qk"]
+[ext_resource type="Resource" uid="uid://coh4gdmjxeebp" path="res://assets/items/goblin_potion.tres" id="24_v3uo0"]
+[ext_resource type="Script" path="res://levels/transformation_sequence.gd" id="24_wtaln"]
+[ext_resource type="Resource" uid="uid://b0pe6exci5q18" path="res://assets/story/trans/before_trans.tres" id="25_d020c"]
 [ext_resource type="Material" uid="uid://dokvfv1k2qj0d" path="res://textures/rock_tile.tres" id="25_eg5eu"]
+[ext_resource type="PackedScene" uid="uid://dvewwyag2850a" path="res://overworld/interactibles/chest.tscn" id="25_siy04"]
 [ext_resource type="Script" path="res://overworld/sequences/welcome_sequence.gd" id="26_5b4xm"]
+[ext_resource type="Resource" uid="uid://cpanpxxba7yx2" path="res://assets/story/trans/after_trans.tres" id="26_h1j1x"]
 [ext_resource type="Theme" uid="uid://cfgbmdhhipqu" path="res://assets/ui/themes/combat_theme.tres" id="26_w02g1"]
 [ext_resource type="Resource" uid="uid://cvxfjxoytajph" path="res://assets/story/welcome.tres" id="27_rw10o"]
+[ext_resource type="AudioStream" uid="uid://exgtw8toqk3a" path="res://assets/music/turn.ogg" id="28_27cdr"]
 [ext_resource type="AudioStream" uid="uid://drwcb10mnytmf" path="res://assets/sounds/ambience.ogg" id="33_tqtw2"]
 
 [sub_resource type="Resource" id="Resource_dvjdl"]
@@ -102,6 +109,168 @@ points = PackedVector3Array(5, 7.5, -4, 5, 0, -4, 5.5, 0, -4, 5.5, 7.5, -4, 5, 7
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_st784"]
 points = PackedVector3Array(-3.5, 7.5, 6.5, -3.5, 0, 6.5, 5.5, 0, 6.5, 5.5, 7.5, 6.5, -3.5, 7.5, 7, -3.5, 0, 7, 5.5, 0, 7, 5.5, 7.5, 7)
+
+[sub_resource type="Animation" id="Animation_s6rps"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../human_boy:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../human_boy:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../human_boy:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 2.78205, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../goblin_girl:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("../goblin_girl:scale")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_577br"]
+resource_name = "trans"
+length = 13.0
+tracks/0/type = "audio"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AudioStreamPlayer")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("21_50mry")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/0/use_blend = true
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../human_boy:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 9.03333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../human_boy:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.4, 0.566667, 0.733333, 0.966667, 1.13333, 1.36667, 1.56667, 1.73333, 2.06667, 2.3, 3.2, 3.36667, 3.56667, 3.7, 3.86667, 4.06667, 4.2, 4.23333, 4.4, 4.6, 4.73333, 6.06667, 8.76667, 9),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(1, 1, 1), Vector3(1, 2, 1), Vector3(0.2, 0.2, 0.2), Vector3(1.5, 3, 1.5), Vector3(1, 1, 1), Vector3(1, 2, 1), Vector3(0.2, 0.2, 0.2), Vector3(1.5, 3, 1.5), Vector3(0.5, 1, 0.5), Vector3(1, 1, 1), Vector3(1, 1, 1), Vector3(0.5, 1, 0.5), Vector3(2, 1, 1), Vector3(1, 1, 1), Vector3(0.5, 1, 0.5), Vector3(2, 1, 1), Vector3(1, 1, 1), Vector3(1, 1, 1), Vector3(0.5, 1, 0.5), Vector3(2, 1, 1), Vector3(1, 1, 1), Vector3(1, 1, 1), Vector3(1, 1, 1), Vector3(1, 5, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../human_boy:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(6.13333, 6.33333, 6.53333, 6.93333, 7.53333, 7.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, -4.8398, 0), Vector3(-0.259237, 2.8896, -0.78322), Vector3(-1.02519, 0.48297, 1.87107), Vector3(0.422874, -1.29703, 0.615497), Vector3(0, 0, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("../goblin_girl:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(8.36667, 9.03333, 13),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, false]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("../goblin_girl:scale")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(8.5, 9.06667, 9.43333, 9.73333, 10.0667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(1, 1, 1), Vector3(1, 5, 1), Vector3(1, 0.2, 1), Vector3(5, 2, 1), Vector3(1, 1, 1)]
+}
+tracks/6/type = "method"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("../../PlayerOverworld")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [ExtResource("24_v3uo0")],
+"method": &"remove_item"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_mq7do"]
+_data = {
+"RESET": SubResource("Animation_s6rps"),
+"trans": SubResource("Animation_577br")
+}
 
 [sub_resource type="Animation" id="Animation_8lclm"]
 length = 0.001
@@ -201,9 +370,10 @@ player = NodePath("PlayerOverworld")
 game_intro_sequence = NodePath("Sequences/Welcome")
 play_intro_narration = false
 level_transition_box = NodePath("PersistentArea/HoldingAreaPos")
+do_debug = true
 
 [node name="PlayerOverworld" parent="." groups=["player"] instance=ExtResource("4_u10hx")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -37.7923, 0.551009, 88.1149)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -42.7923, 0.551009, 80.1149)
 character = SubResource("Resource_dvjdl")
 is_goblin = false
 
@@ -240,6 +410,14 @@ autoplay = true
 
 [node name="PersistentArea" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -78, 0, -158)
+
+[node name="goblin_girl" parent="PersistentArea" instance=ExtResource("14_1daho")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, 4)
+visible = false
+
+[node name="human_boy" parent="PersistentArea" instance=ExtResource("22_6x8d8")]
+transform = Transform3D(-0.936058, 0, 0.351846, 0, 1, 0, -0.351846, 0, -0.936058, 1, 1, 4)
+visible = false
 
 [node name="FuncGodotMap" type="Node3D" parent="PersistentArea"]
 script = ExtResource("1_lsw2u")
@@ -291,9 +469,31 @@ spot_angle = 68.679
 [node name="HoldingAreaPos" type="Node3D" parent="PersistentArea"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 2, 1)
 
+[node name="Chest" parent="PersistentArea" node_paths=PackedStringArray("target_objects") instance=ExtResource("25_siy04")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 1.2, 1, 5.39999)
+item = ExtResource("24_v3uo0")
+target_objects = [NodePath("../TransformationSequence")]
+
 [node name="LevelChangeTrigger" parent="PersistentArea" node_paths=PackedStringArray("sub_level") instance=ExtResource("2_6hap2")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -1, 0, 6)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -1, 0, 4)
 sub_level = NodePath("../../SubLevel_School")
+
+[node name="TransformationSequence" type="Node" parent="PersistentArea" node_paths=PackedStringArray("player", "end_pos")]
+script = ExtResource("24_wtaln")
+narration = ExtResource("25_d020c")
+end_narration = ExtResource("26_h1j1x")
+player = NodePath("../../PlayerOverworld")
+end_pos = NodePath("../../SchoolPos")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="PersistentArea/TransformationSequence"]
+libraries = {
+"": SubResource("AnimationLibrary_mq7do")
+}
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="PersistentArea/TransformationSequence"]
+
+[node name="Ambience" type="AudioStreamPlayer" parent="PersistentArea/TransformationSequence"]
+stream = ExtResource("28_27cdr")
 
 [node name="Interface" type="Control" parent="."]
 layout_mode = 3
@@ -329,6 +529,7 @@ visible_characters = 0
 visible_ratio = 0.0
 
 [node name="TestSaveMenu" type="Control" parent="Interface"]
+visible = false
 anchors_preset = 0
 offset_top = 96.0
 offset_right = 40.0
@@ -367,11 +568,6 @@ text = "Saving...."
 [node name="SubLevel_School" parent="." instance=ExtResource("21_dygyu")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -200.633, 6, 11)
 level_path = "res://levels/sub_level/school_1.tscn"
-is_loaded = true
-
-[node name="School1" type="Node3D" parent="SubLevel_School" groups=["school1_level"] instance=ExtResource("22_pvc6o")]
-script = ExtResource("23_8cvai")
-level_name = "school1"
 
 [node name="SubLevel_Classrooms" parent="." instance=ExtResource("21_dygyu")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -162.633, 0.5, 98.6)
@@ -385,9 +581,14 @@ level_path = "res://levels/dev/combat_test.tscn"
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -118.6, 1, 59)
 is_showing = true
 
+[node name="SchoolPos" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -206, 0, 10)
+
 [connection signal="combat_ended" from="CombatArena" to="." method="_on_combat_arena_combat_ended"]
 [connection signal="end_sequence_finished" from="CombatArena" to="." method="_on_combat_arena_end_sequence_finished"]
 [connection signal="player_lost" from="CombatArena" to="." method="_on_combat_arena_player_lost"]
 [connection signal="finish" from="TransitionCamera" to="." method="_on_transition_camera_finish"]
+[connection signal="horror_event_ended" from="SubLevelIntro" to="." method="_on_sub_level_intro_horror_event_ended"]
+[connection signal="horror_event_started" from="SubLevelIntro" to="." method="_on_sub_level_intro_horror_event_started"]
 [connection signal="pressed" from="Interface/TestSaveMenu/SaveButton" to="." method="_on_save_button_pressed"]
 [connection signal="pressed" from="Interface/TestSaveMenu/LoadButton" to="." method="_on_load_button_pressed"]

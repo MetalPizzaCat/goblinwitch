@@ -17,8 +17,9 @@ func _on_anim_finished(_name: String) -> void:
 func interact(actor: PlayerOverworld) -> void:
 	if not open:
 		super(actor)
-		print("giving %s" % item.name)
-		actor.receive_item(item)
+		if item != null:
+			print("giving %s" % item.name)
+			actor.receive_item(item)
 		model_anim.play("move")
 		open = true
 		interaction_box.turn_off()

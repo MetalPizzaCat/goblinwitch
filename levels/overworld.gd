@@ -8,6 +8,7 @@ signal sublevel_loaded
 @export var game_intro_sequence: Node
 @export var play_intro_narration: bool = true
 @export var level_transition_box: Node3D
+@export var do_debug : bool = false
 
 @onready var combat_arena_storage: Node3D = $CombatArenaStorage
 @onready var transition_camera: TransitionCamera = $TransitionCamera
@@ -16,6 +17,8 @@ signal sublevel_loaded
 
 @onready var save_manager: SaveManager = get_node('/root/SaveManager')
 @onready var intro_sublevel: Level = $SubLevelIntro
+
+var intro_sub_level_cached_save : Dictionary = {}
 
 var currently_loading_level: String
 var is_loading_level: bool
@@ -40,9 +43,13 @@ func _ready() -> void:
 	var combat_areas = get_tree().get_nodes_in_group("combat_area")
 	for area in combat_areas:
 		area.combat_triggered.connect(_on_combat_triggered)
+	for sub in get_tree().get_nodes_in_group('sublevel'):
+		sub.finished_loading.connect(_on_sub_level_finished_loading)
 	if play_intro_narration and not welcome_played:
 		game_intro_sequence.activate()
 		welcome_played = true
+	if do_debug:
+		_on_sub_level_intro_horror_event_ended()
 	
 
 func start_combat(combat_scenario: CombatScenario, combat_pos: Vector3) -> void:
@@ -96,6 +103,7 @@ func _on_sub_level_intro_horror_event_ended() -> void:
 	player.global_position = level_transition_box.global_position
 	$AmbientSoundPlayer.play()
 	player.cutscene_paused = false
+	intro_sub_level_cached_save = intro_sublevel.get_save_data()
 	remove_child(intro_sublevel)
 	intro_sublevel.queue_free()
 	intro_sublevel = null
@@ -107,7 +115,7 @@ func get_save_data() -> Dictionary:
 		 	"finished_welcome": welcome_played,
 			"sublevels": get_tree().get_nodes_in_group("sublevel").map(func(p): return {'node': p.name, 'data': p.get_save_data(), 'loaded' : p.is_loaded}),
 			"player": player.get_save_data(),
-			"intro_data": intro_sublevel.get_save_data(),
+			"intro_data": intro_sub_level_cached_save if intro_sublevel == null else intro_sublevel.get_save_data(),
 			"has_intro": intro_sublevel != null
 		}
 
@@ -140,3 +148,10 @@ func _on_save_button_pressed() -> void:
 
 func _on_combat_arena_player_lost() -> void:
 	player.die()
+
+
+func _on_sub_level_finished_loading() -> void:
+	var combat_areas = get_tree().get_nodes_in_group("combat_area") as Array[CombatTrigger]
+	for area in combat_areas:
+		if not area.combat_triggered.is_connected(_on_combat_triggered):
+			area.combat_triggered.connect(_on_combat_triggered)

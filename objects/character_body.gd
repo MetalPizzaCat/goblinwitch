@@ -20,7 +20,7 @@ var animation_paused: bool:
 			footstep_player.active = false
 		else:
 			print_rich("[shake]unpaused[/shake]")
-			animation_player.play()
+			#animation_player.play()
 			footstep_player.active = animation_player.current_animation == "run"
 
 var _animation_paused : bool = false

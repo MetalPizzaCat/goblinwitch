@@ -1,0 +1,34 @@
+[gd_resource type="Resource" script_class="Narration" load_steps=8 format=3 uid="uid://cpanpxxba7yx2"]
+
+[ext_resource type="Script" path="res://overworld/narrator/narration_line.gd" id="1_y8fny"]
+[ext_resource type="Script" path="res://overworld/narrator/narration.gd" id="2_3d0i5"]
+
+[sub_resource type="Resource" id="Resource_nho2o"]
+script = ExtResource("1_y8fny")
+text = "you monster"
+speed_modifier = 0.5
+
+[sub_resource type="Resource" id="Resource_m811l"]
+script = ExtResource("1_y8fny")
+text = "You [shake]killed[/shake] my child"
+speed_modifier = 1.0
+
+[sub_resource type="Resource" id="Resource_p0vqm"]
+script = ExtResource("1_y8fny")
+text = "You hideous monster, did you not think about me?"
+speed_modifier = 1.0
+
+[sub_resource type="Resource" id="Resource_h77rl"]
+script = ExtResource("1_y8fny")
+text = "Do i need to remind you who you killed?"
+speed_modifier = 1.0
+
+[sub_resource type="Resource" id="Resource_rwah6"]
+script = ExtResource("1_y8fny")
+text = "I will make you suffer"
+speed_modifier = 1.0
+
+[resource]
+script = ExtResource("2_3d0i5")
+takes_over_control = true
+lines = Array[ExtResource("1_y8fny")]([SubResource("Resource_nho2o"), SubResource("Resource_m811l"), SubResource("Resource_p0vqm"), SubResource("Resource_h77rl"), SubResource("Resource_rwah6")])

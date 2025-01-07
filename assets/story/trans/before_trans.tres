@@ -1,0 +1,34 @@
+[gd_resource type="Resource" script_class="Narration" load_steps=8 format=3 uid="uid://b0pe6exci5q18"]
+
+[ext_resource type="Script" path="res://overworld/narrator/narration_line.gd" id="1_oaxv8"]
+[ext_resource type="Script" path="res://overworld/narrator/narration.gd" id="2_dpvfs"]
+
+[sub_resource type="Resource" id="Resource_esk38"]
+script = ExtResource("1_oaxv8")
+text = "[shake]Don't you dare[/shake]"
+speed_modifier = 1.0
+
+[sub_resource type="Resource" id="Resource_djftn"]
+script = ExtResource("1_oaxv8")
+text = "Why would you do that?"
+speed_modifier = 1.0
+
+[sub_resource type="Resource" id="Resource_vbfrg"]
+script = ExtResource("1_oaxv8")
+text = "You were so [shake]happy[/shake] before"
+speed_modifier = 1.0
+
+[sub_resource type="Resource" id="Resource_u0hrb"]
+script = ExtResource("1_oaxv8")
+text = "Don't ruin yourself"
+speed_modifier = 1.0
+
+[sub_resource type="Resource" id="Resource_xdoxv"]
+script = ExtResource("1_oaxv8")
+text = "I care about you"
+speed_modifier = 1.0
+
+[resource]
+script = ExtResource("2_dpvfs")
+takes_over_control = true
+lines = Array[ExtResource("1_oaxv8")]([SubResource("Resource_esk38"), SubResource("Resource_djftn"), SubResource("Resource_vbfrg"), SubResource("Resource_u0hrb"), SubResource("Resource_xdoxv")])

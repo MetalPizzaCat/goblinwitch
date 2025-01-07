@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="Item" load_steps=3 format=3 uid="uid://coh4gdmjxeebp"]
+
+[ext_resource type="Script" path="res://combat/attack.gd" id="1_mgcxh"]
+[ext_resource type="Script" path="res://character/item.gd" id="2_a3tl5"]
+
+[resource]
+script = ExtResource("2_a3tl5")
+name = "Goblin potion"
+description = "Potion that makes you a goblin :3"
+is_weapon = false
+is_key = false
+damage = 1
+min_strength = 0
+accuracy = 0
+attacks = Array[ExtResource("1_mgcxh")]([])
+model = 0
+health_restore = 69
+mana_restore = 0
