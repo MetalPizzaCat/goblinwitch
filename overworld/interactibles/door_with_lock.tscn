@@ -1,0 +1,25 @@
+[gd_scene load_steps=6 format=3 uid="uid://t5qfe3qx4wxo"]
+
+[ext_resource type="PackedScene" uid="uid://dfhvje4xuhawy" path="res://overworld/interactibles/door.tscn" id="1_c28uy"]
+[ext_resource type="Script" path="res://overworld/interactibles/door_with_lock.gd" id="2_keuea"]
+[ext_resource type="Script" path="res://overworld/narrator/narration.gd" id="3_83y5v"]
+[ext_resource type="PackedScene" uid="uid://dqw0bn3bf1flh" path="res://models/keyhole.glb" id="4_6vepd"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_5fyst"]
+size = Vector3(3, 6, 7)
+
+[node name="Door" instance=ExtResource("1_c28uy")]
+script = ExtResource("2_keuea")
+key = null
+interaction_text = Array[ExtResource("3_83y5v")]([])
+
+[node name="keyhole" parent="door" index="0" instance=ExtResource("4_6vepd")]
+transform = Transform3D(4.64312e-08, 0.615, -2.68825e-08, 0, -2.68825e-08, -0.615, -0.615, 4.64312e-08, -2.02957e-15, 0.3, 2, 0)
+
+[node name="Interaction" type="Area3D" parent="." index="3"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Interaction" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.5, 0)
+shape = SubResource("BoxShape3D_5fyst")
+
+[connection signal="body_entered" from="Interaction" to="." method="_on_interaction_body_entered"]

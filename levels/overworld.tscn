@@ -15,8 +15,8 @@
 [ext_resource type="Script" path="res://objects/transition_camera.gd" id="19_jjhu6"]
 [ext_resource type="PackedScene" uid="uid://bnacf6fsyyquf" path="res://levels/sub_level/sub_level.tscn" id="21_dygyu"]
 [ext_resource type="PackedScene" uid="uid://ccnlyh145g44i" path="res://levels/sub_level_intro.tscn" id="21_yvqu8"]
-[ext_resource type="PackedScene" uid="uid://csro47j7ctwtb" path="res://levels/sub_level/school_1.tscn" id="22_ibje6"]
-[ext_resource type="Script" path="res://levels/level.gd" id="23_mx8fo"]
+[ext_resource type="PackedScene" uid="uid://csro47j7ctwtb" path="res://levels/sub_level/school_1.tscn" id="22_pvc6o"]
+[ext_resource type="Script" path="res://levels/level.gd" id="23_8cvai"]
 [ext_resource type="PackedScene" uid="uid://dxpp0hatuvvhw" path="res://objects/dev/mock_arena.tscn" id="24_fjcmo"]
 [ext_resource type="Material" uid="uid://dc832g8ylc07g" path="res://textures/stone_wall.tres" id="24_hn8qk"]
 [ext_resource type="Material" uid="uid://dokvfv1k2qj0d" path="res://textures/rock_tile.tres" id="25_eg5eu"]
@@ -203,7 +203,7 @@ play_intro_narration = false
 level_transition_box = NodePath("PersistentArea/HoldingAreaPos")
 
 [node name="PlayerOverworld" parent="." groups=["player"] instance=ExtResource("4_u10hx")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -41.831, 0.551009, 67.6504)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -37.7923, 0.551009, 88.1149)
 character = SubResource("Resource_dvjdl")
 is_goblin = false
 
@@ -239,7 +239,7 @@ volume_db = -4.0
 autoplay = true
 
 [node name="PersistentArea" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -182, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -78, 0, -158)
 
 [node name="FuncGodotMap" type="Node3D" parent="PersistentArea"]
 script = ExtResource("1_lsw2u")
@@ -292,7 +292,7 @@ spot_angle = 68.679
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 2, 1)
 
 [node name="LevelChangeTrigger" parent="PersistentArea" node_paths=PackedStringArray("sub_level") instance=ExtResource("2_6hap2")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -1, 0, -3)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -1, 0, 6)
 sub_level = NodePath("../../SubLevel_School")
 
 [node name="Interface" type="Control" parent="."]
@@ -369,8 +369,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -200.633, 6, 11)
 level_path = "res://levels/sub_level/school_1.tscn"
 is_loaded = true
 
-[node name="School1" type="Node3D" parent="SubLevel_School" groups=["school1_level"] instance=ExtResource("22_ibje6")]
-script = ExtResource("23_mx8fo")
+[node name="School1" type="Node3D" parent="SubLevel_School" groups=["school1_level"] instance=ExtResource("22_pvc6o")]
+script = ExtResource("23_8cvai")
 level_name = "school1"
 
 [node name="SubLevel_Classrooms" parent="." instance=ExtResource("21_dygyu")]
@@ -389,7 +389,5 @@ is_showing = true
 [connection signal="end_sequence_finished" from="CombatArena" to="." method="_on_combat_arena_end_sequence_finished"]
 [connection signal="player_lost" from="CombatArena" to="." method="_on_combat_arena_player_lost"]
 [connection signal="finish" from="TransitionCamera" to="." method="_on_transition_camera_finish"]
-[connection signal="horror_event_ended" from="SubLevelIntro" to="." method="_on_sub_level_intro_horror_event_ended"]
-[connection signal="horror_event_started" from="SubLevelIntro" to="." method="_on_sub_level_intro_horror_event_started"]
 [connection signal="pressed" from="Interface/TestSaveMenu/SaveButton" to="." method="_on_save_button_pressed"]
 [connection signal="pressed" from="Interface/TestSaveMenu/LoadButton" to="." method="_on_load_button_pressed"]

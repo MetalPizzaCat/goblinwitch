@@ -1,18 +1,19 @@
-[gd_resource type="Resource" script_class="Item" load_steps=3 format=3 uid="uid://ca8i3px6qeglt"]
+[gd_resource type="Resource" script_class="Item" load_steps=4 format=3 uid="uid://ca8i3px6qeglt"]
 
 [ext_resource type="Script" path="res://combat/attack.gd" id="1_qncwe"]
 [ext_resource type="Script" path="res://character/item.gd" id="2_ah1we"]
+[ext_resource type="Resource" uid="uid://covs1jr2xcm1t" path="res://assets/attacks/attack_whack.tres" id="2_s4voi"]
 
 [resource]
 script = ExtResource("2_ah1we")
 name = "Key"
-description = "A key to the locked door(duh)"
-is_weapon = false
+description = "A key to the important door. You can whack people with it"
+is_weapon = true
 is_key = true
-damage = 1
-min_strength = 0
-accuracy = 0
-attacks = Array[ExtResource("1_qncwe")]([])
-model = 0
+damage = 3
+min_strength = 1
+accuracy = 2
+attacks = Array[ExtResource("1_qncwe")]([ExtResource("2_s4voi")])
+model = 2
 health_restore = 0
 mana_restore = 0
