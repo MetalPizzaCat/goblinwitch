@@ -1,4 +1,4 @@
-[gd_scene load_steps=48 format=4 uid="uid://cej7b1eru6x3i"]
+[gd_scene load_steps=50 format=4 uid="uid://cej7b1eru6x3i"]
 
 [ext_resource type="Script" path="res://levels/overworld.gd" id="1_dymff"]
 [ext_resource type="Script" path="res://addons/func_godot/src/map/func_godot_map.gd" id="1_lsw2u"]
@@ -18,6 +18,8 @@
 [ext_resource type="PackedScene" uid="uid://bnacf6fsyyquf" path="res://levels/sub_level/sub_level.tscn" id="21_dygyu"]
 [ext_resource type="PackedScene" uid="uid://ccnlyh145g44i" path="res://levels/sub_level_intro.tscn" id="21_yvqu8"]
 [ext_resource type="PackedScene" uid="uid://bnkn0cwky3d0s" path="res://models/body/human_boy.glb" id="22_6x8d8"]
+[ext_resource type="PackedScene" uid="uid://csro47j7ctwtb" path="res://levels/sub_level/school_1.tscn" id="22_pvc6o"]
+[ext_resource type="Script" path="res://levels/level.gd" id="23_8cvai"]
 [ext_resource type="PackedScene" uid="uid://dxpp0hatuvvhw" path="res://objects/dev/mock_arena.tscn" id="24_fjcmo"]
 [ext_resource type="Material" uid="uid://dc832g8ylc07g" path="res://textures/stone_wall.tres" id="24_hn8qk"]
 [ext_resource type="Resource" uid="uid://coh4gdmjxeebp" path="res://assets/items/goblin_potion.tres" id="24_v3uo0"]
@@ -373,7 +375,7 @@ level_transition_box = NodePath("PersistentArea/HoldingAreaPos")
 do_debug = true
 
 [node name="PlayerOverworld" parent="." groups=["player"] instance=ExtResource("4_u10hx")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -42.7923, 0.551009, 80.1149)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.2077, 0.551009, -42.8851)
 character = SubResource("Resource_dvjdl")
 is_goblin = false
 
@@ -568,6 +570,15 @@ text = "Saving...."
 [node name="SubLevel_School" parent="." instance=ExtResource("21_dygyu")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -200.633, 6, 11)
 level_path = "res://levels/sub_level/school_1.tscn"
+is_loaded = true
+
+[node name="School1" parent="SubLevel_School" instance=ExtResource("22_pvc6o")]
+
+[node name="@Node3D@19333" parent="SubLevel_School" instance=ExtResource("22_pvc6o")]
+
+[node name="@Node3D@22439" type="Node3D" parent="SubLevel_School" groups=["school1_level"] instance=ExtResource("22_pvc6o")]
+script = ExtResource("23_8cvai")
+level_name = "school1"
 
 [node name="SubLevel_Classrooms" parent="." instance=ExtResource("21_dygyu")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -162.633, 0.5, 98.6)

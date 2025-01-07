@@ -145,7 +145,7 @@ func get_enemy_at(cell: Vector2i) -> Fighter:
 func is_valid_position(pos: Vector2i) -> bool:
 	if pos.x < 0 or pos.y < 0 or pos.x >= area_size or pos.y >= area_size:
 		return false
-	if fighter_manager.enemies.any(func(p: Enemy): return p.arena_position == pos):
+	if fighter_manager.enemies.any(func(p: Enemy): return p.arena_position == pos and not p.is_dead):
 		return false
 	return true
 
@@ -184,7 +184,7 @@ func _on_combat_ui_player_action_selected(action: Attack) -> void:
 	player.selected_attack = action
 	for cell in cells:
 		var dist = cell.arena_position.distance_to(player.arena_position)
-		if dist <= action.attack_range and fighter_manager.enemies.any(func(p): return p.arena_position == cell.arena_position):
+		if dist <= action.attack_range and fighter_manager.enemies.any(func(p : Enemy): return p.arena_position == cell.arena_position and not p.is_dead):
 			match action.attack_type:
 				Attack.AttackType.MELEE:
 					cell.state = CombatCell.TileState.GOOD if dist <= 1 else CombatCell.TileState.WARNING

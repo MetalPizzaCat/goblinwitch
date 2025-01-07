@@ -15,7 +15,7 @@ func on_tile_selected(tile: CombatCell) -> void:
 		PlayerSelection.ATTACK:
 			if tile.arena_position.distance_to(arena_position) <= selected_attack.attack_range:
 				var target = combat_arena.get_enemy_at(tile.arena_position)
-				if target != null:
+				if target != null and not target.is_dead:
 					attack(target, selected_attack)
 			else:
 				print("Distance from %s to %s is %s" % [tile.arena_position, arena_position, tile.arena_position.distance_to(arena_position)])
