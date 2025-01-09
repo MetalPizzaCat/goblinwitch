@@ -1,10 +1,12 @@
-[gd_scene load_steps=45 format=4 uid="uid://cej7b1eru6x3i"]
+[gd_scene load_steps=47 format=4 uid="uid://cej7b1eru6x3i"]
 
 [ext_resource type="Script" path="res://levels/overworld.gd" id="1_dymff"]
 [ext_resource type="Script" path="res://addons/func_godot/src/map/func_godot_map.gd" id="1_lsw2u"]
 [ext_resource type="PackedScene" uid="uid://cluj5k0dnyu0g" path="res://objects/level_change_trigger.tscn" id="2_6hap2"]
+[ext_resource type="Resource" uid="uid://dvtob4g4rwcjl" path="res://assets/story/end.tres" id="2_ivayt"]
 [ext_resource type="Resource" uid="uid://bkhxcqsquw1yg" path="res://addons/func_godot/func_godot_default_map_settings.tres" id="2_pjht8"]
 [ext_resource type="Resource" uid="uid://cbexlqx8v1bof" path="res://assets/characters/player_test.tres" id="3_g277y"]
+[ext_resource type="Resource" uid="uid://cnwqxj0dpxiun" path="res://assets/scenarios/boss_fight.tres" id="3_nl1x1"]
 [ext_resource type="PackedScene" uid="uid://eu51uk4ydnoe" path="res://overworld/player_overworld.tscn" id="4_u10hx"]
 [ext_resource type="Material" uid="uid://c55dmlmtk5gs6" path="res://textures/black.tres" id="5_yuhdt"]
 [ext_resource type="PackedScene" uid="uid://dan7m2c7flsu8" path="res://combat/arena/combat_arena.tscn" id="8_dcrt3"]
@@ -353,6 +355,8 @@ player = NodePath("PlayerOverworld")
 game_intro_sequence = NodePath("Sequences/Welcome")
 play_intro_narration = false
 level_transition_box = NodePath("PersistentArea/HoldingAreaPos")
+end_game_narration = ExtResource("2_ivayt")
+end_game_battle = ExtResource("3_nl1x1")
 
 [node name="PlayerOverworld" parent="." groups=["player"] instance=ExtResource("4_u10hx")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -168.792, 0.551009, 142.115)
@@ -556,7 +560,19 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -162.633, 0.5, 98.6)
 level_path = "res://levels/sub_level/classrooms_1.tscn"
 is_loaded = true
 
-[node name="classrooms_1" type="Node3D" parent="SubLevel_Classrooms" groups=["classroom_level"] instance=ExtResource("31_vqwxu")]
+[node name="classrooms_1" parent="SubLevel_Classrooms" instance=ExtResource("31_vqwxu")]
+
+[node name="@Node3D@38158" parent="SubLevel_Classrooms" instance=ExtResource("31_vqwxu")]
+
+[node name="@Node3D@40406" parent="SubLevel_Classrooms" instance=ExtResource("31_vqwxu")]
+
+[node name="@Node3D@40696" parent="SubLevel_Classrooms" instance=ExtResource("31_vqwxu")]
+
+[node name="@Node3D@40985" parent="SubLevel_Classrooms" instance=ExtResource("31_vqwxu")]
+
+[node name="@Node3D@41278" parent="SubLevel_Classrooms" instance=ExtResource("31_vqwxu")]
+
+[node name="@Node3D@41579" type="Node3D" parent="SubLevel_Classrooms" groups=["classroom_level"] instance=ExtResource("31_vqwxu")]
 script = ExtResource("28_6hqc7")
 level_name = "classroom"
 

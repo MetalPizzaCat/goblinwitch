@@ -9,7 +9,7 @@
 [resource]
 script = ExtResource("3_o7f1y")
 name = "Dysphoria"
-strength = 5
+strength = 2
 dexterity = 1
 intelligence = 0
 perception = 4

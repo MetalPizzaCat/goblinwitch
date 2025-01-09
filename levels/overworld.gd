@@ -9,6 +9,7 @@ signal sublevel_loaded
 @export var play_intro_narration: bool = true
 @export var level_transition_box: Node3D
 @export var end_game_narration : Narration
+@export var end_game_battle : CombatScenario
 
 @onready var combat_arena_storage: Node3D = $CombatArenaStorage
 @onready var transition_camera: TransitionCamera = $TransitionCamera
@@ -79,6 +80,9 @@ func _on_combat_arena_combat_ended() -> void:
 			to_local(combat_arena.camera.global_position),
 			combat_arena.camera.rotation,
 		)
+	if combat_arena.combat_scenario == end_game_battle:
+		player.play_narration(end_game_narration)
+		await player.narrator.narration_over
 	
 	
 

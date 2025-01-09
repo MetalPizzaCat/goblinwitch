@@ -1,0 +1,34 @@
+[gd_resource type="Resource" script_class="Narration" load_steps=8 format=3 uid="uid://dvtob4g4rwcjl"]
+
+[ext_resource type="Script" path="res://overworld/narrator/narration_line.gd" id="1_k7msf"]
+[ext_resource type="Script" path="res://overworld/narrator/narration.gd" id="2_symin"]
+
+[sub_resource type="Resource" id="Resource_ww5uo"]
+script = ExtResource("1_k7msf")
+text = "...now what?"
+speed_modifier = 1.0
+
+[sub_resource type="Resource" id="Resource_23y3y"]
+script = ExtResource("1_k7msf")
+text = "You thought that defeating that will save you?"
+speed_modifier = 1.0
+
+[sub_resource type="Resource" id="Resource_poctd"]
+script = ExtResource("1_k7msf")
+text = "No"
+speed_modifier = 1.0
+
+[sub_resource type="Resource" id="Resource_878my"]
+script = ExtResource("1_k7msf")
+text = "I will simply not allow you"
+speed_modifier = 1.0
+
+[sub_resource type="Resource" id="Resource_aeres"]
+script = ExtResource("1_k7msf")
+text = "You will be stuck forever"
+speed_modifier = 1.0
+
+[resource]
+script = ExtResource("2_symin")
+takes_over_control = true
+lines = Array[ExtResource("1_k7msf")]([SubResource("Resource_ww5uo"), SubResource("Resource_23y3y"), SubResource("Resource_poctd"), SubResource("Resource_878my"), SubResource("Resource_aeres")])
