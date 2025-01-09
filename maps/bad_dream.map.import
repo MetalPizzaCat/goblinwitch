@@ -1,0 +1,14 @@
+[remap]
+
+importer="func_godot.map"
+type="Resource"
+uid="uid://cp4m1jl5ys6a1"
+path="res://.godot/imported/bad_dream.map-3b20569b56b9f9323064b44f2d670ebd.tres"
+
+[deps]
+
+source_file="res://maps/bad_dream.map"
+dest_files=["res://.godot/imported/bad_dream.map-3b20569b56b9f9323064b44f2d670ebd.tres"]
+
+[params]
+

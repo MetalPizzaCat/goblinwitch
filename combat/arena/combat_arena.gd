@@ -184,12 +184,13 @@ func _on_combat_ui_player_action_selected(action: Attack) -> void:
 	player.selected_attack = action
 	for cell in cells:
 		var dist = cell.arena_position.distance_to(player.arena_position)
-		if dist <= action.attack_range and fighter_manager.enemies.any(func(p : Enemy): return p.arena_position == cell.arena_position and not p.is_dead):
+		var has_enemy =  fighter_manager.enemies.any(func(p : Enemy): return p.arena_position == cell.arena_position and not p.is_dead)
+		if dist <= action.attack_range:
 			match action.attack_type:
 				Attack.AttackType.MELEE:
-					cell.state = CombatCell.TileState.GOOD if dist <= 1 else CombatCell.TileState.WARNING
+					cell.state = CombatCell.TileState.GOOD if has_enemy else CombatCell.TileState.WARNING
 				Attack.AttackType.RANGED:
-					cell.state = CombatCell.TileState.GOOD if dist > 1 else CombatCell.TileState.WARNING
+					cell.state = CombatCell.TileState.GOOD if has_enemy else CombatCell.TileState.WARNING
 		else:
 			cell.state = CombatCell.TileState.DEFAULT
 	

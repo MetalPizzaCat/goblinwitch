@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="CombatScenario" load_steps=7 format=3 uid="uid://cnwqxj0dpxiun"]
+
+[ext_resource type="Script" path="res://combat/scenario/combat_scenario_actor.gd" id="1_jxres"]
+[ext_resource type="Script" path="res://combat/scenario/combat_scenario.gd" id="2_7teda"]
+[ext_resource type="Resource" uid="uid://c3klo03bmu7h" path="res://assets/characters/dysphoria.tres" id="2_kems4"]
+[ext_resource type="Resource" uid="uid://cmy68ukx15iyx" path="res://assets/characters/bully_archer.tres" id="3_xmpao"]
+
+[sub_resource type="Resource" id="Resource_ixbgm"]
+script = ExtResource("1_jxres")
+character = ExtResource("2_kems4")
+start_pos = Vector2i(3, 5)
+
+[sub_resource type="Resource" id="Resource_mf8tf"]
+script = ExtResource("1_jxres")
+character = ExtResource("3_xmpao")
+start_pos = Vector2i(0, 3)
+
+[resource]
+script = ExtResource("2_7teda")
+actors = Array[ExtResource("1_jxres")]([SubResource("Resource_ixbgm"), SubResource("Resource_mf8tf")])
+player_position = Vector2i(0, 0)
+arena_size = 6

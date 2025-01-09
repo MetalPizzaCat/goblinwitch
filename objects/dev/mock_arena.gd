@@ -2,7 +2,6 @@
 extends Node3D
 class_name MockArena
 
-
 @export_range(1, 7) var area_size: int:
 	get:
 		return _area_size
@@ -46,7 +45,7 @@ var cells: Array[CombatCell] = []
 @export var size_between_cells: float = 3.1
 
 var _is_showing: bool = false
-var _area_size : int = 6
+var _area_size: int = 6
 
 ## Generate grid used for combat
 func generate_grid() -> void:
@@ -54,12 +53,19 @@ func generate_grid() -> void:
 		printerr("Missing cell prefab!")
 		return
 	if cell_root == null:
-		return	
+		return
 	for x in range(area_size):
 		for y in range(area_size):
+			
 			var cell = cell_prefab.instantiate() as CombatCell
 			cell_root.add_child(cell)
 			cell.position = Vector3(x * size_between_cells, 0, y * size_between_cells)
 			cells.append(cell)
 			cell.owner = get_tree().edited_scene_root
 			cell.arena_position = Vector2i(x, y)
+			if x == 0 and y == 0:
+				cell.state = CombatCell.TileState.GOOD
+			elif x == area_size - 1 and y == area_size - 1:
+				cell.state = CombatCell.TileState.BAD
+			elif x == 0:
+				cell.state = CombatCell.TileState.WARNING

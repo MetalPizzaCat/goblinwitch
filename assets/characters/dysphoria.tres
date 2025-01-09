@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="Character" load_steps=6 format=3 uid="uid://c3klo03bmu7h"]
+
+[ext_resource type="Script" path="res://character/item.gd" id="1_jmwj6"]
+[ext_resource type="PackedScene" uid="uid://belhcwbhy6h1d" path="res://objects/character/dysphoria_boss.tscn" id="2_lyn5k"]
+[ext_resource type="Script" path="res://character/character.gd" id="3_o7f1y"]
+[ext_resource type="Script" path="res://combat/attack.gd" id="4_swq0i"]
+[ext_resource type="Resource" uid="uid://cxb5d6u5hatcf" path="res://assets/items/unfittin_sword.tres" id="5_3qawi"]
+
+[resource]
+script = ExtResource("3_o7f1y")
+name = "Dysphoria"
+strength = 5
+dexterity = 1
+intelligence = 0
+perception = 4
+endurance = 5
+charisma = 0
+items = Array[ExtResource("1_jmwj6")]([])
+weapon = ExtResource("5_3qawi")
+total_ap = 3
+total_mana = 1
+spells = Array[ExtResource("4_swq0i")]([])
+model_prefab = ExtResource("2_lyn5k")

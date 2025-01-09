@@ -17,7 +17,7 @@ enum TileState {DEFAULT, WARNING, GOOD, BAD}
 
 @onready var mesh: MeshInstance3D = $Tile
 
-var state: TileState:
+@export var state: TileState:
 	get:
 		return _state
 	set(value):

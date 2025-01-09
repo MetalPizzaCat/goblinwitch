@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="Item" load_steps=5 format=3 uid="uid://cxb5d6u5hatcf"]
+
+[ext_resource type="Script" path="res://combat/attack.gd" id="1_tsetl"]
+[ext_resource type="Resource" uid="uid://c4xx66o7ye8f4" path="res://assets/attacks/attack_swing.tres" id="2_cwxuc"]
+[ext_resource type="Script" path="res://character/item.gd" id="2_vvtwr"]
+[ext_resource type="Resource" uid="uid://c0yirnvjl2ao0" path="res://assets/attacks/attack_whack_hard.tres" id="3_qra7j"]
+
+[resource]
+script = ExtResource("2_vvtwr")
+name = "Heavy axe"
+description = "Powerful axe that is easy to miss with"
+is_weapon = true
+is_key = false
+damage = 7
+min_strength = 0
+accuracy = 5
+attacks = Array[ExtResource("1_tsetl")]([ExtResource("2_cwxuc"), ExtResource("3_qra7j")])
+model = 1
+health_restore = 0
+mana_restore = 0

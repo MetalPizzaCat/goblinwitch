@@ -1,25 +1,19 @@
-[gd_scene load_steps=50 format=4 uid="uid://cej7b1eru6x3i"]
+[gd_scene load_steps=45 format=4 uid="uid://cej7b1eru6x3i"]
 
 [ext_resource type="Script" path="res://levels/overworld.gd" id="1_dymff"]
 [ext_resource type="Script" path="res://addons/func_godot/src/map/func_godot_map.gd" id="1_lsw2u"]
 [ext_resource type="PackedScene" uid="uid://cluj5k0dnyu0g" path="res://objects/level_change_trigger.tscn" id="2_6hap2"]
 [ext_resource type="Resource" uid="uid://bkhxcqsquw1yg" path="res://addons/func_godot/func_godot_default_map_settings.tres" id="2_pjht8"]
-[ext_resource type="PackedScene" uid="uid://cu3y01etdq38t" path="res://objects/character/goblin_girl.tscn" id="4_iaemi"]
-[ext_resource type="Resource" uid="uid://dm0p2hr7fdmlu" path="res://assets/items/health_potion.tres" id="4_tmrc5"]
+[ext_resource type="Resource" uid="uid://cbexlqx8v1bof" path="res://assets/characters/player_test.tres" id="3_g277y"]
 [ext_resource type="PackedScene" uid="uid://eu51uk4ydnoe" path="res://overworld/player_overworld.tscn" id="4_u10hx"]
 [ext_resource type="Material" uid="uid://c55dmlmtk5gs6" path="res://textures/black.tres" id="5_yuhdt"]
-[ext_resource type="Script" path="res://character/item.gd" id="7_7g6il"]
-[ext_resource type="Script" path="res://character/character.gd" id="8_1jhyx"]
 [ext_resource type="PackedScene" uid="uid://dan7m2c7flsu8" path="res://combat/arena/combat_arena.tscn" id="8_dcrt3"]
-[ext_resource type="Script" path="res://combat/attack.gd" id="9_4khm8"]
 [ext_resource type="PackedScene" uid="uid://c0la25qxelmxf" path="res://models/body/goblin_girl.glb" id="14_1daho"]
 [ext_resource type="Script" path="res://objects/transition_camera.gd" id="19_jjhu6"]
 [ext_resource type="AudioStream" uid="uid://b3h6l5obxv31p" path="res://assets/music/trans.ogg" id="21_50mry"]
 [ext_resource type="PackedScene" uid="uid://bnacf6fsyyquf" path="res://levels/sub_level/sub_level.tscn" id="21_dygyu"]
 [ext_resource type="PackedScene" uid="uid://ccnlyh145g44i" path="res://levels/sub_level_intro.tscn" id="21_yvqu8"]
 [ext_resource type="PackedScene" uid="uid://bnkn0cwky3d0s" path="res://models/body/human_boy.glb" id="22_6x8d8"]
-[ext_resource type="PackedScene" uid="uid://csro47j7ctwtb" path="res://levels/sub_level/school_1.tscn" id="22_pvc6o"]
-[ext_resource type="Script" path="res://levels/level.gd" id="23_8cvai"]
 [ext_resource type="PackedScene" uid="uid://dxpp0hatuvvhw" path="res://objects/dev/mock_arena.tscn" id="24_fjcmo"]
 [ext_resource type="Material" uid="uid://dc832g8ylc07g" path="res://textures/stone_wall.tres" id="24_hn8qk"]
 [ext_resource type="Resource" uid="uid://coh4gdmjxeebp" path="res://assets/items/goblin_potion.tres" id="24_v3uo0"]
@@ -31,23 +25,10 @@
 [ext_resource type="Resource" uid="uid://cpanpxxba7yx2" path="res://assets/story/trans/after_trans.tres" id="26_h1j1x"]
 [ext_resource type="Theme" uid="uid://cfgbmdhhipqu" path="res://assets/ui/themes/combat_theme.tres" id="26_w02g1"]
 [ext_resource type="Resource" uid="uid://cvxfjxoytajph" path="res://assets/story/welcome.tres" id="27_rw10o"]
+[ext_resource type="Script" path="res://levels/sub_level/classroom.gd" id="28_6hqc7"]
 [ext_resource type="AudioStream" uid="uid://exgtw8toqk3a" path="res://assets/music/turn.ogg" id="28_27cdr"]
+[ext_resource type="PackedScene" uid="uid://38cg01tedyyp" path="res://levels/sub_level/classrooms_1.tscn" id="31_vqwxu"]
 [ext_resource type="AudioStream" uid="uid://drwcb10mnytmf" path="res://assets/sounds/ambience.ogg" id="33_tqtw2"]
-
-[sub_resource type="Resource" id="Resource_dvjdl"]
-script = ExtResource("8_1jhyx")
-name = "Player"
-strength = 5
-dexterity = 1
-intelligence = 0
-perception = 1
-endurance = 5
-charisma = 0
-items = Array[ExtResource("7_7g6il")]([ExtResource("4_tmrc5")])
-total_ap = 3
-total_mana = 3
-spells = Array[ExtResource("9_4khm8")]([])
-model_prefab = ExtResource("4_iaemi")
 
 [sub_resource type="Environment" id="Environment_aiprv"]
 background_mode = 1
@@ -372,11 +353,10 @@ player = NodePath("PlayerOverworld")
 game_intro_sequence = NodePath("Sequences/Welcome")
 play_intro_narration = false
 level_transition_box = NodePath("PersistentArea/HoldingAreaPos")
-do_debug = true
 
 [node name="PlayerOverworld" parent="." groups=["player"] instance=ExtResource("4_u10hx")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.2077, 0.551009, -42.8851)
-character = SubResource("Resource_dvjdl")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -168.792, 0.551009, 142.115)
+character = ExtResource("3_g277y")
 is_goblin = false
 
 [node name="CombatArena" parent="." node_paths=PackedStringArray("overworld_player") instance=ExtResource("8_dcrt3")]
@@ -570,19 +550,15 @@ text = "Saving...."
 [node name="SubLevel_School" parent="." instance=ExtResource("21_dygyu")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -200.633, 6, 11)
 level_path = "res://levels/sub_level/school_1.tscn"
-is_loaded = true
-
-[node name="School1" parent="SubLevel_School" instance=ExtResource("22_pvc6o")]
-
-[node name="@Node3D@19333" parent="SubLevel_School" instance=ExtResource("22_pvc6o")]
-
-[node name="@Node3D@22439" type="Node3D" parent="SubLevel_School" groups=["school1_level"] instance=ExtResource("22_pvc6o")]
-script = ExtResource("23_8cvai")
-level_name = "school1"
 
 [node name="SubLevel_Classrooms" parent="." instance=ExtResource("21_dygyu")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -162.633, 0.5, 98.6)
 level_path = "res://levels/sub_level/classrooms_1.tscn"
+is_loaded = true
+
+[node name="classrooms_1" type="Node3D" parent="SubLevel_Classrooms" groups=["classroom_level"] instance=ExtResource("31_vqwxu")]
+script = ExtResource("28_6hqc7")
+level_name = "classroom"
 
 [node name="CombatTest" parent="." instance=ExtResource("21_dygyu")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -234, 0, -29)

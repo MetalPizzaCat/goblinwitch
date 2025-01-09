@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="Attack" load_steps=2 format=3 uid="uid://c0yirnvjl2ao0"]
+
+[ext_resource type="Script" path="res://combat/attack.gd" id="1_m27mn"]
+
+[resource]
+script = ExtResource("1_m27mn")
+name = "Whack"
+description = ""
+damage_modifier = 2.0
+is_spell = false
+attack_type = 0
+effect = 0
+attack_range = 1
+can_target_self = false
+ap_cost = 1
+mana_cost = 1
+character_animation_name = "sword_attack"
+damage_effect = 0
+effect_duration = 1
+is_healing = false

@@ -8,7 +8,7 @@ signal sublevel_loaded
 @export var game_intro_sequence: Node
 @export var play_intro_narration: bool = true
 @export var level_transition_box: Node3D
-@export var do_debug : bool = false
+@export var end_game_narration : Narration
 
 @onready var combat_arena_storage: Node3D = $CombatArenaStorage
 @onready var transition_camera: TransitionCamera = $TransitionCamera
@@ -48,8 +48,6 @@ func _ready() -> void:
 	if play_intro_narration and not welcome_played:
 		game_intro_sequence.activate()
 		welcome_played = true
-	if do_debug:
-		_on_sub_level_intro_horror_event_ended()
 	
 
 func start_combat(combat_scenario: CombatScenario, combat_pos: Vector3) -> void:
@@ -81,6 +79,7 @@ func _on_combat_arena_combat_ended() -> void:
 			to_local(combat_arena.camera.global_position),
 			combat_arena.camera.rotation,
 		)
+	
 	
 
 func _on_transition_camera_finish() -> void:

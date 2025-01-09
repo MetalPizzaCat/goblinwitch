@@ -1,0 +1,26 @@
+[remap]
+
+importer="2d_array_texture"
+type="CompressedTexture2DArray"
+uid="uid://bhea2teqq0ysg"
+path="res://.godot/imported/classrooms_1.exr-8d16fdb0224b9c0b3b98b31c20336a83.ctexarray"
+metadata={
+"vram_texture": false
+}
+
+[deps]
+
+source_file="res://levels/sub_level/classrooms_1.exr"
+dest_files=["res://.godot/imported/classrooms_1.exr-8d16fdb0224b9c0b3b98b31c20336a83.ctexarray"]
+
+[params]
+
+compress/mode=3
+compress/high_quality=false
+compress/lossy_quality=0.7
+compress/hdr_compression=1
+compress/channel_pack=1
+mipmaps/generate=false
+mipmaps/limit=-1
+slices/horizontal=1
+slices/vertical=1

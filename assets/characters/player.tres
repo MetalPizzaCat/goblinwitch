@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="Character" load_steps=6 format=3 uid="uid://di10g8pj06lqx"]
+
+[ext_resource type="Script" path="res://character/item.gd" id="1_b1sei"]
+[ext_resource type="Resource" uid="uid://dm0p2hr7fdmlu" path="res://assets/items/health_potion.tres" id="2_jk8l2"]
+[ext_resource type="PackedScene" uid="uid://cu3y01etdq38t" path="res://objects/character/goblin_girl.tscn" id="3_wmdlt"]
+[ext_resource type="Script" path="res://character/character.gd" id="4_dp76w"]
+[ext_resource type="Script" path="res://combat/attack.gd" id="5_cd40v"]
+
+[resource]
+script = ExtResource("4_dp76w")
+name = "Player"
+strength = 5
+dexterity = 1
+intelligence = 0
+perception = 1
+endurance = 5
+charisma = 0
+items = Array[ExtResource("1_b1sei")]([ExtResource("2_jk8l2")])
+total_ap = 3
+total_mana = 3
+spells = Array[ExtResource("5_cd40v")]([])
+model_prefab = ExtResource("3_wmdlt")

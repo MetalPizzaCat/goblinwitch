@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://dm6j1c5i2hi85"]
+
+[ext_resource type="PackedScene" uid="uid://cgp10p8xr0lh0" path="res://combat/fighter/fighter.tscn" id="1_xskft"]
+[ext_resource type="Script" path="res://combat/fighter/enemy.gd" id="2_twi2o"]
+
+[node name="Enemy" instance=ExtResource("1_xskft")]
+script = ExtResource("2_twi2o")
+active = false
