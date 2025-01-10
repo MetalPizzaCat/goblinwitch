@@ -10,11 +10,12 @@ signal player_action_unselected
 @onready var fighter_card_box: HBoxContainer = $FighterCardBox
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var end_text_label: RichTextLabel = $VictoryLabel
-@onready var move_button : Button = $Panel/Actions/MoveButton
+@onready var move_button: Button = $Panel/Actions/MoveButton
 @onready var victory_sound_player: AudioStreamPlayer = $VictorySoundPlayer
 @onready var defeat_sound_player: AudioStreamPlayer = $DefeatSoundPlayer
+@onready var health_bar: ProgressBar = $HealthPanel/ProgressBar
 
-@export var fallback_attack : Attack
+@export var fallback_attack: Attack
 
 @export var action_button_group: ButtonGroup
 @export var fighter_card_prefab: PackedScene
@@ -25,7 +26,7 @@ signal player_action_unselected
 var player_action_buttons: Array[ActionButton] = []
 var cards: Array[CharacterInfo] = []
 
-var move_button_state : bool
+var move_button_state: bool
 
 func unselect_all_buttons() -> void:
 	move_button.button_pressed = false
@@ -37,6 +38,12 @@ func set_player_max_ap(ap: int) -> void:
 
 func set_player_current_ap(ap: int) -> void:
 	player_ap_panel.current_action_points = ap
+
+func set_player_max_health(health: int) -> void:
+	health_bar.max_value = health
+
+func set_player_current_health(health: int) -> void:
+	health_bar.value = health
 
 func load_player_actions(player: Character) -> void:
 	for act in player_action_buttons:

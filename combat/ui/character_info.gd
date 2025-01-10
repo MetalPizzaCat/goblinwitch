@@ -19,6 +19,7 @@ var _is_active: bool
 @onready var icon : TextureRect = $TextureRect
 
 
+
 func _ready() -> void:
 	add_theme_stylebox_override('panel', active_style if is_active else inactive_style)
 	if fighter:

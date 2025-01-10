@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=7 format=3 uid="uid://cfgbmdhhipqu"]
+[gd_resource type="Theme" load_steps=9 format=3 uid="uid://cfgbmdhhipqu"]
 
 [ext_resource type="FontFile" uid="uid://e70dnlpjiko3" path="res://fonts/MorePerfectDOSVGA.ttf" id="1_suqwg"]
 
@@ -58,6 +58,12 @@ expand_margin_right = 5.0
 bg_color = Color(0.341176, 0.721569, 0.870588, 1)
 border_color = Color(0.784558, 0.721538, 0.858808, 1)
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7qsgn"]
+bg_color = Color(0.13587, 0.0420771, 0.0655193, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_e3b7p"]
+bg_color = Color(0.890562, 0.631647, 0.68246, 1)
+
 [resource]
 default_font = ExtResource("1_suqwg")
 Button/colors/font_color = Color(0.596078, 0.0470588, 0.372549, 1)
@@ -68,3 +74,5 @@ Button/styles/normal = SubResource("StyleBoxFlat_hroa5")
 Button/styles/pressed = SubResource("StyleBoxFlat_mrvm8")
 HBoxContainer/constants/separation = 15
 Panel/styles/panel = SubResource("StyleBoxFlat_iys0p")
+ProgressBar/styles/background = SubResource("StyleBoxFlat_7qsgn")
+ProgressBar/styles/fill = SubResource("StyleBoxFlat_e3b7p")

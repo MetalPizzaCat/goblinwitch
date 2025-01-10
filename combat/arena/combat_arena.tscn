@@ -191,6 +191,7 @@ volume_db = -8.0
 [connection signal="finished" from="AnimatedArrow" to="." method="_on_animated_arrow_finished"]
 [connection signal="action_completed" from="Player" to="." method="_on_player_action_completed"]
 [connection signal="arrow_effect_requested" from="Player" to="." method="_on_arrow_effect_requested"]
+[connection signal="health_changed" from="Player" to="." method="_on_player_health_changed"]
 [connection signal="player_took_action" from="Player" to="." method="_on_player_player_took_action"]
 [connection signal="used_action_points" from="Player" to="." method="_on_player_used_action_points"]
 [connection signal="player_action_selected" from="CombatUi" to="." method="_on_combat_ui_player_action_selected"]

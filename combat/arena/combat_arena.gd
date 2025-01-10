@@ -78,6 +78,8 @@ func start_combat(player_world_pos: Vector3, player_data: Character) -> void:
 	player.move_to_tile(find_closest_tile(cell_root.to_local(player_world_pos)))
 	combat_ui.load_player_actions(player_data)
 	combat_ui.set_player_current_ap(player.total_ap)
+	combat_ui.set_player_max_health(player.character.get_max_health())
+	combat_ui.set_player_current_health(player.health)
 	combat_ui.create_character_card(player)
 	combat_ui.visible = true
 	combat_ui.start_combat()
@@ -267,3 +269,7 @@ func _on_player_action_completed() -> void:
 		Player.PlayerSelection.MOVING:
 			_on_combat_ui_player_move_selected()
 
+
+
+func _on_player_health_changed() -> void:
+	combat_ui.set_player_current_health(player.health)
