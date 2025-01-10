@@ -1,14 +1,16 @@
-[gd_resource type="Resource" script_class="Character" load_steps=6 format=3 uid="uid://di10g8pj06lqx"]
+[gd_resource type="Resource" script_class="Character" load_steps=7 format=3 uid="uid://di10g8pj06lqx"]
 
 [ext_resource type="Script" path="res://character/item.gd" id="1_b1sei"]
 [ext_resource type="Resource" uid="uid://dm0p2hr7fdmlu" path="res://assets/items/health_potion.tres" id="2_jk8l2"]
 [ext_resource type="PackedScene" uid="uid://cu3y01etdq38t" path="res://objects/character/goblin_girl.tscn" id="3_wmdlt"]
 [ext_resource type="Script" path="res://character/character.gd" id="4_dp76w"]
 [ext_resource type="Script" path="res://combat/attack.gd" id="5_cd40v"]
+[ext_resource type="Texture2D" uid="uid://b2a02d5ge1mx2" path="res://assets/icons/combat/gob_player.svg" id="6_faucl"]
 
 [resource]
 script = ExtResource("4_dp76w")
 name = "Player"
+texture = ExtResource("6_faucl")
 strength = 5
 dexterity = 1
 intelligence = 0

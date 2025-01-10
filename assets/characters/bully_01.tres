@@ -1,13 +1,15 @@
-[gd_resource type="Resource" script_class="Character" load_steps=5 format=3 uid="uid://bs1phsutll7wr"]
+[gd_resource type="Resource" script_class="Character" load_steps=6 format=3 uid="uid://bs1phsutll7wr"]
 
 [ext_resource type="Script" path="res://character/item.gd" id="1_pv4i6"]
 [ext_resource type="PackedScene" uid="uid://c20nhjf3socml" path="res://objects/character/human_boy.tscn" id="2_14iw4"]
 [ext_resource type="Script" path="res://character/character.gd" id="2_rcpyf"]
 [ext_resource type="Script" path="res://combat/attack.gd" id="3_w62if"]
+[ext_resource type="Texture2D" uid="uid://cvybkckbi6j84" path="res://assets/icons/combat/human_player.svg" id="5_7veke"]
 
 [resource]
 script = ExtResource("2_rcpyf")
 name = "Bully"
+texture = ExtResource("5_7veke")
 strength = 2
 dexterity = 1
 intelligence = 0

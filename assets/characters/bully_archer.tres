@@ -1,14 +1,16 @@
-[gd_resource type="Resource" script_class="Character" load_steps=6 format=3 uid="uid://cmy68ukx15iyx"]
+[gd_resource type="Resource" script_class="Character" load_steps=7 format=3 uid="uid://cmy68ukx15iyx"]
 
 [ext_resource type="Script" path="res://character/item.gd" id="1_fggsj"]
 [ext_resource type="PackedScene" uid="uid://c20nhjf3socml" path="res://objects/character/human_boy.tscn" id="2_ouotp"]
 [ext_resource type="Script" path="res://character/character.gd" id="3_0e2lc"]
 [ext_resource type="Script" path="res://combat/attack.gd" id="4_2ybmc"]
+[ext_resource type="Texture2D" uid="uid://cknfkpgbrucpw" path="res://assets/icons/combat/human_player2.svg" id="5_4ainw"]
 [ext_resource type="Resource" uid="uid://de4sax5sdcqjm" path="res://assets/items/bow.tres" id="5_ngmfj"]
 
 [resource]
 script = ExtResource("3_0e2lc")
 name = "Bully Archer"
+texture = ExtResource("5_4ainw")
 strength = 2
 dexterity = 1
 intelligence = 0

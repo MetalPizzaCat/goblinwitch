@@ -1,14 +1,16 @@
-[gd_resource type="Resource" script_class="Character" load_steps=6 format=3 uid="uid://c3klo03bmu7h"]
+[gd_resource type="Resource" script_class="Character" load_steps=7 format=3 uid="uid://c3klo03bmu7h"]
 
 [ext_resource type="Script" path="res://character/item.gd" id="1_jmwj6"]
 [ext_resource type="PackedScene" uid="uid://belhcwbhy6h1d" path="res://objects/character/dysphoria_boss.tscn" id="2_lyn5k"]
 [ext_resource type="Script" path="res://character/character.gd" id="3_o7f1y"]
 [ext_resource type="Script" path="res://combat/attack.gd" id="4_swq0i"]
 [ext_resource type="Resource" uid="uid://cxb5d6u5hatcf" path="res://assets/items/unfittin_sword.tres" id="5_3qawi"]
+[ext_resource type="Texture2D" uid="uid://dj4onbniv6iyj" path="res://assets/icons/combat/dysphoria_player.svg" id="5_j3nwf"]
 
 [resource]
 script = ExtResource("3_o7f1y")
 name = "Dysphoria"
+texture = ExtResource("5_j3nwf")
 strength = 0
 dexterity = 1
 intelligence = 0

@@ -16,6 +16,7 @@ class_name CharacterInfo
 var _is_active: bool
 
 @onready var health_label: Label = $Label
+@onready var icon : TextureRect = $TextureRect
 
 
 func _ready() -> void:
@@ -23,6 +24,8 @@ func _ready() -> void:
 	if fighter:
 		fighter.health_changed.connect(_on_health_changed)
 		fighter.used_action_points.connect(_on_ap_point_used)
+		if fighter.character.texture != null:
+			icon.texture = fighter.character.texture
 		_on_health_changed()
 
 func _on_health_changed() -> void:

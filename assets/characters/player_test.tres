@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Character" load_steps=9 format=3 uid="uid://cbexlqx8v1bof"]
+[gd_resource type="Resource" script_class="Character" load_steps=10 format=3 uid="uid://cbexlqx8v1bof"]
 
 [ext_resource type="Script" path="res://character/item.gd" id="1_lxcr1"]
 [ext_resource type="Resource" uid="uid://dm0p2hr7fdmlu" path="res://assets/items/health_potion.tres" id="2_w0e8i"]
@@ -8,10 +8,12 @@
 [ext_resource type="Script" path="res://character/character.gd" id="4_k0kyb"]
 [ext_resource type="Resource" uid="uid://cxb5d6u5hatcf" path="res://assets/items/unfittin_sword.tres" id="5_roi70"]
 [ext_resource type="Script" path="res://combat/attack.gd" id="5_wlawk"]
+[ext_resource type="Texture2D" uid="uid://b2a02d5ge1mx2" path="res://assets/icons/combat/gob_player.svg" id="9_rnay8"]
 
 [resource]
 script = ExtResource("4_k0kyb")
 name = "Player"
+texture = ExtResource("9_rnay8")
 strength = 5
 dexterity = 1
 intelligence = 0
