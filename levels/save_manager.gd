@@ -20,6 +20,10 @@ func save_game(saver: Node = null) -> void:
 		save_data['saver'] = saver.get_path()
 	save_file.store_var(save_data)
 
+func swap_to_overworld_and_load(world : PackedScene) -> void:
+	get_tree().change_scene_to_packed(world)
+	await get_tree().create_timer(0.1).timeout
+	load_game()
 
 func load_game() -> void:
 	call_deferred('_load_game')
