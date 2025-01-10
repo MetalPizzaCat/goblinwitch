@@ -22,6 +22,8 @@ signal item_consumed(consumable: Item)
 @export var human_fighter_body_scene: PackedScene
 @export var goblin_fighter_body_scene: PackedScene
 
+@export var is_in_credits : bool = false
+
 @export_group("Story flags")
 @export var is_goblin: bool:
 	get:
@@ -69,12 +71,12 @@ func _physics_process(_delta: float) -> void:
 		update_animation()
 		return
 
-	if Input.is_action_just_pressed("inventory"):
+	if Input.is_action_just_pressed("inventory") and not is_in_credits:
 		if inventory.active:
 			inventory.hide_inventory()
 		else:
 			inventory.show_inventory()
-	if Input.is_action_just_pressed("cheat"):
+	if Input.is_action_just_pressed("cheat") and not is_in_credits:
 		cheat_console.visible = not cheat_console.visible
 
 	if Input.is_action_just_pressed("interact") and interaction_target != null and interaction_target.has_method("interact"):

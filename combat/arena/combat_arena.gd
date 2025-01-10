@@ -137,7 +137,7 @@ func find_closest_tile(src: Vector3) -> Vector2i:
 ## Get enemy that is currently occupying this cell or null if cell is empty
 func get_enemy_at(cell: Vector2i) -> Fighter:
 	for enemy in fighter_manager.enemies:
-		if enemy.arena_position == cell:
+		if enemy.arena_position == cell and not enemy.is_dead:
 			return enemy
 	return null
 
@@ -145,7 +145,7 @@ func get_enemy_at(cell: Vector2i) -> Fighter:
 func is_valid_position(pos: Vector2i) -> bool:
 	if pos.x < 0 or pos.y < 0 or pos.x >= area_size or pos.y >= area_size:
 		return false
-	if fighter_manager.enemies.any(func(p: Enemy): return p.arena_position == pos and not p.is_dead):
+	if fighter_manager.alive_enemies.any(func(p: Enemy): return p.arena_position == pos):
 		return false
 	return true
 
@@ -182,9 +182,10 @@ func _on_cell_clicked(cell: CombatCell) -> void:
 func _on_combat_ui_player_action_selected(action: Attack) -> void:
 	player.player_selection = Player.PlayerSelection.ATTACK
 	player.selected_attack = action
+	var valid_enemies: Array[Enemy] = fighter_manager.alive_enemies
 	for cell in cells:
 		var dist = cell.arena_position.distance_to(player.arena_position)
-		var has_enemy =  fighter_manager.enemies.any(func(p : Enemy): return p.arena_position == cell.arena_position and not p.is_dead)
+		var has_enemy = valid_enemies.any(func(p: Enemy): return p.arena_position == cell.arena_position)
 		if dist <= action.attack_range:
 			match action.attack_type:
 				Attack.AttackType.MELEE:

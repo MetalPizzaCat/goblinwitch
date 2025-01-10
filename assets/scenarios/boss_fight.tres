@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="CombatScenario" load_steps=7 format=3 uid="uid://cnwqxj0dpxiun"]
+[gd_resource type="Resource" script_class="CombatScenario" load_steps=8 format=3 uid="uid://cnwqxj0dpxiun"]
 
 [ext_resource type="Script" path="res://combat/scenario/combat_scenario_actor.gd" id="1_jxres"]
 [ext_resource type="Script" path="res://combat/scenario/combat_scenario.gd" id="2_7teda"]
@@ -15,8 +15,13 @@ script = ExtResource("1_jxres")
 character = ExtResource("3_xmpao")
 start_pos = Vector2i(0, 3)
 
+[sub_resource type="Resource" id="Resource_klbbr"]
+script = ExtResource("1_jxres")
+character = ExtResource("2_kems4")
+start_pos = Vector2i(5, 5)
+
 [resource]
 script = ExtResource("2_7teda")
-actors = Array[ExtResource("1_jxres")]([SubResource("Resource_ixbgm"), SubResource("Resource_mf8tf")])
+actors = Array[ExtResource("1_jxres")]([SubResource("Resource_ixbgm"), SubResource("Resource_mf8tf"), SubResource("Resource_klbbr")])
 player_position = Vector2i(0, 0)
 arena_size = 6

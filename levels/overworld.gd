@@ -8,8 +8,11 @@ signal sublevel_loaded
 @export var game_intro_sequence: Node
 @export var play_intro_narration: bool = true
 @export var level_transition_box: Node3D
+@export_group("Ending")
 @export var end_game_narration : Narration
 @export var end_game_battle : CombatScenario
+@export var end_pos : Node3D
+@export var ending_level : Sublevel
 
 @onready var combat_arena_storage: Node3D = $CombatArenaStorage
 @onready var transition_camera: TransitionCamera = $TransitionCamera
@@ -80,9 +83,13 @@ func _on_combat_arena_combat_ended() -> void:
 			to_local(combat_arena.camera.global_position),
 			combat_arena.camera.rotation,
 		)
-	if combat_arena.combat_scenario == end_game_battle:
+	if combat_arena.combat_scenario == end_game_battle and not combat_arena.player.is_dead:
 		player.play_narration(end_game_narration)
+		ending_level.is_loaded = true
 		await player.narrator.narration_over
+		player.global_position = end_pos.global_position
+		interface_animations.play("credits")
+		player.is_in_credits = true
 	
 	
 
@@ -158,3 +165,9 @@ func _on_sub_level_finished_loading() -> void:
 	for area in combat_areas:
 		if not area.combat_triggered.is_connected(_on_combat_triggered):
 			area.combat_triggered.connect(_on_combat_triggered)
+
+
+func _on_exit_button_pressed() -> void:
+	get_window().title = ":3"
+	await get_tree().create_timer(1).timeout
+	get_tree().quit()

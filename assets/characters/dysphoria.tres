@@ -9,15 +9,15 @@
 [resource]
 script = ExtResource("3_o7f1y")
 name = "Dysphoria"
-strength = 2
+strength = 0
 dexterity = 1
 intelligence = 0
 perception = 4
-endurance = 5
+endurance = 10
 charisma = 0
 items = Array[ExtResource("1_jmwj6")]([])
 weapon = ExtResource("5_3qawi")
-total_ap = 3
+total_ap = 2
 total_mana = 1
 spells = Array[ExtResource("4_swq0i")]([])
 model_prefab = ExtResource("2_lyn5k")

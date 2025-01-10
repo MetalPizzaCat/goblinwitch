@@ -27,6 +27,10 @@ var current_enemy: Enemy:
 	get:
 		return null if current_enemy_id >= len(enemies) or current_enemy_id < 0 else enemies[current_enemy_id]
 
+var alive_enemies: Array[Enemy]:
+	get:
+		return enemies.filter(func(p: Enemy): return not p.is_dead)
+
 func _ready() -> void:
 	player.used_all_action_points.connect(_on_player_finished_turn)
 	player.died.connect(_on_player_died)
@@ -68,7 +72,7 @@ func get_next_active_enemy_id(start: int = 0) -> int:
 
 
 ## Reset player ap and start player turn
-func start_player_turn() -> void:	
+func start_player_turn() -> void:
 	current_enemy_id = -1
 	if player.start_turn():
 		await player.hurt_animation_finished

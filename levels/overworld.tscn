@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://eu51uk4ydnoe" path="res://overworld/player_overworld.tscn" id="4_u10hx"]
 [ext_resource type="Material" uid="uid://c55dmlmtk5gs6" path="res://textures/black.tres" id="5_yuhdt"]
 [ext_resource type="PackedScene" uid="uid://dan7m2c7flsu8" path="res://combat/arena/combat_arena.tscn" id="8_dcrt3"]
+[ext_resource type="AudioStream" uid="uid://gk7pqd1dn55c" path="res://assets/music/ambient.ogg" id="11_cqhir"]
 [ext_resource type="PackedScene" uid="uid://c0la25qxelmxf" path="res://models/body/goblin_girl.glb" id="14_1daho"]
 [ext_resource type="Script" path="res://objects/transition_camera.gd" id="19_jjhu6"]
 [ext_resource type="AudioStream" uid="uid://b3h6l5obxv31p" path="res://assets/music/trans.ogg" id="21_50mry"]
@@ -27,10 +28,8 @@
 [ext_resource type="Resource" uid="uid://cpanpxxba7yx2" path="res://assets/story/trans/after_trans.tres" id="26_h1j1x"]
 [ext_resource type="Theme" uid="uid://cfgbmdhhipqu" path="res://assets/ui/themes/combat_theme.tres" id="26_w02g1"]
 [ext_resource type="Resource" uid="uid://cvxfjxoytajph" path="res://assets/story/welcome.tres" id="27_rw10o"]
-[ext_resource type="Script" path="res://levels/sub_level/classroom.gd" id="28_6hqc7"]
 [ext_resource type="AudioStream" uid="uid://exgtw8toqk3a" path="res://assets/music/turn.ogg" id="28_27cdr"]
-[ext_resource type="PackedScene" uid="uid://38cg01tedyyp" path="res://levels/sub_level/classrooms_1.tscn" id="31_vqwxu"]
-[ext_resource type="AudioStream" uid="uid://drwcb10mnytmf" path="res://assets/sounds/ambience.ogg" id="33_tqtw2"]
+[ext_resource type="Script" path="res://levels/sub_level/sub_level.gd" id="32_pt28g"]
 
 [sub_resource type="Environment" id="Environment_aiprv"]
 background_mode = 1
@@ -295,6 +294,130 @@ tracks/2/keys = {
 "update": 0,
 "values": [Color(1, 1, 1, 1)]
 }
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Credits:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Credits/Label:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Credits/Label2:modulate")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Credits/RichTextLabel:modulate")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Credits/ExitButton:modulate")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_j5cj1"]
+resource_name = "credits"
+length = 5.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Credits:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Credits/Label:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.1, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Credits/Label2:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.1, 1.03333, 2.03333),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Credits/RichTextLabel:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.1, 2.03333, 3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Credits/ExitButton:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(3, 5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
 
 [sub_resource type="Animation" id="Animation_n6ux4"]
 resource_name = "load"
@@ -344,11 +467,12 @@ tracks/1/keys = {
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_4qu7o"]
 _data = {
 "RESET": SubResource("Animation_8lclm"),
+"credits": SubResource("Animation_j5cj1"),
 "load": SubResource("Animation_n6ux4"),
 "save": SubResource("Animation_dsv8j")
 }
 
-[node name="Overworld" type="Node3D" node_paths=PackedStringArray("combat_arena", "player", "game_intro_sequence", "level_transition_box") groups=["overworld"]]
+[node name="Overworld" type="Node3D" node_paths=PackedStringArray("combat_arena", "player", "game_intro_sequence", "level_transition_box", "end_pos", "ending_level") groups=["overworld"]]
 script = ExtResource("1_dymff")
 combat_arena = NodePath("CombatArena")
 player = NodePath("PlayerOverworld")
@@ -357,9 +481,11 @@ play_intro_narration = false
 level_transition_box = NodePath("PersistentArea/HoldingAreaPos")
 end_game_narration = ExtResource("2_ivayt")
 end_game_battle = ExtResource("3_nl1x1")
+end_pos = NodePath("EndingPos")
+ending_level = NodePath("SubLevel_Ending")
 
 [node name="PlayerOverworld" parent="." groups=["player"] instance=ExtResource("4_u10hx")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -168.792, 0.551009, 142.115)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -168.792, 0.551009, 147.115)
 character = ExtResource("3_g277y")
 is_goblin = false
 
@@ -390,8 +516,8 @@ narration = ExtResource("27_rw10o")
 player = NodePath("../../PlayerOverworld")
 
 [node name="AmbientSoundPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("33_tqtw2")
-volume_db = -4.0
+stream = ExtResource("11_cqhir")
+volume_db = -1.0
 autoplay = true
 
 [node name="PersistentArea" type="Node3D" parent="."]
@@ -551,6 +677,71 @@ offset_bottom = 880.0
 theme = ExtResource("26_w02g1")
 text = "Saving...."
 
+[node name="Credits" type="Control" parent="Interface"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 436.0
+offset_top = 172.0
+offset_right = 1196.0
+offset_bottom = 492.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Label" type="Label" parent="Interface/Credits"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -94.5
+offset_right = 94.5
+offset_bottom = 16.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 96
+text = "Game by MetalPizzaCat"
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="Interface/Credits"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -572.0
+offset_top = 88.0
+offset_right = 562.0
+offset_bottom = 184.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 76
+text = "Made using Godot"
+horizontal_alignment = 1
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Interface/Credits"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 0
+offset_left = -152.0
+offset_top = 152.0
+offset_right = 936.0
+offset_bottom = 352.0
+theme_override_font_sizes/normal_font_size = 96
+bbcode_enabled = true
+text = "[center][rainbow][wave]Thanks for playing[/wave][/rainbow][/center]"
+
+[node name="ExitButton" type="Button" parent="Interface/Credits"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 0
+offset_left = 304.0
+offset_top = 312.0
+offset_right = 386.0
+offset_bottom = 354.0
+text = "Exit"
+
 [node name="SubLevel_School" parent="." instance=ExtResource("21_dygyu")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -200.633, 6, 11)
 level_path = "res://levels/sub_level/school_1.tscn"
@@ -558,23 +749,6 @@ level_path = "res://levels/sub_level/school_1.tscn"
 [node name="SubLevel_Classrooms" parent="." instance=ExtResource("21_dygyu")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -162.633, 0.5, 98.6)
 level_path = "res://levels/sub_level/classrooms_1.tscn"
-is_loaded = true
-
-[node name="classrooms_1" parent="SubLevel_Classrooms" instance=ExtResource("31_vqwxu")]
-
-[node name="@Node3D@38158" parent="SubLevel_Classrooms" instance=ExtResource("31_vqwxu")]
-
-[node name="@Node3D@40406" parent="SubLevel_Classrooms" instance=ExtResource("31_vqwxu")]
-
-[node name="@Node3D@40696" parent="SubLevel_Classrooms" instance=ExtResource("31_vqwxu")]
-
-[node name="@Node3D@40985" parent="SubLevel_Classrooms" instance=ExtResource("31_vqwxu")]
-
-[node name="@Node3D@41278" parent="SubLevel_Classrooms" instance=ExtResource("31_vqwxu")]
-
-[node name="@Node3D@41579" type="Node3D" parent="SubLevel_Classrooms" groups=["classroom_level"] instance=ExtResource("31_vqwxu")]
-script = ExtResource("28_6hqc7")
-level_name = "classroom"
 
 [node name="CombatTest" parent="." instance=ExtResource("21_dygyu")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -234, 0, -29)
@@ -584,8 +758,16 @@ level_path = "res://levels/dev/combat_test.tscn"
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -118.6, 1, 59)
 is_showing = true
 
+[node name="SubLevel_Ending" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 115, 0, -240)
+script = ExtResource("32_pt28g")
+level_path = "res://levels/sub_level/ending.tscn"
+
 [node name="SchoolPos" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -206, 0, 10)
+
+[node name="EndingPos" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 106, -5, -231)
 
 [connection signal="combat_ended" from="CombatArena" to="." method="_on_combat_arena_combat_ended"]
 [connection signal="end_sequence_finished" from="CombatArena" to="." method="_on_combat_arena_end_sequence_finished"]
@@ -595,3 +777,4 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -206, 0, 10)
 [connection signal="horror_event_started" from="SubLevelIntro" to="." method="_on_sub_level_intro_horror_event_started"]
 [connection signal="pressed" from="Interface/TestSaveMenu/SaveButton" to="." method="_on_save_button_pressed"]
 [connection signal="pressed" from="Interface/TestSaveMenu/LoadButton" to="." method="_on_load_button_pressed"]
+[connection signal="pressed" from="Interface/Credits/ExitButton" to="." method="_on_exit_button_pressed"]
