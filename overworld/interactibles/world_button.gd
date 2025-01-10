@@ -14,7 +14,8 @@ func interact(player: PlayerOverworld) -> void:
 	if not was_used or not one_time_use:
 		was_used = true
 		for obj in target_objects:
-			obj.activate()
+			if obj != null:
+				obj.activate()
 		used.emit()
 
 

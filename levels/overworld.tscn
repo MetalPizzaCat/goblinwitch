@@ -5,9 +5,9 @@
 [ext_resource type="PackedScene" uid="uid://cluj5k0dnyu0g" path="res://objects/level_change_trigger.tscn" id="2_6hap2"]
 [ext_resource type="Resource" uid="uid://dvtob4g4rwcjl" path="res://assets/story/end.tres" id="2_ivayt"]
 [ext_resource type="Resource" uid="uid://bkhxcqsquw1yg" path="res://addons/func_godot/func_godot_default_map_settings.tres" id="2_pjht8"]
-[ext_resource type="Resource" uid="uid://cbexlqx8v1bof" path="res://assets/characters/player_test.tres" id="3_g277y"]
 [ext_resource type="Resource" uid="uid://cnwqxj0dpxiun" path="res://assets/scenarios/boss_fight.tres" id="3_nl1x1"]
 [ext_resource type="PackedScene" uid="uid://eu51uk4ydnoe" path="res://overworld/player_overworld.tscn" id="4_u10hx"]
+[ext_resource type="Resource" uid="uid://di10g8pj06lqx" path="res://assets/characters/player.tres" id="5_sf86m"]
 [ext_resource type="Material" uid="uid://c55dmlmtk5gs6" path="res://textures/black.tres" id="5_yuhdt"]
 [ext_resource type="PackedScene" uid="uid://dan7m2c7flsu8" path="res://combat/arena/combat_arena.tscn" id="8_dcrt3"]
 [ext_resource type="AudioStream" uid="uid://gk7pqd1dn55c" path="res://assets/music/ambient.ogg" id="11_cqhir"]
@@ -477,6 +477,7 @@ script = ExtResource("1_dymff")
 combat_arena = NodePath("CombatArena")
 player = NodePath("PlayerOverworld")
 game_intro_sequence = NodePath("Sequences/Welcome")
+play_intro_narration = false
 level_transition_box = NodePath("PersistentArea/HoldingAreaPos")
 end_game_narration = ExtResource("2_ivayt")
 end_game_battle = ExtResource("3_nl1x1")
@@ -484,8 +485,8 @@ end_pos = NodePath("EndingPos")
 ending_level = NodePath("SubLevel_Ending")
 
 [node name="PlayerOverworld" parent="." groups=["player"] instance=ExtResource("4_u10hx")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.79201, 0.551009, -50.885)
-character = ExtResource("3_g277y")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.30086, 0.551009, -50.4902)
+character = ExtResource("5_sf86m")
 is_goblin = false
 
 [node name="CombatArena" parent="." node_paths=PackedStringArray("overworld_player") instance=ExtResource("8_dcrt3")]
@@ -746,7 +747,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -200.633, 6, 11)
 level_path = "res://levels/sub_level/school_1.tscn"
 
 [node name="SubLevel_Classrooms" parent="." instance=ExtResource("21_dygyu")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -162.633, 0.5, 98.6)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -162.633, 0.5, 99.6)
 level_path = "res://levels/sub_level/classrooms_1.tscn"
 
 [node name="CombatTest" parent="." instance=ExtResource("21_dygyu")]
