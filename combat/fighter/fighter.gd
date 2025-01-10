@@ -243,6 +243,7 @@ func try_use_item(item: Item) -> bool:
 	health = min(health + item.health_restore, character.get_max_health())
 	current_mana = min(current_mana + item.mana_restore, 3)
 	health_changed.emit()
+	use_ap(1)
 	return true
 
 
