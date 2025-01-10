@@ -1,4 +1,4 @@
-[gd_scene load_steps=47 format=4 uid="uid://cej7b1eru6x3i"]
+[gd_scene load_steps=48 format=4 uid="uid://cej7b1eru6x3i"]
 
 [ext_resource type="Script" path="res://levels/overworld.gd" id="1_dymff"]
 [ext_resource type="Script" path="res://addons/func_godot/src/map/func_godot_map.gd" id="1_lsw2u"]
@@ -29,6 +29,7 @@
 [ext_resource type="Theme" uid="uid://cfgbmdhhipqu" path="res://assets/ui/themes/combat_theme.tres" id="26_w02g1"]
 [ext_resource type="Resource" uid="uid://cvxfjxoytajph" path="res://assets/story/welcome.tres" id="27_rw10o"]
 [ext_resource type="AudioStream" uid="uid://exgtw8toqk3a" path="res://assets/music/turn.ogg" id="28_27cdr"]
+[ext_resource type="PackedScene" uid="uid://38cg01tedyyp" path="res://levels/sub_level/classrooms_1.tscn" id="29_s0xkq"]
 [ext_resource type="Script" path="res://levels/sub_level/sub_level.gd" id="32_pt28g"]
 
 [sub_resource type="Environment" id="Environment_aiprv"]
@@ -749,6 +750,9 @@ level_path = "res://levels/sub_level/school_1.tscn"
 [node name="SubLevel_Classrooms" parent="." instance=ExtResource("21_dygyu")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -162.633, 0.5, 98.6)
 level_path = "res://levels/sub_level/classrooms_1.tscn"
+is_loaded = true
+
+[node name="classrooms_1" parent="SubLevel_Classrooms" instance=ExtResource("29_s0xkq")]
 
 [node name="CombatTest" parent="." instance=ExtResource("21_dygyu")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -234, 0, -29)

@@ -36,6 +36,7 @@ enum ActionState {
 			return
 		health = character.get_max_health()
 		current_mana = character.total_mana
+		total_ap = character.total_ap
 		if anim_body != null:
 			remove_child(anim_body)
 			anim_body.queue_free()
@@ -145,6 +146,8 @@ func use_ap(amount: int) -> void:
 ## Reset start of turn values and run all the logic related to applying effects at the start of the term
 func start_turn() -> bool:
 	current_ap = total_ap
+	# simple band-aid to send the event
+	used_action_points.emit(0)
 	var applying_damage : bool = false
 	for effect in effects.keys():
 		match effect:

@@ -193,12 +193,15 @@ script = ExtResource("1_nbxeo")
 fallback_attacks = Array[ExtResource("2_j5pgn")]([ExtResource("3_uujgf")])
 
 [node name="FireEffectParticles" parent="." instance=ExtResource("4_br4c4")]
+visible = false
 emitting = false
 
 [node name="PoisonEffectParticles" parent="." instance=ExtResource("4_r854s")]
+visible = false
 emitting = false
 
 [node name="SlowEffectParticles" parent="." instance=ExtResource("5_nggub")]
+visible = false
 emitting = false
 
 [node name="InfoLabel" type="Label3D" parent="."]

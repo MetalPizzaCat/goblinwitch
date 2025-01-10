@@ -254,3 +254,16 @@ func _on_arrow_effect_requested(from: Fighter, to: Fighter, magic: bool) -> void
 
 func _on_animated_arrow_finished() -> void:
 	arrow.visible = false
+
+
+func _on_player_player_took_action() -> void:
+	pass
+
+func _on_player_action_completed() -> void:
+	print("Player finished action and has selected %s" % player.player_selection)
+	match player.player_selection:
+		Player.PlayerSelection.ATTACK:
+			_on_combat_ui_player_action_selected(player.selected_attack)
+		Player.PlayerSelection.MOVING:
+			_on_combat_ui_player_move_selected()
+
