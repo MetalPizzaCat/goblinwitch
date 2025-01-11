@@ -6,10 +6,22 @@ extends Node3D
 @onready var save_manager: SaveManager = get_node('/root/SaveManager')
 @export var main_level : PackedScene
 
+@export_group("Demo")
+@export var demo_mode : bool = false
+@export var demo_screen_size : Vector2i = Vector2i(1920,1080)
+@export var demo_title : String = "Goblin(DEMO MODE)"
 
 func _ready() -> void:
-	animations.play("show")
 	music.play()
+	if demo_mode:
+		get_window().size = demo_screen_size
+		get_window().title = demo_title
+		animations.play("itch")
+		await get_tree().create_timer(10).timeout
+		_on_new_game_button_pressed()
+	else:
+		animations.play("show")
+	
 
 
 

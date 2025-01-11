@@ -477,7 +477,6 @@ script = ExtResource("1_dymff")
 combat_arena = NodePath("CombatArena")
 player = NodePath("PlayerOverworld")
 game_intro_sequence = NodePath("Sequences/Welcome")
-play_intro_narration = false
 level_transition_box = NodePath("PersistentArea/HoldingAreaPos")
 end_game_narration = ExtResource("2_ivayt")
 end_game_battle = ExtResource("3_nl1x1")
