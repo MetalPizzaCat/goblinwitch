@@ -3277,6 +3277,9 @@ environment_custom_color = Color(0.332881, 0.332881, 0.332881, 1)
 environment_custom_energy = 0.25
 light_data = ExtResource("52_k2btm")
 
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(-0.866025, -0.353553, 0.353553, 0, 0.707107, 0.707107, -0.5, 0.612372, -0.612372, -28, 10, 24)
+
 [connection signal="body_entered" from="HorrorSequenceTrigger" to="." method="_on_horror_sequence_trigger_body_entered"]
 [connection signal="body_entered" from="HorrorSequenceStartTrigger" to="." method="_on_horror_sequence_start_trigger_body_entered"]
 [connection signal="player_caught" from="RunSequence/goblin_girl" to="." method="_on_goblin_girl_player_caught"]
