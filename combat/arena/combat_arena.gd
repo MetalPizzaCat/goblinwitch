@@ -85,6 +85,7 @@ func start_combat(player_world_pos: Vector3, player_data: Character) -> void:
 	combat_ui.start_combat()
 	fighter_manager.start_player_turn()
 	active = true
+	overworld_player.is_in_combat = true
 	combat_music_player.play()
 	
 	
@@ -153,6 +154,7 @@ func is_valid_position(pos: Vector2i) -> bool:
 
 
 func end_combat(player_won: bool) -> void:
+	overworld_player.is_in_combat = false
 	overworld_player.global_position = player.global_position
 	print("Combat should end")
 	animation_player.play("end")
