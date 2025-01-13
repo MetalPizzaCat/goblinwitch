@@ -1,11 +1,15 @@
 [gd_scene load_steps=8 format=3 uid="uid://b7u4aifjb5urw"]
 
-[ext_resource type="Theme" uid="uid://cfgbmdhhipqu" path="res://assets/ui/themes/combat_theme.tres" id="1_rwkxu"]
+[ext_resource type="Theme" uid="uid://bajvm2fxa48tr" path="res://assets/ui/themes/inv_theme.tres" id="1_53h2b"]
 [ext_resource type="Script" path="res://character/ui/inventory.gd" id="2_2boqd"]
 [ext_resource type="ButtonGroup" uid="uid://dvwg5l70ycase" path="res://assets/ui/inv_button_group.tres" id="3_kuxvj"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_t0cq3"]
 bg_color = Color(0.844307, 0.45631, 0.617746, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
 
 [sub_resource type="Animation" id="Animation_ih6em"]
 length = 0.001
@@ -77,7 +81,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 mouse_default_cursor_shape = 2
-theme = ExtResource("1_rwkxu")
+theme = ExtResource("1_53h2b")
 script = ExtResource("2_2boqd")
 
 [node name="InfoPanel" type="Panel" parent="."]
@@ -89,8 +93,8 @@ anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -40.0
 offset_top = 574.0
-offset_right = 224.0
-offset_bottom = 870.0
+offset_right = 248.0
+offset_bottom = 958.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_t0cq3")
@@ -100,9 +104,9 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 8.0
-offset_top = 8.0
-offset_right = -6.0
+offset_left = 6.0
+offset_top = 24.0
+offset_right = -3.0
 offset_bottom = -8.0
 grow_horizontal = 2
 grow_vertical = 2
@@ -119,18 +123,18 @@ layout_mode = 2
 
 [node name="DamageValLabel" type="Label" parent="InfoPanel/ItemInfo/Stats"]
 layout_mode = 2
-theme_override_colors/font_color = Color(0.595987, 0.046891, 0.372244, 1)
 theme_override_font_sizes/font_size = 36
-text = "Damage:"
+text = "Attack "
 horizontal_alignment = 1
 
 [node name="DamageVal" type="Label" parent="InfoPanel/ItemInfo/Stats"]
 layout_mode = 2
-theme_override_colors/font_color = Color(0.595987, 0.046891, 0.372244, 1)
 theme_override_font_sizes/font_size = 36
-text = "0
-"
+text = "Damage"
 horizontal_alignment = 1
+
+[node name="AttackInfoContainer" type="VBoxContainer" parent="InfoPanel/ItemInfo"]
+layout_mode = 2
 
 [node name="ItemDescLabel" type="Label" parent="InfoPanel/ItemInfo"]
 custom_minimum_size = Vector2(250, 20)
@@ -138,6 +142,34 @@ layout_mode = 2
 theme_override_colors/font_color = Color(0.595987, 0.046891, 0.372244, 1)
 theme_override_font_sizes/font_size = 24
 autowrap_mode = 2
+
+[node name="ColorRect" type="ColorRect" parent="InfoPanel"]
+offset_left = -8.0
+offset_top = -8.0
+offset_right = 16.0
+offset_bottom = 16.0
+color = Color(0.800183, 0.800183, 0.800183, 1)
+
+[node name="ColorRect2" type="ColorRect" parent="InfoPanel"]
+offset_left = -8.0
+offset_top = 368.0
+offset_right = 16.0
+offset_bottom = 392.0
+color = Color(0.800183, 0.800183, 0.800183, 1)
+
+[node name="ColorRect3" type="ColorRect" parent="InfoPanel"]
+offset_left = 272.0
+offset_top = -8.0
+offset_right = 296.0
+offset_bottom = 16.0
+color = Color(0.800183, 0.800183, 0.800183, 1)
+
+[node name="ColorRect4" type="ColorRect" parent="InfoPanel"]
+offset_left = 272.0
+offset_top = 368.0
+offset_right = 296.0
+offset_bottom = 392.0
+color = Color(0.800183, 0.800183, 0.800183, 1)
 
 [node name="Panel" type="Panel" parent="."]
 layout_mode = 1
@@ -197,8 +229,8 @@ layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
 offset_left = 24.0
-offset_top = 8.0
-offset_bottom = 56.0
+offset_top = 16.0
+offset_bottom = 64.0
 grow_horizontal = 2
 alignment = 1
 
@@ -209,6 +241,7 @@ button_group = ExtResource("3_kuxvj")
 text = "Items"
 
 [node name="Spells" type="Button" parent="Panel/HBoxContainer"]
+visible = false
 layout_mode = 2
 toggle_mode = true
 button_group = ExtResource("3_kuxvj")
@@ -219,6 +252,38 @@ layout_mode = 2
 toggle_mode = true
 button_group = ExtResource("3_kuxvj")
 text = "Potions"
+
+[node name="ColorRect" type="ColorRect" parent="Panel"]
+layout_mode = 0
+offset_left = -8.0
+offset_top = -8.0
+offset_right = 16.0
+offset_bottom = 16.0
+color = Color(0.800183, 0.800183, 0.800183, 1)
+
+[node name="ColorRect2" type="ColorRect" parent="Panel"]
+layout_mode = 0
+offset_left = 440.0
+offset_top = -8.0
+offset_right = 464.0
+offset_bottom = 16.0
+color = Color(0.800183, 0.800183, 0.800183, 1)
+
+[node name="ColorRect3" type="ColorRect" parent="Panel"]
+layout_mode = 0
+offset_left = -8.0
+offset_top = 624.0
+offset_right = 16.0
+offset_bottom = 648.0
+color = Color(0.800183, 0.800183, 0.800183, 1)
+
+[node name="ColorRect4" type="ColorRect" parent="Panel"]
+layout_mode = 0
+offset_left = 440.0
+offset_top = 624.0
+offset_right = 464.0
+offset_bottom = 648.0
+color = Color(0.800183, 0.800183, 0.800183, 1)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
